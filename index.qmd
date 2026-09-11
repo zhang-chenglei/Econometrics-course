@@ -1,5 +1,6 @@
 ---
 pagetitle: "中级计量经济学｜课程主页"
+body-classes: course-home
 ---
 
 # 中级计量经济学｜课程主页

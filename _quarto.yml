@@ -15,8 +15,29 @@ website:
   description: "面向应用经济学研究生的中级计量经济学课程网站"
   site-url: "https://zhang-chenglei.github.io/Econometrics-course/"
   repo-url: "https://github.com/zhang-chenglei/Econometrics-course"
+  favicon: assets/favicon.svg
+  navbar:
+    pinned: true
+    background: "#941f3a"
+    foreground: "#fffaf2"
+    title: "中级计量经济学"
+    left:
+      - href: index.qmd
+        text: "首页"
+      - href: course/syllabus.qmd
+        text: "课程大纲"
+      - href: course/guide.qmd
+        text: "15讲课程"
+      - href: course/textbook.qmd
+        text: "教材全文"
+      - href: course/materials.qmd
+        text: "代码与数据"
+    tools:
+      - icon: github
+        href: https://github.com/zhang-chenglei/Econometrics-course
+        aria-label: GitHub课程仓库
   search:
-    location: sidebar
+    location: navbar
     type: overlay
     copy-button: true
   reader-mode: true

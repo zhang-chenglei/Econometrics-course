@@ -1,164 +1,546 @@
 :root {
-  --course-navy: #18364d;
-  --course-navy-deep: #102939;
-  --course-ink: #23313c;
-  --course-muted: #63717d;
-  --course-ivory: #f7f4ed;
+  --course-wine: #941f3a;
+  --course-wine-deep: #711329;
+  --course-wine-soft: #f5e9ec;
+  --course-gold: #c29a45;
+  --course-gold-soft: #efe1bd;
+  --course-ink: #20313c;
+  --course-ink-deep: #142733;
+  --course-muted: #64727c;
+  --course-ivory: #f7f3eb;
   --course-paper: #fffdf9;
-  --course-line: #dce1df;
-  --course-orange: #c66a3d;
-  --course-orange-soft: #f3e4da;
-  --course-radius: 10px;
+  --course-white: #ffffff;
+  --course-line: #ded8ce;
+  --course-line-strong: #c8bfb2;
+  --course-radius-sm: 6px;
+  --course-radius: 12px;
+  --course-radius-lg: 20px;
+  --course-shadow-sm: 0 4px 14px rgba(39, 25, 25, 0.06);
+  --course-shadow-md: 0 16px 40px rgba(70, 31, 39, 0.11);
+  --course-serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, serif;
+  --course-sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --course-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+html {
+  scroll-padding-top: 5.5rem;
 }
 
 body {
   color: var(--course-ink);
   background: var(--course-paper);
-  font-family: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", sans-serif;
+  font-family: var(--course-sans);
   font-size: 17px;
   line-height: 1.82;
   text-wrap: pretty;
 }
 
-h1, h2, h3, .title, .subtitle {
-  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", serif;
-  color: var(--course-navy-deep);
-  letter-spacing: -0.015em;
+main.content {
+  padding-top: 1.8rem;
+  padding-bottom: 4rem;
 }
 
-h1 { font-size: clamp(2.3rem, 5vw, 4.7rem); line-height: 1.08; }
-h2 { margin-top: 2.6rem; }
-h3 { margin-top: 1.8rem; }
+h1,
+h2,
+h3,
+h4,
+.title,
+.subtitle {
+  color: var(--course-ink-deep);
+  font-family: var(--course-serif);
+  letter-spacing: -0.018em;
+  text-wrap: balance;
+}
 
-a { color: #245c79; text-underline-offset: 0.18em; }
-a:hover { color: var(--course-orange); }
+h1 {
+  max-width: 18ch;
+  margin-bottom: 1.8rem;
+  font-size: clamp(2.3rem, 4vw, 3.75rem);
+  line-height: 1.14;
+}
 
-.sidebar, .quarto-sidebar {
-  background: var(--course-ivory) !important;
+h2 {
+  position: relative;
+  margin-top: 3.4rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--course-gold-soft);
+  font-size: clamp(1.65rem, 2.5vw, 2.15rem);
+}
+
+h2::after {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 4.5rem;
+  height: 2px;
+  background: var(--course-gold);
+  content: "";
+}
+
+h3 {
+  margin-top: 2rem;
+  font-size: 1.28rem;
+}
+
+p,
+li {
+  max-width: 78ch;
+}
+
+a {
+  color: var(--course-wine);
+  text-decoration-color: rgba(148, 31, 58, 0.36);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+a:hover {
+  color: var(--course-wine-deep);
+  text-decoration-color: currentColor;
+}
+
+/* Top course navigation */
+.navbar {
+  min-height: 64px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--course-wine) !important;
+  box-shadow: 0 6px 24px rgba(69, 12, 30, 0.12);
+}
+
+.navbar .navbar-container {
+  max-width: 1800px;
+}
+
+.navbar-brand,
+.navbar-title {
+  color: #fffaf2 !important;
+  font-family: var(--course-serif);
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+}
+
+.navbar-nav .nav-link,
+.navbar .quarto-navbar-tools .quarto-navigation-tool {
+  color: rgba(255, 250, 242, 0.86) !important;
+  font-size: 0.94rem;
+  font-weight: 560;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active,
+.navbar .quarto-navbar-tools .quarto-navigation-tool:hover {
+  color: #ffffff !important;
+}
+
+.navbar-nav .nav-link.active {
+  text-decoration: underline;
+  text-decoration-color: var(--course-gold);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.5rem;
+}
+
+/* Sidebar: quieter than the content, but easier to scan. */
+.sidebar,
+.quarto-sidebar {
   border-right: 1px solid var(--course-line);
+  background: var(--course-ivory) !important;
 }
 
-.sidebar-title, .sidebar-item-text {
-  color: var(--course-navy-deep);
+.sidebar-title {
+  color: var(--course-ink-deep);
+  font-family: var(--course-serif);
+  font-weight: 700;
 }
 
-.hero-panel {
-  padding: clamp(1.8rem, 5vw, 4.8rem);
-  margin: 1rem 0 3.5rem;
-  background: linear-gradient(135deg, var(--course-navy-deep), var(--course-navy));
-  color: #f8f5ed;
-  border-radius: 4px 28px 4px 28px;
-  box-shadow: 0 18px 48px rgba(16, 41, 57, 0.16);
+.sidebar-item-text {
+  color: #46545d;
+  line-height: 1.42;
 }
 
-.hero-panel p { max-width: 850px; font-size: clamp(1.05rem, 2vw, 1.28rem); }
-.hero-panel a { text-decoration: none; }
+.sidebar-item a:hover .sidebar-item-text,
+.sidebar-item a.active .sidebar-item-text {
+  color: var(--course-wine);
+}
 
-.primary-action, .secondary-action {
-  display: inline-block;
-  margin: 1.2rem 0.55rem 0 0;
-  padding: 0.72rem 1.08rem;
-  border-radius: 6px;
+.sidebar-item a.active {
+  border-radius: var(--course-radius-sm);
+  background: rgba(148, 31, 58, 0.07);
+}
+
+.sidebar-section > .sidebar-item-container .sidebar-item-text {
   font-weight: 650;
-  transition: transform 160ms ease, background-color 160ms ease;
 }
 
-.primary-action { color: var(--course-navy-deep) !important; background: #f8f5ed; }
-.secondary-action { color: #f8f5ed !important; border: 1px solid rgba(248,245,237,.48); }
-.primary-action:hover, .secondary-action:hover { transform: translateY(-2px); }
+/* Right-hand table of contents */
+#TOC {
+  border-left-color: var(--course-line);
+}
 
-.route-grid {
+#TOC .nav-link {
+  color: var(--course-muted);
+  font-size: 0.88rem;
+  line-height: 1.42;
+}
+
+#TOC .nav-link:hover,
+#TOC .nav-link.active {
+  color: var(--course-wine);
+}
+
+/* Homepage: an editorial course cover built from the synced Markdown. */
+.course-home main.content {
+  padding-top: 1.2rem;
+}
+
+.course-home section.level1 {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  margin: 1.4rem 0 2.4rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1.2rem;
 }
 
-.route-card {
-  padding: 1.35rem 1.45rem;
+.course-home section.level1 > h1 {
+  grid-column: 1 / -1;
+  max-width: none;
+  margin: 0 0 -1.2rem;
+  padding: clamp(2.7rem, 7vw, 5.5rem) clamp(2rem, 6vw, 5rem) 1.45rem;
+  border-radius: var(--course-radius-lg) var(--course-radius-lg) 0 0;
+  background:
+    linear-gradient(118deg, rgba(255,255,255,0.08), transparent 45%),
+    var(--course-wine);
+  color: #fffaf2;
+  font-size: clamp(3rem, 4vw, 4.8rem);
+  line-height: 1.04;
+  box-shadow: var(--course-shadow-md);
+}
+
+.course-home section.level1 > h1::before {
+  display: block;
+  margin-bottom: 1.1rem;
+  color: var(--course-gold-soft);
+  font-family: var(--course-sans);
+  font-size: 0.78rem;
+  font-weight: 720;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  content: "INTERMEDIATE ECONOMETRICS";
+}
+
+.course-home section.level1 > h1::after {
+  display: block;
+  width: min(15rem, 40%);
+  height: 2px;
+  margin-top: 1.5rem;
+  background: var(--course-gold);
+  content: "";
+}
+
+.course-home section.level1 > blockquote:first-of-type {
+  grid-column: 1 / -1;
+  margin: 0 0 0.4rem;
+  padding: 1rem clamp(2rem, 6vw, 5rem) clamp(2.7rem, 5vw, 4.2rem);
+  border: 0;
+  border-radius: 0 0 var(--course-radius-lg) var(--course-radius-lg);
+  background: var(--course-wine);
+  color: rgba(255, 250, 242, 0.84);
+  box-shadow: var(--course-shadow-md);
+}
+
+.course-home section.level1 > blockquote:first-of-type p {
+  max-width: 62rem;
+  margin: 0;
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+}
+
+.course-home section.level1 > p:first-of-type,
+.course-home section.level1 > blockquote:nth-of-type(2) {
+  position: relative;
+  min-height: 9.25rem;
+  margin: 0;
+  padding: 1.7rem 1.8rem;
   border: 1px solid var(--course-line);
   border-radius: var(--course-radius);
-  background: #fff;
+  background: var(--course-white);
+  box-shadow: var(--course-shadow-sm);
 }
 
-.route-card h3 { margin-top: 0; font-size: 1.08rem; color: var(--course-orange); }
+.course-home section.level1 > p:first-of-type {
+  grid-column: 1 / 7;
+  padding-top: 3.7rem;
+}
 
-.agent-callout {
-  margin: 2.8rem 0;
-  padding: 1.45rem 1.65rem;
-  background: var(--course-orange-soft);
+.course-home section.level1 > p:first-of-type::before {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.8rem;
+  color: var(--course-wine);
+  font-family: var(--course-serif);
+  font-size: 1.16rem;
+  font-weight: 700;
+  content: "从教材开始";
+}
+
+.course-home section.level1 > blockquote:nth-of-type(2) {
+  grid-column: 7 / -1;
+  padding-top: 3.7rem;
+  color: var(--course-ink);
+}
+
+.course-home section.level1 > blockquote:nth-of-type(2)::before {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.8rem;
+  color: var(--course-wine);
+  font-family: var(--course-serif);
+  font-size: 1.16rem;
+  font-weight: 700;
+  content: "进入复现工作台";
+}
+
+.course-home section.level1 > blockquote:nth-of-type(2) p {
+  margin: 0;
+}
+
+.course-home section.level1 > section.level2 {
+  grid-column: 1 / -1;
+  margin-top: 1rem;
+}
+
+.course-home section.level1 > section#每讲的三个环节,
+.course-home section.level1 > section#课程的最终产出 {
+  margin-top: 1.4rem;
+  padding: 0 1.8rem 1.2rem;
+  border: 1px solid var(--course-line);
   border-radius: var(--course-radius);
+  background: linear-gradient(180deg, #fff, #fdfaf5);
+  box-shadow: var(--course-shadow-sm);
 }
 
-.agent-callout h3 { margin-top: 0; }
+.course-home section.level1 > section#每讲的三个环节 {
+  grid-column: 1 / 7;
+}
 
-blockquote {
-  margin: 1.6rem 0;
-  padding: 1rem 1.3rem;
-  color: #3f505c;
+.course-home section.level1 > section#课程的最终产出 {
+  grid-column: 7 / -1;
+}
+
+.course-home #讲学习路线 > blockquote {
+  padding: 1.35rem 1.5rem;
+  border: 0;
+  border-radius: var(--course-radius-sm);
+  background: var(--course-wine-soft);
+  color: var(--course-wine-deep);
+  font-weight: 680;
+  letter-spacing: 0.01em;
+}
+
+.course-home #讲学习路线 > ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.2rem 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.course-home #讲学习路线 > ul li {
+  min-height: 100%;
+  padding: 0.85rem 1rem;
+  border-top: 2px solid var(--course-gold);
   background: var(--course-ivory);
-  border-left: 3px solid var(--course-orange);
+  color: #40505a;
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
+
+.course-home #每讲的三个环节 ol {
+  padding-left: 1.25rem;
+}
+
+.course-home #每讲的三个环节 li::marker {
+  color: var(--course-wine);
+  font-weight: 700;
+}
+
+/* Reusable reading components */
+blockquote {
+  margin: 1.7rem 0;
+  padding: 1.15rem 1.4rem;
+  border-left: 3px solid var(--course-wine);
+  border-radius: 0 var(--course-radius-sm) var(--course-radius-sm) 0;
+  background: var(--course-ivory);
+  color: #485862;
+}
+
+table {
+  width: 100%;
+  margin: 1.5rem 0 2rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px solid var(--course-line);
+  border-radius: var(--course-radius-sm);
+  font-size: 0.95rem;
+}
+
+thead th {
+  padding: 0.85rem 1rem;
+  border-bottom: 0;
+  background: var(--course-wine);
+  color: #fffaf2;
+  font-weight: 650;
+}
+
+tbody td {
+  padding: 0.78rem 1rem;
+  border-bottom-color: #ebe5dc;
+}
+
+tbody tr:nth-child(even) td {
+  background: #fbf8f2;
+}
+
+tbody tr:hover td {
+  background: var(--course-wine-soft);
+}
+
+pre,
+code {
+  font-family: var(--course-mono);
+}
+
+pre {
+  border: 1px solid #d8d1c6;
+  border-radius: var(--course-radius-sm);
+  background: #f6f3ed;
+  box-shadow: inset 3px 0 0 var(--course-gold);
+}
+
+:not(pre) > code {
+  padding: 0.12em 0.35em;
+  border-radius: 4px;
+  background: var(--course-wine-soft);
+  color: var(--course-wine-deep);
+}
+
+.callout {
+  overflow: hidden;
+  border-color: var(--course-line) !important;
+  border-radius: var(--course-radius) !important;
+  box-shadow: var(--course-shadow-sm);
 }
 
 img {
   display: block;
   max-width: min(100%, 980px);
   height: auto;
-  margin: 1.8rem auto;
+  margin: 2rem auto;
+  border-radius: var(--course-radius-sm);
 }
 
-pre, code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
-pre { border: 1px solid var(--course-line); border-radius: 7px; }
+.page-navigation .nav-page {
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--course-line);
+  border-radius: var(--course-radius-sm);
+  background: #fff;
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
 
-/* ── 宽屏页面网格重写：加宽侧边栏 + 正文铺满 ─────────────────────────────
-   Quarto 的 `page-layout: full` 与 `grid: sidebar-width / margin-width` 在本项目
-   这套配置下不会生成任何 CSS 规则（编译产物中查无对应选择器），所以原先那两行
-   设置是空转的。真正决定布局的是 Quarto 自带的这条：
+.page-navigation .nav-page:hover {
+  border-color: rgba(148, 31, 58, 0.42);
+  transform: translateY(-2px);
+  box-shadow: var(--course-shadow-sm);
+}
 
-     body.docked .sidebar.sidebar-navigation { grid-column: screen-start/body-start }
+.nav-footer {
+  border-top: 1px solid var(--course-line) !important;
+  background: var(--course-ivory) !important;
+  color: var(--course-muted);
+}
 
-   侧边栏因此横跨网格前四列（合计上限约 296px），导航长标题被挤到换行；而同一
-   条网格规则的末尾还留着一个没人使用的 `5fr` 列，就是页面右侧那片空白。「导航栏
-   挤」和「右边空」本是同一个网格的两端，下面改数值一次性解决。
-
-   ⚠️ 只改数值，必须保留 Quarto 原有的列线与顺序：[body-end] / [body-end-outset]
-   / [page-end-inset] 各自独立成线。把这三条合并到同一行会让右侧「本页目录」列的
-   轨道宽度塌成 0，TOC 直接看不见（已实测）。
-
-   ⚠️ 断点必须是 1520px：Quarto 默认网格在 1920px 下正好占满 1520px（侧栏区 296 +
-   正文上限 952 + 右侧 248 + 边距 24），所以**只有视口宽于 1520px 才会出现那片空白**。
-   在更窄的视口里默认网格本来就没有空白，此时接管反而会把正文压窄（实测 1280px 下
-   正文只剩约 510px，比默认更差）。窄屏继续沿用 Quarto 默认的响应式网格。 */
+/* Wide screens: retain the readable three-column course layout. */
 @media (min-width: 1520px) {
   body.docked .page-columns {
     grid-template-columns:
       [screen-start] 0
-      [screen-start-inset page-start] clamp(300px, 20vw, 380px)  /* 侧边栏整幅宽度 */
+      [screen-start-inset page-start] clamp(300px, 20vw, 380px)
       [page-start-inset] 0
       [body-start-outset] 0
-      [body-start] 2.2em                      /* 侧边栏与正文之间的呼吸间距 */
+      [body-start] 2.2em
       [body-content-start] minmax(0, 1fr) [body-content-end]
       1.5em
-      [body-end] 40px                         /* ↓ 三条线合计即「本页目录」列宽 */
+      [body-end] 40px
       [body-end-outset] clamp(180px, 15vw, 280px)
       [page-end-inset] 40px
-      [page-end] 0                            /* 原先这里是 5fr，即右侧空白来源 */
+      [page-end] 0
       [screen-end-inset] 1.5em
       [screen-end];
   }
 
-  /* 侧边栏内层原本有 min-width:225px，取满网格列后不再额外留空 */
   body.docked .sidebar.sidebar-navigation .sidebar-menu-container {
     min-width: 0;
   }
 }
 
-@media (max-width: 760px) {
-  body { font-size: 16px; line-height: 1.72; }
-  .route-grid { grid-template-columns: 1fr; }
-  .hero-panel { border-radius: 3px 18px 3px 18px; }
+@media (max-width: 991px) {
+  .course-home section.level1 > p:first-of-type,
+  .course-home section.level1 > blockquote:nth-of-type(2),
+  .course-home section.level1 > section#每讲的三个环节,
+  .course-home section.level1 > section#课程的最终产出 {
+    grid-column: 1 / -1;
+  }
 
-  /* Long teaching tables remain readable without widening the whole page. */
+  .course-home #讲学习路线 > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    font-size: 16px;
+    line-height: 1.72;
+  }
+
+  main.content {
+    padding-top: 0.8rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+  }
+
+  h2 {
+    margin-top: 2.6rem;
+    font-size: 1.55rem;
+  }
+
+  .course-home section.level1 {
+    gap: 0.9rem;
+  }
+
+  .course-home section.level1 > h1 {
+    padding: 2.3rem 1.5rem 1rem;
+    font-size: clamp(2.45rem, 13vw, 3.7rem);
+  }
+
+  .course-home section.level1 > h1::before {
+    font-size: 0.67rem;
+  }
+
+  .course-home section.level1 > blockquote:first-of-type {
+    padding: 0.8rem 1.5rem 2.2rem;
+  }
+
+  .course-home #讲学习路线 > ul {
+    grid-template-columns: 1fr;
+  }
+
+  .course-home section.level1 > section#每讲的三个环节,
+  .course-home section.level1 > section#课程的最终产出 {
+    padding-inline: 1.2rem;
+  }
+
   main table {
     display: block;
     width: 100%;
@@ -167,7 +549,6 @@ pre { border: 1px solid var(--course-line); border-radius: 7px; }
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Let long display equations scroll locally on narrow screens. */
   mjx-container[display="true"] {
     max-width: 100%;
     overflow-x: auto;
@@ -177,5 +558,10 @@ pre { border: 1px solid var(--course-line); border-radius: 7px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

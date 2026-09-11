@@ -202,6 +202,7 @@ def render_page(
     title: str,
     feishu_map: dict[str, str],
     from_dir: str,
+    is_home: bool = False,
 ) -> str:
     """Build a Quarto page with a human-readable browser-tab title.
 
@@ -213,7 +214,8 @@ def render_page(
     page_title = heading.group(1) if heading else title
     metadata = json.dumps(page_title, ensure_ascii=False)
     body = rewrite_body(text, feishu_map, from_dir)
-    return f"---\npagetitle: {metadata}\n---\n\n{body}"
+    body_class = "body-classes: course-home\n" if is_home else ""
+    return f"---\npagetitle: {metadata}\n{body_class}---\n\n{body}"
 
 
 def collect_images(
@@ -424,9 +426,15 @@ def main() -> None:
 
     if args.check:
         problems = []
-        for _page_id, title, body, target in course_bodies + textbook_bodies:
+        for page_id, title, body, target in course_bodies + textbook_bodies:
             from_dir = posixpath.dirname(target)
-            expected = render_page(body, title, feishu_map, from_dir)
+            expected = render_page(
+                body,
+                title,
+                feishu_map,
+                from_dir,
+                is_home=page_id == "root" and target == "index.qmd",
+            )
             path = repo / target
             if not path.exists() or path.read_text(encoding="utf-8") != expected:
                 problems.append(target)
@@ -438,11 +446,20 @@ def main() -> None:
 
     # 1. Write the pages.
     written: set[str] = set()
-    for _page_id, title, body, target in course_bodies + textbook_bodies:
+    for page_id, title, body, target in course_bodies + textbook_bodies:
         from_dir = posixpath.dirname(target)
         path = repo / target
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(render_page(body, title, feishu_map, from_dir), encoding="utf-8")
+        path.write_text(
+            render_page(
+                body,
+                title,
+                feishu_map,
+                from_dir,
+                is_home=page_id == "root" and target == "index.qmd",
+            ),
+            encoding="utf-8",
+        )
         written.add(target)
     written.update(href for href, _title in EXTRA_RESOURCE_PAGES)
 
