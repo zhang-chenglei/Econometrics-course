@@ -39,6 +39,7 @@
 - [99｜课程资料](https://zhang-chenglei.github.io/Econometrics-course/course/resources.html)
 - [专题讲义｜零基础补强指南——不用背语法，也能跑通 Stata 和 Python](https://zhang-chenglei.github.io/Econometrics-course/course/zero_basis_guide.html)
 - [专题讲义｜AI Agent工作流入门——Vibe Research实操手册](https://zhang-chenglei.github.io/Econometrics-course/course/vibe_research_guide.html)
+- [专题讲义｜AI Agent辅助学习——从指定材料到核验答案的完整流程](https://zhang-chenglei.github.io/Econometrics-course/course/agent_learning_guide.html)
 - [专题讲义｜用蒙特卡洛模拟看懂计量经济学](https://zhang-chenglei.github.io/Econometrics-course/course/monte_carlo_guide.html)
 - [50.5｜教材章节与课程讲次对照](https://zhang-chenglei.github.io/Econometrics-course/course/ch14.html)
 

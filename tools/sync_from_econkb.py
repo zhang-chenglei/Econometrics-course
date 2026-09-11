@@ -80,9 +80,12 @@ TEXTBOOK_PAGES: list[tuple[str, str]] = [
 # Textbook pages reference images Obsidian-style: ![[ch01-fig1.png]]
 # Pages written by hand in this repo (not part of the 飞书 manifest) that belong
 # in the sidebar. Pinned here so the generated sidebar does not drop them.
-EXTRA_RESOURCE_PAGES: list[tuple[str, str]] = [
-    ("agent-guide.qmd", "如何让 AI Agent 辅助学习"),
-]
+#
+# Empty since 2026-09-11: the old root-level `agent-guide.qmd`（「如何让 AI Agent
+# 辅助学习」）was replaced by the full 专题讲义 `agent_learning_guide`, which now
+# reaches the sidebar through the manifest like every other course page. The old
+# file is left on disk (nothing is deleted) but is no longer linked.
+EXTRA_RESOURCE_PAGES: list[tuple[str, str]] = []
 
 WIKI_IMAGE_RE = re.compile(r"!\[\[([^\]]+)\]\]")
 
@@ -270,12 +273,13 @@ def sidebar_yaml(manifest: dict[str, Any]) -> list[str]:
             lines.append(f"{pad}- section: {quote(node['title'])}")
             lines.append(f"{pad}  href: {href_for(node['id'])}")
             lines.append(f"{pad}  contents:")
-            if nested_extra:
-                lines.append(f"{pad}    - section: {quote('教材正文')}")
-                lines.append(f"{pad}      contents:")
-                for title, target in nested_extra:
-                    lines.append(f"{pad}        - href: {target}")
-                    lines.append(f"{pad}          text: {quote(title)}")
+            # Textbook chapters go directly under 「教材全文」, as siblings of the
+            # manifest's own children there (50.4｜附录、50.5｜对照). Wrapping them in
+            # a nested `教材正文` section pushed every chapter to level 3, where the
+            # default collapse-level of 2 hides the whole textbook behind a click.
+            for title, target in nested_extra:
+                lines.append(f"{pad}    - href: {target}")
+                lines.append(f"{pad}      text: {quote(title)}")
             emit(kids, indent + 4)
             if node["id"] == "resources":
                 child_pad = " " * (indent + 4)
