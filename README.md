@@ -8,7 +8,7 @@
 
 ## 内容同步
 
-本站内容**不在本仓库手工编辑**，全部由 EconKB 同步生成：
+课程页与教材页**不在本仓库手工编辑**，由 EconKB 同步生成：
 
 ```bash
 python3 tools/sync_from_econkb.py --econkb ~/Documents/EconKB
@@ -18,11 +18,13 @@ python3 tools/sync_from_econkb.py --econkb ~/Documents/EconKB
 
 | 产出 | 说明 |
 |---|---|
-| `index.qmd`、`course/*.qmd` | 37 个课程页 |
+| `index.qmd`、`course/*.qmd` | 38 个飞书课程页，另有1个仓库专用代码与数据页 |
 | `textbook/*.qmd` | 24 个教材页（含导读、附录、参考文献） |
 | `assets/images/` | 页面引用的图片 |
 | `_quarto.yml` 中的 AUTO-GENERATED 块 | 侧边栏导航 |
 | `llms.txt` | 供 AI agent 索引的全站页面清单 |
+
+公开代码与教学数据位于 `materials/`。其中包含教材主代码、课堂案例、AI任务卡、第11—14章综合复现代码、匿名半合成教学样本和公开政策编码；内部母表、原始年鉴及受许可约束的数据不进入公开仓库。
 
 课程页里的飞书链接会被重写为**站内链接**；指向站外（本站未收录）的链接则还原为纯文本。
 

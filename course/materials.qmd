@@ -1,0 +1,58 @@
+---
+pagetitle: "代码与数据｜下载与复现"
+---
+
+# 代码与数据｜下载与复现
+
+> 这里汇集本课程公开使用的Stata代码、Python代码、AI任务卡与教学数据。所有材料均可下载到本地，也可以直接交给AI Agent阅读和解释。
+
+## 一键获取
+
+- [下载整个课程仓库（ZIP）](https://github.com/zhang-chenglei/Econometrics-course/archive/refs/heads/main.zip)：包含课程网站源文件、教材、全部公开代码与教学数据。
+- [打开GitHub代码与数据目录](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials)：适合按文件夹浏览、复制单个文件或让Agent读取。
+- [阅读机器可读材料说明](../materials/README.md)：先了解目录结构、运行方法和数据使用边界。
+
+## 代码
+
+### 教材与课堂案例
+
+- [Python代码](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code/textbook/python)：第1—10章案例、第二讲与第三讲课堂案例、蒙特卡洛模拟。
+- [Stata代码](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code/textbook/stata)：与教材案例相对应的do-file。
+- [AI任务卡](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code/textbook/ai_cards)：可直接交给Agent，按“目标—步骤—核验—解释”完成练习。
+
+### 第11—14章综合案例
+
+- [人工智能试验区综合案例复现包](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code/comprehensive_case)：包含Python、Stata和Jupyter Notebook版本。
+- Python用户可在综合案例目录中运行 `python 共享代码/run_all.py`，依次生成第11—14章结果。
+- Stata用户先把工作目录切换到 `materials`，再运行各章do-file。
+
+## 数据
+
+### 半合成教学样本
+
+这套数据用于第11—14章完整实证项目训练。企业编号已经匿名化，结果变量按照公开的数据生成过程构造，并植入已知效应。它适合检验代码、学习DID、制作表图和练习论文写作，但不能用于评价现实政策效果。
+
+- [下载CSV版](../materials/data/semisynthetic/ai_pilot_semisynthetic_2011_2024.csv)
+- [下载Excel版](../materials/data/semisynthetic/ai_pilot_semisynthetic_2011_2024.xlsx)
+- [变量字典](../materials/data/semisynthetic/variable_dictionary.csv)
+- [数据说明](../materials/data/semisynthetic/README.md)
+
+### 人工智能试验区政策数据
+
+该目录整理18个国家新一代人工智能创新发展试验区的正式批复、处理时间和城市年度编码，适合学习政策事实核验、DID处理变量构造和数据合并。
+
+- [浏览政策数据与说明](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/data/policy)
+- [下载政策批复表](../materials/data/policy/ai_pilot_approvals.csv)
+- [阅读政策来源](../materials/data/policy/sources.md)
+
+## 建议的使用顺序
+
+1. 先阅读对应教材或本讲指南，明确代码要回答的问题。
+2. 下载整个仓库，或只下载本次需要的代码和数据。
+3. 让Agent先阅读 `materials/README.md` 和相应AI任务卡，再帮助检查环境与路径。
+4. 自己运行代码，并将输出与讲义中的图表和结论核对。
+5. 修改变量、样本或模型时，记录修改内容及其理由，不只保留最终结果。
+
+## 数据使用边界
+
+本站只发布可以用于课堂复现的匿名教学样本和公开政策编码。包含真实企业标识的内部核对母表、原始年鉴及可能受数据库许可约束的材料不在公开下载范围内。引用教学数据时，应明确标注“半合成教学数据”，不得把估计结果表述为真实政策评估结论。

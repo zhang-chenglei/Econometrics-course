@@ -4,7 +4,7 @@
 Sources are READ-ONLY and never modified:
 
     <econkb>/30_教学/01_中级计量经济学（应用经济学硕士）/课程知识库/飞书课程版/
-        manifest.json        -- 37 course pages: id / title / parent / source
+        manifest.json        -- 38 course pages: id / title / parent / source
         state.json           -- course page id -> 飞书 node_token
         textbook_links.json  -- textbook page id -> 飞书 url (+ per-heading block ids)
         lessons/*.md         -- course page bodies
@@ -81,11 +81,11 @@ TEXTBOOK_PAGES: list[tuple[str, str]] = [
 # Pages written by hand in this repo (not part of the 飞书 manifest) that belong
 # in the sidebar. Pinned here so the generated sidebar does not drop them.
 #
-# Empty since 2026-09-11: the old root-level `agent-guide.qmd`（「如何让 AI Agent
-# 辅助学习」）was replaced by the full 专题讲义 `agent_learning_guide`, which now
-# reaches the sidebar through the manifest like every other course page. The old
-# file is left on disk (nothing is deleted) but is no longer linked.
-EXTRA_RESOURCE_PAGES: list[tuple[str, str]] = []
+# Repository-only resource pages. They are not Feishu pages, so the generator
+# keeps them in the sidebar and llms.txt without trying to overwrite the files.
+EXTRA_RESOURCE_PAGES: list[tuple[str, str]] = [
+    ("course/materials.qmd", "代码与数据｜下载与复现"),
+]
 
 WIKI_IMAGE_RE = re.compile(r"!\[\[([^\]]+)\]\]")
 
@@ -357,6 +357,10 @@ def write_llms_txt(repo: Path, manifest: dict[str, Any], course_dir: Path) -> No
         target = "index.html" if page["id"] == "root" else f"course/{page['id']}.html"
         lines.append(f"- [{page['title']}]({site}/{target})")
 
+    for href, title in EXTRA_RESOURCE_PAGES:
+        target = href.removesuffix(".qmd") + ".html"
+        lines.append(f"- [{title}]({site}/{target})")
+
     lines += ["", "## 教材", ""]
     for page_id, _filename in TEXTBOOK_PAGES:
         entry = textbook_titles.get(page_id)
@@ -364,6 +368,14 @@ def write_llms_txt(repo: Path, manifest: dict[str, Any], course_dir: Path) -> No
             lines.append(f"- [{entry['title']}]({site}/textbook/{page_id}.html)")
 
     lines.append("")
+    lines += [
+        "## 机器可读材料",
+        "",
+        f"- [代码与数据说明]({site}/materials/README.md)",
+        f"- [Python与Stata代码目录](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code)",
+        f"- [教学数据目录](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/data)",
+        "",
+    ]
     (repo / "llms.txt").write_text("\n".join(lines), encoding="utf-8")
 
 
@@ -432,6 +444,7 @@ def main() -> None:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(render_page(body, title, feishu_map, from_dir), encoding="utf-8")
         written.add(target)
+    written.update(href for href, _title in EXTRA_RESOURCE_PAGES)
 
     # 2. Write the images (downscaled + re-encoded, see write_image).
     image_dir = repo / "assets/images"

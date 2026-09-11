@@ -8,6 +8,7 @@ project:
   resources:
     - robots.txt
     - llms.txt
+    - materials/**
 
 website:
   title: "中级计量经济学"
@@ -160,6 +161,8 @@ website:
             text: "专题讲义｜AI Agent辅助学习——从指定材料到核验答案的完整流程"
           - href: course/monte_carlo_guide.qmd
             text: "专题讲义｜用蒙特卡洛模拟看懂计量经济学"
+          - href: course/materials.qmd
+            text: "代码与数据｜下载与复现"
       # <<< AUTO-GENERATED <<<
   page-footer:
     left: "中级计量经济学｜应用经济学研究生课程"
