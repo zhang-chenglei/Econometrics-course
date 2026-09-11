@@ -1,0 +1,41 @@
+---
+pagetitle: "去年基础计量课件｜补充参考"
+---
+
+# 去年基础计量课件
+
+> 这是教师去年讲授**基础计量经济学**课程时使用的课件，不属于本课程当前15讲的正式教学进度。已经具备回归基础的同学不必从头学习；如果对概率统计、回归估计或结果推断感到吃力，可以把这里作为补课与查漏补缺的资料库。
+
+## 如何使用
+
+- 想系统补基础，可以从第1讲开始按顺序阅读。
+- 只对某个知识点不熟悉，可以直接选择相应专题，不需要全部看完。
+- 阅读时以理解概念、公式含义和回归结果为主，不要求记住课件中的每个推导。
+- 本页课件来自去年的基础课程，因此讲次编号与本课程并不对应。
+
+## 课件目录
+
+| 原讲次 | 主题 | 页数 | PDF课件 |
+|---|---|---:|---|
+| 第1讲 | 导论（上） | 56 | [查看或下载](../materials/slides/basic-econometrics/basic-01-introduction-1.pdf) |
+| 第2讲 | 导论（下） | 54 | [查看或下载](../materials/slides/basic-econometrics/basic-02-introduction-2.pdf) |
+| 第3讲 | 一元线性回归（上） | 41 | [查看或下载](../materials/slides/basic-econometrics/basic-03-simple-regression-1.pdf) |
+| 第4讲 | 一元线性回归（下） | 39 | [查看或下载](../materials/slides/basic-econometrics/basic-04-simple-regression-2.pdf) |
+| 第5讲 | 多元回归：估计（上） | 45 | [查看或下载](../materials/slides/basic-econometrics/basic-05-multiple-regression-estimation-1.pdf) |
+| 第6讲 | 多元回归：估计（下） | 38 | [查看或下载](../materials/slides/basic-econometrics/basic-06-multiple-regression-estimation-2.pdf) |
+| 第7讲 | 多元回归：推断（上） | 38 | [查看或下载](../materials/slides/basic-econometrics/basic-07-multiple-regression-inference-1.pdf) |
+| 第8讲 | 多元回归：推断（下） | 30 | [查看或下载](../materials/slides/basic-econometrics/basic-08-multiple-regression-inference-2.pdf) |
+| 第9讲 | 多元回归：模型形式扩展（上） | 43 | [查看或下载](../materials/slides/basic-econometrics/basic-09-functional-form-1.pdf) |
+| 第10讲 | 多元回归：模型形式扩展（下） | 33 | [查看或下载](../materials/slides/basic-econometrics/basic-10-functional-form-2.pdf) |
+| 第11讲 | 多元回归：模型诊断 | 44 | [查看或下载](../materials/slides/basic-econometrics/basic-11-model-diagnostics.pdf) |
+
+## 按需要选择
+
+- **不清楚计量经济学研究什么**：先看第1—2讲。
+- **一元回归概念不稳**：重点看第3—4讲。
+- **不理解控制变量和多元回归系数**：看第5—6讲。
+- **不会读显著性、置信区间和回归表**：看第7—8讲。
+- **不熟悉对数、平方项和交互项**：看第9—10讲。
+- **不知道如何检查模型问题**：看第11讲。
+
+这些课件用于帮助大家跨过基础门槛。阅读过程中如果遇到难以理解的概念，可以把具体页码和问题交给AI Agent解释，但应回到课件、教材和代码结果中核验答案。
