@@ -110,6 +110,49 @@ img {
 pre, code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
 pre { border: 1px solid var(--course-line); border-radius: 7px; }
 
+/* ── 宽屏页面网格重写：加宽侧边栏 + 正文铺满 ─────────────────────────────
+   Quarto 的 `page-layout: full` 与 `grid: sidebar-width / margin-width` 在本项目
+   这套配置下不会生成任何 CSS 规则（编译产物中查无对应选择器），所以原先那两行
+   设置是空转的。真正决定布局的是 Quarto 自带的这条：
+
+     body.docked .sidebar.sidebar-navigation { grid-column: screen-start/body-start }
+
+   侧边栏因此横跨网格前四列（合计上限约 296px），导航长标题被挤到换行；而同一
+   条网格规则的末尾还留着一个没人使用的 `5fr` 列，就是页面右侧那片空白。「导航栏
+   挤」和「右边空」本是同一个网格的两端，下面改数值一次性解决。
+
+   ⚠️ 只改数值，必须保留 Quarto 原有的列线与顺序：[body-end] / [body-end-outset]
+   / [page-end-inset] 各自独立成线。把这三条合并到同一行会让右侧「本页目录」列的
+   轨道宽度塌成 0，TOC 直接看不见（已实测）。
+
+   ⚠️ 断点必须是 1520px：Quarto 默认网格在 1920px 下正好占满 1520px（侧栏区 296 +
+   正文上限 952 + 右侧 248 + 边距 24），所以**只有视口宽于 1520px 才会出现那片空白**。
+   在更窄的视口里默认网格本来就没有空白，此时接管反而会把正文压窄（实测 1280px 下
+   正文只剩约 510px，比默认更差）。窄屏继续沿用 Quarto 默认的响应式网格。 */
+@media (min-width: 1520px) {
+  body.docked .page-columns {
+    grid-template-columns:
+      [screen-start] 0
+      [screen-start-inset page-start] clamp(300px, 20vw, 380px)  /* 侧边栏整幅宽度 */
+      [page-start-inset] 0
+      [body-start-outset] 0
+      [body-start] 2.2em                      /* 侧边栏与正文之间的呼吸间距 */
+      [body-content-start] minmax(0, 1fr) [body-content-end]
+      1.5em
+      [body-end] 40px                         /* ↓ 三条线合计即「本页目录」列宽 */
+      [body-end-outset] clamp(180px, 15vw, 280px)
+      [page-end-inset] 40px
+      [page-end] 0                            /* 原先这里是 5fr，即右侧空白来源 */
+      [screen-end-inset] 1.5em
+      [screen-end];
+  }
+
+  /* 侧边栏内层原本有 min-width:225px，取满网格列后不再额外留空 */
+  body.docked .sidebar.sidebar-navigation .sidebar-menu-container {
+    min-width: 0;
+  }
+}
+
 @media (max-width: 760px) {
   body { font-size: 16px; line-height: 1.72; }
   .route-grid { grid-template-columns: 1fr; }

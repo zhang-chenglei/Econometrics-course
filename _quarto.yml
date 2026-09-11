@@ -171,6 +171,10 @@ format:
   html:
     theme: cosmo
     css: styles.css
+    # 页面宽度与侧边栏宽度由 styles.css 的宽屏网格覆盖控制。
+    # Quarto 的 page-layout 与 grid.sidebar-width / grid.margin-width 在本项目
+    # 这套配置下不会生成任何 CSS 规则（实测编译产物中查无对应选择器）。
+    page-layout: full
     toc: true
     toc-depth: 3
     toc-title: 本页目录
