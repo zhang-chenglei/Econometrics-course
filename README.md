@@ -5,6 +5,8 @@
 - 网站：<https://zhang-chenglei.github.io/Econometrics-course/>
 - 生成工具：Quarto
 - 权威内容源：EconKB 中的中级计量课程页与共享计量教材
+- 本地位置：`EconKB/30_教学/09_计量教材/GitHub课程网站/`
+- 日常维护：开始修改前先阅读[维护指南](维护指南.md)
 
 ## 内容同步
 
@@ -18,7 +20,7 @@ python3 tools/sync_from_econkb.py --econkb ~/Documents/EconKB
 
 | 产出 | 说明 |
 |---|---|
-| `index.qmd`、`course/*.qmd` | 38 个飞书课程页，另有2个仓库专用页面（课件更新、代码与数据） |
+| `index.qmd`、`course/*.qmd` | 38 个飞书课程页，另有3个仓库专用页面（课件更新、代码与数据、去年基础课件） |
 | `textbook/*.qmd` | 24 个教材页（含导读、附录、参考文献） |
 | `assets/images/` | 页面引用的图片 |
 | `_quarto.yml` 中的 AUTO-GENERATED 块 | 侧边栏导航 |

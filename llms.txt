@@ -44,6 +44,7 @@
 - [50.5｜教材章节与课程讲次对照](https://zhang-chenglei.github.io/Econometrics-course/course/ch14.html)
 - [课件与更新｜持续发布](https://zhang-chenglei.github.io/Econometrics-course/course/updates.html)
 - [代码与数据｜下载与复现](https://zhang-chenglei.github.io/Econometrics-course/course/materials.html)
+- [去年基础计量课件｜补充参考](https://zhang-chenglei.github.io/Econometrics-course/course/basic_econometrics_slides.html)
 
 ## 教材
 

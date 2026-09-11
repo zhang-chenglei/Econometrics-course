@@ -188,6 +188,8 @@ website:
             text: "课件与更新｜持续发布"
           - href: course/materials.qmd
             text: "代码与数据｜下载与复现"
+          - href: course/basic_econometrics_slides.qmd
+            text: "去年基础计量课件｜补充参考"
       # <<< AUTO-GENERATED <<<
   page-footer:
     left: "计量经济学：理论与实践｜开放课程与复现资源"

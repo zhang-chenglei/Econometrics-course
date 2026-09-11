@@ -86,6 +86,7 @@ TEXTBOOK_PAGES: list[tuple[str, str]] = [
 EXTRA_RESOURCE_PAGES: list[tuple[str, str]] = [
     ("course/updates.qmd", "课件与更新｜持续发布"),
     ("course/materials.qmd", "代码与数据｜下载与复现"),
+    ("course/basic_econometrics_slides.qmd", "去年基础计量课件｜补充参考"),
 ]
 
 # The Feishu source serves one specific graduate class, while this GitHub site
