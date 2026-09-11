@@ -15,7 +15,16 @@ pagetitle: "课件与更新｜持续发布"
 | 专题讲义 | AI Agent学习、Vibe Research、蒙特卡洛模拟与基础补强 | [进入课程资料](resources.qmd) |
 | 教材全文 | 《计量经济学：理论与实践》导论、14章正文与附录 | [阅读教材](textbook.qmd) |
 | 代码与数据 | Stata、Python、AI任务卡、综合案例和匿名教学数据 | [下载与复现](materials.qmd) |
-| 去年基础课件 | 去年基础计量经济学课程的11讲PDF，供需要补基础的同学自学 | [在新窗口打开](basic_econometrics_slides.qmd){target="_blank"} |
+
+## 历年课程课件
+
+::: {.callout-important appearance="simple" icon="false"}
+### 2025—2026秋季学期计量基础课件
+
+这是2025—2026秋季学期基础计量经济学课程使用的课件，共11讲、461页，涵盖导论、一元线性回归、多元回归估计与推断、模型形式扩展和模型诊断。它不属于当前15讲的正式教学进度，主要供基础较弱或希望系统复习回归分析的同学按需选读。
+
+[在新窗口打开独立课件页面](basic_econometrics_slides.qmd){target="_blank" .btn .btn-primary}
+:::
 
 ## 演示课件下载
 

@@ -86,7 +86,16 @@ TEXTBOOK_PAGES: list[tuple[str, str]] = [
 EXTRA_RESOURCE_PAGES: list[tuple[str, str]] = [
     ("course/updates.qmd", "课件与更新｜持续发布"),
     ("course/materials.qmd", "代码与数据｜下载与复现"),
-    ("course/basic_econometrics_slides.qmd", "去年基础计量课件｜补充参考"),
+]
+
+# Repository-only pages that deserve their own top-level sidebar section
+# instead of being mixed into the current course resources.
+EXTRA_TOP_LEVEL_PAGES: list[tuple[str, str, str]] = [
+    (
+        "60｜历年课程课件",
+        "course/basic_econometrics_slides.qmd",
+        "2025—2026秋季学期计量基础课件",
+    ),
 ]
 
 # The Feishu source serves one specific graduate class, while this GitHub site
@@ -575,6 +584,11 @@ def sidebar_yaml(manifest: dict[str, Any]) -> list[str]:
     lines.append("- href: index.qmd")
     lines.append(f"  text: {quote(display_title(root))}")
     emit(children.get("root", []), 0)
+    for section, href, text in EXTRA_TOP_LEVEL_PAGES:
+        lines.append(f"- section: {quote(section)}")
+        lines.append("  contents:")
+        lines.append(f"    - href: {href}")
+        lines.append(f"      text: {quote(text)}")
     return lines
 
 
@@ -615,6 +629,9 @@ def write_llms_txt(repo: Path, manifest: dict[str, Any], course_dir: Path) -> No
         lines.append(f"- [{title}]({site}/{target})")
 
     for href, title in EXTRA_RESOURCE_PAGES:
+        target = href.removesuffix(".qmd") + ".html"
+        lines.append(f"- [{title}]({site}/{target})")
+    for _section, href, title in EXTRA_TOP_LEVEL_PAGES:
         target = href.removesuffix(".qmd") + ".html"
         lines.append(f"- [{title}]({site}/{target})")
 
@@ -720,6 +737,7 @@ def main() -> None:
         )
         written.add(target)
     written.update(href for href, _title in EXTRA_RESOURCE_PAGES)
+    written.update(href for _section, href, _title in EXTRA_TOP_LEVEL_PAGES)
 
     # 2. Write the images (downscaled + re-encoded, see write_image).
     image_dir = repo / "assets/images"
