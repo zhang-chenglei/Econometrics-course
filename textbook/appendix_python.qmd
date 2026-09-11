@@ -1,3 +1,7 @@
+---
+pagetitle: "附录C Python入门——给会Stata的人"
+---
+
 # 附录C Python入门——给会Stata的人
 
 这份附录写给已经掌握了Stata基础、想“打开Python这扇门”的应用计量学习者。

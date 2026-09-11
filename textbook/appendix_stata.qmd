@@ -1,3 +1,7 @@
+---
+pagetitle: "附录B Stata入门"
+---
+
 
 
 # 附录B Stata入门

@@ -157,6 +157,23 @@ pre { border: 1px solid var(--course-line); border-radius: 7px; }
   body { font-size: 16px; line-height: 1.72; }
   .route-grid { grid-template-columns: 1fr; }
   .hero-panel { border-radius: 3px 18px 3px 18px; }
+
+  /* Long teaching tables remain readable without widening the whole page. */
+  main table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Let long display equations scroll locally on narrow screens. */
+  mjx-container[display="true"] {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.25rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

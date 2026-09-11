@@ -197,6 +197,25 @@ def rewrite_body(text: str, feishu_map: dict[str, str], from_dir: str) -> str:
     return WIKI_IMAGE_RE.sub(image_repl, text)
 
 
+def render_page(
+    text: str,
+    title: str,
+    feishu_map: dict[str, str],
+    from_dir: str,
+) -> str:
+    """Build a Quarto page with a human-readable browser-tab title.
+
+    ``pagetitle`` changes only the HTML ``<title>`` metadata.  The visible H1
+    remains the one maintained in EconKB, so synced pages do not gain a
+    duplicate title block.
+    """
+    heading = re.search(r"^#\s+(.+?)\s*$", text, flags=re.MULTILINE)
+    page_title = heading.group(1) if heading else title
+    metadata = json.dumps(page_title, ensure_ascii=False)
+    body = rewrite_body(text, feishu_map, from_dir)
+    return f"---\npagetitle: {metadata}\n---\n\n{body}"
+
+
 def collect_images(
     course_bodies: list[str],
     textbook_bodies: list[str],
@@ -363,29 +382,39 @@ def main() -> None:
     feishu_map = build_feishu_map(course_dir)
 
     # Read every source page up front, so image collection sees the real bodies.
-    course_bodies: list[tuple[str, str, str]] = []  # (page_id, body, target)
+    course_bodies: list[tuple[str, str, str, str]] = []  # (page_id, title, body, target)
     for page in manifest["pages"]:
         source = course_dir / page["source"]
         target = "index.qmd" if page["id"] == "root" else f"course/{page['id']}.qmd"
-        course_bodies.append((page["id"], source.read_text(encoding="utf-8"), target))
+        course_bodies.append(
+            (page["id"], page["title"], source.read_text(encoding="utf-8"), target)
+        )
 
-    textbook_bodies: list[tuple[str, str, str]] = []
+    textbook_titles = load_json(course_dir / "textbook_links.json")["pages"]
+    textbook_bodies: list[tuple[str, str, str, str]] = []
     for page_id, filename in TEXTBOOK_PAGES:
         source = textbook_dir / "拆分章节" / filename
-        textbook_bodies.append((page_id, source.read_text(encoding="utf-8"), f"textbook/{page_id}.qmd"))
+        textbook_bodies.append(
+            (
+                page_id,
+                textbook_titles[page_id]["title"],
+                source.read_text(encoding="utf-8"),
+                f"textbook/{page_id}.qmd",
+            )
+        )
 
     images = collect_images(
-        [body for _, body, _ in course_bodies],
-        [body for _, body, _ in textbook_bodies],
+        [body for _, _, body, _ in course_bodies],
+        [body for _, _, body, _ in textbook_bodies],
         course_dir / "图片",
         [textbook_dir / "图片"],
     )
 
     if args.check:
         problems = []
-        for _page_id, body, target in course_bodies + textbook_bodies:
+        for _page_id, title, body, target in course_bodies + textbook_bodies:
             from_dir = posixpath.dirname(target)
-            expected = rewrite_body(body, feishu_map, from_dir)
+            expected = render_page(body, title, feishu_map, from_dir)
             path = repo / target
             if not path.exists() or path.read_text(encoding="utf-8") != expected:
                 problems.append(target)
@@ -397,11 +426,11 @@ def main() -> None:
 
     # 1. Write the pages.
     written: set[str] = set()
-    for _page_id, body, target in course_bodies + textbook_bodies:
+    for _page_id, title, body, target in course_bodies + textbook_bodies:
         from_dir = posixpath.dirname(target)
         path = repo / target
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(rewrite_body(body, feishu_map, from_dir), encoding="utf-8")
+        path.write_text(render_page(body, title, feishu_map, from_dir), encoding="utf-8")
         written.add(target)
 
     # 2. Write the images (downscaled + re-encoded, see write_image).

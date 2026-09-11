@@ -1,3 +1,7 @@
+---
+pagetitle: "参考文献"
+---
+
 # 参考文献
 
 - Acemoglu, D., Johnson, S., & Robinson, J. A. (2001). The colonial origins of comparative development: An empirical investigation. *American Economic Review*, 91(5), 1369–1401.
