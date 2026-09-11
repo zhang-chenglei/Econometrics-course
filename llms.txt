@@ -1,12 +1,12 @@
-# 中级计量经济学
+# 计量经济学：理论与实践
 
-> 面向应用经济学研究生的中级计量经济学课程网站：15 讲课程页与全套教材。
+> 面向具备一定统计学和多元回归分析基础的高年级本科生与研究生：15讲学习路径、完整教材、代码、数据与AI协作指南。
 
 ## 课程
 
-- [中级计量经济学｜课程主页](https://zhang-chenglei.github.io/Econometrics-course/index.html)
+- [计量经济学：理论与实践｜课程主页](https://zhang-chenglei.github.io/Econometrics-course/index.html)
 - [00｜课程导论](https://zhang-chenglei.github.io/Econometrics-course/course/guide.html)
-- [课程大纲｜要求与考核](https://zhang-chenglei.github.io/Econometrics-course/course/syllabus.html)
+- [学习大纲｜内容与进度](https://zhang-chenglei.github.io/Econometrics-course/course/syllabus.html)
 - [课前必读｜课程环境配置与学习工作流](https://zhang-chenglei.github.io/Econometrics-course/course/setup_workflow.html)
 - [第1讲｜课程介绍与计量研究思维](https://zhang-chenglei.github.io/Econometrics-course/course/intro.html)
 - [10｜第一部分：回归复习](https://zhang-chenglei.github.io/Econometrics-course/course/part1.html)

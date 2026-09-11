@@ -1,11 +1,11 @@
 ---
-pagetitle: "中级计量经济学｜课程主页"
+pagetitle: "计量经济学：理论与实践"
 body-classes: course-home
 ---
 
-# 中级计量经济学｜课程主页
+# 计量经济学：理论与实践
 
-> 本课程面向应用经济学研究生。飞书按实际授课进程组织，正式教材按知识体系组织，两者通过“教材章节与课程讲次对照”相互连接。
+> 本网站面向具备一定统计学和多元回归分析基础的高年级本科生与研究生。15讲学习路径按学习过程组织，正式教材按知识体系组织，两者通过“教材章节与课程讲次对照”相互连接。
 
 完整教材已经按章收入[“50｜教材全文”](course/textbook.qmd)。课程页中的“教材对应”链接可以直接跳到相关章或具体小节。
 
@@ -13,7 +13,7 @@ body-classes: course-home
 
 ## 课程定位
 
-本课程面向已经学习过初级计量经济学的应用经济学研究生。我们不会从一元回归开始逐章重讲，而是用两讲恢复回归基础，再以“内生性与因果推断”为分水岭，进入面板数据、工具变量、准实验方法和前沿模型，最后由每位学生完成一项个人实证项目。
+本网站面向具备一定统计学和多元回归分析基础的高年级本科生与研究生。学习路径用两讲恢复回归基础，再以“内生性与因果推断”为分水岭，进入面板数据、工具变量、准实验方法和前沿模型，最后引导学习者完成一项实证项目。
 
 ## 15讲学习路线
 
@@ -38,4 +38,38 @@ body-classes: course-home
 
 ## 课程的最终产出
 
-课程结束时，每位学生应当能够独立提交：研究问题与识别策略、可复现的数据和代码、主要结果与稳健性分析、规范的图表和文字报告，以及完整的AI使用说明。
+完成学习后，学习者应当能够独立形成：研究问题与识别策略、可复现的数据和代码、主要结果与稳健性分析、规范的图表和文字报告，以及完整的AI使用说明。
+
+
+## 推荐资料与链接
+
+> 不必从头到尾读完所有材料。遇到概念、方法、代码或复现问题时，按需要选择一项继续深入即可。
+
+::: {.resource-grid}
+::: {.resource-card}
+### 教材与方法
+
+- [Wooldridge, *Introductory Econometrics: A Modern Approach*](https://www.cengage.com/c/student/9780357900161/?filterBy=Student)：体系完整，适合查阅多元回归、面板数据、工具变量等基础与应用方法。
+- [Stock & Watson, *Introduction to Econometrics*](https://www.pearson.com/en-us/subject-catalog/p/introduction-to-econometrics/P200000005880/9780136879787)：重视经济问题、数据和结果解释，适合巩固实证分析思维。
+- [Angrist & Pischke, *Mastering ’Metrics*](https://press.princeton.edu/books/paperback/9780691152844/mastering-metrics)：通过研究故事理解识别策略，适合进入因果推断时阅读。
+- [Causal Inference: The Mixtape](https://mixtape.scunning.com/)与[The Effect](https://theeffectbook.net/)：两本可在线阅读的开放教材，适合按方法查找案例、图形和进一步解释。
+:::
+
+::: {.resource-card}
+### AI辅助学习与编程
+
+- [AI Agent辅助学习指南](course/agent_learning_guide.qmd)：从指定课程材料、提问、核验到自测，建立不依赖“直接要答案”的学习方式。
+- [Vibe Research实操手册](course/vibe_research_guide.qmd)：用Agent管理论文阅读、代码运行、结果检查和项目文件。
+- [Claude Code官方文档](https://code.claude.com/docs/en/overview)与[OpenAI Codex官方文档](https://developers.openai.com/codex/)：了解如何让编码Agent读取项目、执行任务并保留可检查的修改记录。
+- [Quarto Guide](https://quarto.org/docs/guide/)：把Markdown、代码、图表和解释整理成可复现网页或报告。
+:::
+
+::: {.resource-card}
+### 论文、数据与复现
+
+- [本站代码与教学数据](course/materials.qmd)：教材案例、Stata与Python代码、AI任务卡和匿名教学数据的统一入口。
+- [《中国工业经济》](https://ciejournal.ajcass.com/)：可从实证论文及其附件中寻找数据、代码和复现材料。
+- [《数量经济技术经济研究》](https://www.jqte.net/sljjjsjjyj/ch/index.aspx)：可关注“下载全文及数据”和开放科学实验室中的复现资源。
+- 阅读复现包时，先理解研究问题、样本和变量，再运行代码；不要只追求把结果数字跑得一模一样。
+:::
+:::

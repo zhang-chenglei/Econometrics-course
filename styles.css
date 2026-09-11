@@ -363,6 +363,44 @@ a:hover {
   font-weight: 700;
 }
 
+.course-home #推荐资料与链接 {
+  margin-top: 2rem;
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.3rem;
+}
+
+.resource-card {
+  padding: 0.2rem 1.45rem 1.2rem;
+  border: 1px solid var(--course-line);
+  border-top: 3px solid var(--course-gold);
+  border-radius: var(--course-radius-sm);
+  background: linear-gradient(180deg, #fff, #fdfaf5);
+  box-shadow: var(--course-shadow-sm);
+}
+
+.resource-card h3 {
+  margin-top: 1.25rem;
+  color: var(--course-wine);
+  font-size: 1.16rem;
+}
+
+.resource-card ul {
+  margin-bottom: 0;
+  padding-left: 1.15rem;
+}
+
+.resource-card li {
+  margin: 0.62rem 0;
+  color: #4a5962;
+  font-size: 0.92rem;
+  line-height: 1.58;
+}
+
 /* Reusable reading components */
 blockquote {
   margin: 1.7rem 0;
@@ -493,6 +531,10 @@ img {
 
   .course-home #讲学习路线 > ul {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .resource-grid {
+    grid-template-columns: 1fr;
   }
 }
 

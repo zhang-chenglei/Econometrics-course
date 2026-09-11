@@ -1,6 +1,6 @@
 # Design Decisions
 
-- Narrative role: 研究生课程入口与长期参考资料，而非宣传落地页。
+- Narrative role: 面向高年级本科生与研究生的开放课程入口与长期参考资料，而非宣传落地页。
 - Viewing distance: 以笔记本电脑和手机近距离阅读为主。
 - Visual temperature: 理性、安静、可信，保留少量温暖感。
 - Capacity check: 页面正文较长、层级较深，采用持久侧边导航、页内目录和全文搜索。
