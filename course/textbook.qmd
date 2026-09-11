@@ -1,0 +1,48 @@
+# 教材全文
+
+这里收录《计量经济学：理论与实践》的完整教材内容，按“导读—导论—三个部分—附录”组织。
+
+你可以从左侧目录直接进入任意一章，也可以从每一讲课程页面中的“教材对应”链接跳到相关章或具体小节。
+
+> 建议用法：先看当次课的课程页面，把握问题和主线；需要完整解释、公式、案例与操作步骤时，再打开对应教材内容。
+
+教材内容以本学期发布版本为准。课程讲次按照教学节奏重组，因此课程目录与教材章节并不是简单的一一对应关系。
+
+## 快速目录
+
+- [教材导读](../textbook/guide.qmd)
+- [教材导论](../textbook/intro.qmd)
+
+### 第一部分：回归分析基础
+
+- [第一部分导引](../textbook/part1.qmd)
+- [第1章：一元线性回归](../textbook/ch01.qmd)
+- [第2章：多元线性回归——估计](../textbook/ch02.qmd)
+- [第3章：多元线性回归——推断](../textbook/ch03.qmd)
+- [第4章：模型形式扩展](../textbook/ch04.qmd)
+- [第5章：模型设定与诊断](../textbook/ch05.qmd)
+
+### 第二部分：模型深化与进阶
+
+- [第二部分导引](../textbook/part2.qmd)
+- [第6章：离散选择模型](../textbook/ch06.qmd)
+- [第7章：面板数据模型](../textbook/ch07.qmd)
+- [第8章：工具变量模型](../textbook/ch08.qmd)
+- [第9章：现代因果推断与准实验方法](../textbook/ch09.qmd)
+- [第10章：大数据与非经典计量](../textbook/ch10.qmd)
+
+### 第三部分：实证研究与应用
+
+- [第三部分导引](../textbook/part3.qmd)
+- [第11章：研究问题与识别策略](../textbook/ch11.qmd)
+- [第12章：数据准备与变量构建](../textbook/ch12.qmd)
+- [第13章：模型估计与结果检验](../textbook/ch13.qmd)
+- [第14章：研究成果的呈现](../textbook/ch14.qmd)
+
+### 参考文献、附录与结束语
+
+- [参考文献](../textbook/references.qmd)
+- [附录A：数学基础](../textbook/appendix_math.qmd)
+- [附录B：Stata入门](../textbook/appendix_stata.qmd)
+- [附录C：Python入门](../textbook/appendix_python.qmd)
+- [结束语](../textbook/ending.qmd)

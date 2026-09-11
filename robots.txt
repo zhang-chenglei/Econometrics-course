@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zhang-chenglei.github.io/Econometrics-course/sitemap.xml

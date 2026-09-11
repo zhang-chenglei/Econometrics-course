@@ -1,0 +1,606 @@
+# 附录C Python入门——给会Stata的人
+
+这份附录写给已经掌握了Stata基础、想“打开Python这扇门”的应用计量学习者。
+
+如果你打开本书第10章，会发现机器学习、贝叶斯方法和大模型应用使用了Python示例。Python在这些领域拥有较丰富的工具库，但很多读者第一次看到代码时会问：是不是要从头学一遍Python？
+
+不需要从完整的程序设计课程开始。Stata中的加载数据、生成变量、估计模型和绘图，在Python中都有相应实现。这份附录的任务就是帮助你建立这种对应关系。
+
+我们的目标不是让你成为Python程序员，而是让你能够读懂基础代码、运行简单的实证分析，并知道在何时选用Python。达到熟练程度所需的时间因编程基础和练习强度而异，不能用固定天数衡量。
+
+本附录默认你已有可用的Python环境。安装时优先参考Python发行版、软件包和操作系统的官方文档；AI可以解释报错，但不要在不理解的情况下执行它给出的管理员命令。为保证复现，应记录Python版本、依赖版本，并使用独立虚拟环境。
+
+## C.1 Python基础语法
+
+### C.1.1 为什么学Python：从Stata的局限说起
+
+Stata能够完成许多常见的计量分析。OLS、Logit、面板固定效应、IV、DID和RDD等方法，都有较成熟的命令实现。如果研究主要使用这些方法，Stata通常可以满足分析需要。
+
+但有几件事Stata做起来很别扭，而Python做起来非常顺手：
+
+**第一，处理大规模数据**。当数据规模超过几百万行（比如全部上市公司的高频交易记录、亿级电商交易日志），Stata会越跑越慢，Python则有专门的工具应对（如`Dask`、`Polars`）。
+
+**第二，文本分析**。从企业年报中提取信息、分析政策文件或把新闻报道转化成结构化变量，Python提供了较成熟的自然语言处理工具（如`jieba`、`spaCy`和`transformers`）。
+
+**第三，机器学习**。随机森林、神经网络和双重机器学习等任务，可以借助Python中的`scikit-learn`及其他专用库实现。
+
+**第四，调用大模型API**。Python生态更方便完成批量调用、结构化输出和日志记录；这不是“只能用Python”，其他通用语言和命令行工具也可以实现。
+
+**第五，网络数据获取**。在符合法律、网站条款和数据许可的前提下，Python可用于调用API或采集网页中的公开信息。
+
+所以，学习Python不是为了替代Stata，而是增加一种工具选择。具体使用哪种软件，应根据研究任务、数据规模、方法实现、协作环境和复现要求决定。
+
+### C.1.2 Python的基本语法
+
+这一节我们用最少的内容，讲清楚Python的核心语法。**只讲应用计量需要用到的部分**，其他不讲。
+
+#### 变量与基本类型
+
+Python里给变量赋值非常简单，直接用`=`号：
+
+```python
+x = 5              # 数字
+name = "张三"       # 字符串（用单引号或双引号都行）
+is_male = True     # 布尔值（注意首字母大写）
+```
+
+注意Python不需要像某些语言那样**先声明变量类型**——你赋什么值，变量就是什么类型。这一点和Stata的`gen`命令类似。
+
+#### 列表（list）和字典（dict）
+
+这是Python里最常用的两种数据结构，务必掌握。
+
+**列表**用方括号`[]`定义，里面可以放任意类型的元素：
+
+```python
+ages = [20, 25, 30, 35, 40]
+names = ["张三", "李四", "王五"]
+mixed = [1, "abc", True, 3.14]   # 元素类型可以混合
+
+# 取元素（注意Python从0开始计数）
+print(ages[0])     # 输出: 20
+print(ages[-1])    # 输出: 40 （-1表示最后一个）
+print(ages[1:3])   # 输出: [25, 30] （切片，左闭右开）
+
+# 修改、添加、删除
+ages[0] = 21
+ages.append(45)    # 在末尾添加
+ages.remove(25)    # 删除指定元素
+print(len(ages))   # 输出长度
+```
+
+**字典**用花括号`{}`定义，以键值对的形式存储数据：
+
+```python
+student = {"name": "张三", "age": 20, "gender": "男"}
+
+# 取值
+print(student["name"])     # 输出: 张三
+
+# 修改、添加
+student["age"] = 21
+student["major"] = "经济学"
+```
+
+字典在Python里非常常用——很多函数的参数、配置文件、数据结构都是字典形式。
+
+#### 条件判断与循环
+
+和Stata的`if`语句类似，但Python的语法更紧凑：
+
+```python
+score = 85
+
+if score >= 90:
+    print("优秀")
+elif score >= 80:
+    print("良好")
+else:
+    print("一般")
+```
+
+注意Python**用缩进表示代码块**（通常用4个空格），没有大括号。这是Python最大的语法特点之一。
+
+循环用`for`，适合对一组元素做相同操作：
+
+```python
+ages = [20, 25, 30]
+for age in ages:
+    print(f"年龄是{age}")    # f-string格式化字符串
+
+# 也可以用range生成数字序列
+for i in range(5):
+    print(i)    # 输出 0, 1, 2, 3, 4
+```
+
+#### 函数（def）
+
+定义自己的函数，语法是`def`：
+
+```python
+def greet(name, greeting="你好"):
+    return f"{greeting}，{name}！"
+
+# 调用
+print(greet("张三"))                    # 输出: 你好，张三！
+print(greet("李四", greeting="嗨"))      # 输出: 嗨，李四！
+```
+
+函数的参数可以有默认值（如`greeting="你好"`）。这种特性让函数调用非常灵活。
+
+#### 导入库（import）
+
+Python的强大主要来自它的库生态——成千上万的开源库，覆盖几乎所有任务。导入库的语法是：
+
+```python
+import pandas as pd          # 导入pandas并起别名pd
+import numpy as np           # 导入numpy并起别名np
+from statsmodels.api import OLS    # 只导入statsmodels里的OLS
+```
+
+这相当于Stata里的`ssc install`+使用——只不过Python里安装和导入是分开的两步：先用`pip install pandas`安装，再在代码里`import pandas`使用。
+
+到这里，我们已经介绍了阅读后续示例所需的基础语法。实际项目还会涉及文件路径、异常处理、软件包版本和测试等问题，应在使用中继续学习。
+
+> **AI协作提示**：遇到不熟悉的语法，可以让AI解释代码，再用官方文档和实际运行结果核对。不要把含有密钥、个人信息或受限数据的代码和文件直接上传给外部服务。
+
+### C.1.3 AI辅助Python学习的正确姿势
+
+大模型可以解释语法、提示报错原因和生成代码草稿，但不能代替实际练习和文档核对。下面用几个场景说明如何把它作为辅助工具。
+
+**场景一：解释报错信息**
+
+Python报错信息很多时候比较晦涩——什么`AttributeError`、`KeyError`、`IndexError`，初学者一看就懵。最高效的做法：
+
+```
+我跑这段代码：
+import pandas as pd
+df = pd.read_csv("data.csv")
+df["new_col"] = df["a"] + df["b"]
+
+报错：
+KeyError: 'a'
+
+请帮我解释这个报错是什么意思，怎么解决？
+```
+
+AI会直接告诉你：这个错误意味着DataFrame中没有名为'a'的列，可能是列名拼写错了，或者数据没有'a'这一列——并给你具体的检查方法。这比自己在Stack Overflow搜索快得多。
+
+**场景二：Stata到Python的代码转换**
+
+如果已经会Stata，可以先写出每条命令的目的和预期结果，再让AI给出Python对照写法：
+
+```
+请把以下Stata代码转换为Python（使用pandas）：
+
+use auto.dta, clear
+keep if foreign == 1
+gen ln_price = ln(price)
+collapse (mean) ln_price, by(rep78)
+list
+```
+
+AI会给出：
+
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.read_stata("auto.dta")
+df = df[df["foreign"] == 1]
+df["ln_price"] = np.log(df["price"])
+result = df.groupby("rep78")["ln_price"].mean().reset_index()
+print(result)
+```
+
+转换完成后，要核对筛选条件、缺失值处理、分组口径和输出行数。两种语言的命令看起来对应，不表示默认行为完全相同。
+
+**场景三：逐行代码解释**
+
+看不懂别人的代码时：
+
+```
+请帮我逐行解释这段代码：
+
+import statsmodels.api as sm
+X = sm.add_constant(df[['edu', 'exp']])
+model = sm.OLS(df['wage'], X).fit(cov_type='cluster', cov_kwds={'groups': df['firm']})
+print(model.summary())
+```
+
+AI可以逐行解释`sm.add_constant`、`OLS()`和`cov_type='cluster'`。解释后仍要查看对象结构和官方文档，并用一个小样本运行。
+
+**场景四：根据伪代码生成草稿**
+
+先写出“读取数据—检查变量—估计模型—保存结果”的伪代码和预期输出，再向AI提出具体要求：
+
+```
+请用Python生成一段代码：
+1. 读取一份CSV数据（假设文件名是data.csv，有'wage'、'edu'、'female'三列）
+2. 跑OLS回归: wage ~ edu + female
+3. 输出回归结果
+```
+
+AI通常会生成一份代码草稿，但它未必适配你的软件版本、变量类型和数据结构。运行前应逐行检查，并先在数据副本或小样本上测试。
+
+**最后一步：运行和解释**
+
+本书要求使用AI，也要求你能离开AI解释代码。每次练习都按“先写伪代码或预期—AI解释或检查—亲自运行—对照文档—记录修改”完成。无法解释的代码即使能够运行，也不能算完成任务。
+
+## C.2 Python在计量研究中的应用
+
+讲完了基础语法，现在进入应用计量需要用到的具体工具。Python有几个核心的库构成了计量研究的基础设施：
+
+- **`pandas`**：数据处理（类似Stata的数据集操作）
+- **`statsmodels`和`linearmodels`**：统计建模与回归
+- **`matplotlib`**：数据可视化（类似Stata的`graph`命令）
+- **`numpy`**：数值计算（被前面几个库默默调用）
+
+下面分别介绍。
+
+### C.2.1 数据处理：pandas核心操作
+
+pandas是Python里处理数据的标准工具。它的核心数据结构是**DataFrame**——你可以理解为“Python版本的Stata数据集”。每个DataFrame有行（观测）有列（变量），操作起来和Stata的逻辑非常相似。
+
+#### 读取与查看数据
+
+```python
+import pandas as pd
+import numpy as np
+
+# 读取数据（分别保存，避免后一行覆盖前一行）
+df_csv = pd.read_csv("data.csv")
+df_excel = pd.read_excel("data.xlsx")
+df = pd.read_stata("data.dta")      # Stata文件——这个对你最有用！
+
+# 查看数据
+df.head()           # 查看前5行 （类似Stata的list in 1/5）
+df.tail()           # 查看后5行
+df.shape            # 数据大小 （行数,列数）
+df.columns          # 列名列表
+df.info()           # 数据概览 （类似Stata的describe）
+df.describe()       # 描述性统计 （类似Stata的sum）
+```
+
+注意`pd.read_stata()`这个命令——它能让你**直接读取Stata的`.dta`文件**，不需要先在Stata里转换格式。这对从Stata迁移到Python的研究者来说极为方便。
+
+#### 筛选数据
+
+```python
+# 按条件筛选行 （类似Stata的keep if）
+df_male = df[df["female"] == 0]
+df_high_edu = df[df["edu"] >= 16]
+df_combined = df[(df["female"] == 0) & (df["edu"] >= 16)]   # 多条件用&连接
+
+# 选择列 （类似Stata的keep）
+df_subset = df[["wage", "edu", "exp"]]
+
+# 删除缺失值 （类似Stata的drop if missing(...)）
+df_clean = df.dropna()                          # 删除任何列有缺失的行
+df_clean = df.dropna(subset=["wage", "edu"])    # 只看特定列的缺失
+```
+
+#### 生成新变量
+
+```python
+# 简单变换 （类似Stata的gen）
+df["ln_wage"] = np.log(df["wage"])
+df["exp_sq"] = df["exp"] ** 2
+df["high_edu"] = (df["edu"] >= 16).astype(int)   # 生成虚拟变量
+
+# 条件赋值 （类似Stata的replace ... if ...）
+df["age_group"] = "young"
+df.loc[df["age"] >= 30, "age_group"] = "middle"
+df.loc[df["age"] >= 50, "age_group"] = "old"
+```
+
+#### 描述统计与分组
+
+```python
+# 基本统计
+df["wage"].mean()           # 均值
+df["wage"].std()            # 标准差
+df["wage"].median()         # 中位数
+df["wage"].quantile(0.95)   # 95分位
+
+# 分组统计 （类似Stata的bys: egen 或 collapse）
+df.groupby("female")["wage"].mean()                # 按性别分组求均值
+df.groupby("female")["wage"].agg(["mean", "std"])  # 多个统计量
+df.groupby(["female", "education"])["wage"].mean() # 多重分组
+```
+
+#### 数据合并
+
+```python
+# 横向合并 （类似Stata的merge）
+df_merged = pd.merge(df_main, df_extra, on="id", how="left")
+# how决定保留哪些键；它与Stata的_merge结果不完全等价
+# 合并前先检查键是否唯一，合并后用validate参数核对关系
+df_merged = pd.merge(df_main, df_extra, on="id", how="left",
+                     validate="one_to_one", indicator=True)
+
+# 纵向合并 （类似Stata的append）
+df_all = pd.concat([df_2010, df_2012], axis=0)
+```
+
+到这里，我们介绍了pandas中几类常用操作。真实项目还需要处理键的唯一性、变量类型、缺失机制、异常值和日志记录等问题。
+
+> **AI协作提示**：可以让AI为长宽转换、分组汇总或数据合并提供代码草稿，但要先说明数据结构，并核对行数、键的唯一性、缺失值和合并关系。
+
+### C.2.2 回归分析：statsmodels与linearmodels
+
+Python里跑回归主要依赖两个库：
+
+- **`statsmodels`**：综合性统计建模库，做OLS、Logit、Probit等基础回归很方便
+- **`linearmodels`**：专门做面板模型和工具变量回归，更接近Stata的`xtreg`、`reghdfe`、`ivreg2`
+
+#### OLS回归
+
+用`statsmodels`的最简实现：
+
+```python
+import statsmodels.api as sm
+
+# 对回归所需变量共同删除缺失值，保证y、X和聚类变量逐行对应
+reg_data = df[["wage", "edu", "exp", "female", "firm_id"]].dropna()
+y = reg_data["wage"]
+X = reg_data[["edu", "exp", "female"]]
+X = sm.add_constant(X)    # 添加常数项 （Stata默认包含，Python需要手动加）
+
+# 跑回归
+model = sm.OLS(y, X).fit()
+
+# 查看结果
+print(model.summary())    # 类似Stata的reg输出
+```
+
+输出结构大致如下。下表数值只用于说明版式，并非来自本书案例数据；实际结果以运行代码后的输出为准。
+
+```
+                    OLS Regression Results
+================================================================
+Dep. Variable: wage              R-squared: 0.342
+Model: OLS                       Adj. R-squared: 0.339
+Method: Least Squares            F-statistic: 98.32
+----------------------------------------------------------------
+           coef   std err      t   P>|t|    [0.025, 0.975]
+const   1500.32    245.12   6.12   0.000   1019.44, 1981.21
+edu      285.47     32.18   8.87   0.000    222.23,  348.71
+exp      150.23     18.45   8.14   0.000    113.95,  186.51
+female  -890.45    112.34  -7.93   0.000  -1111.12, -669.78
+================================================================
+```
+
+#### 加入聚类标准误
+
+```python
+model = sm.OLS(y, X).fit(cov_type="cluster",
+                         cov_kwds={"groups": reg_data["firm_id"]})
+```
+
+这里的`cov_type='cluster'`和`cov_kwds={'groups': df['firm_id']}`相当于Stata的`, cluster(firm_id)`。
+
+#### Logit/Probit回归
+
+```python
+binary_data = df[["patent_positive", "edu", "exp", "female"]].dropna()
+X_binary = sm.add_constant(binary_data[["edu", "exp", "female"]])
+
+# Logit
+model_logit = sm.Logit(binary_data["patent_positive"], X_binary).fit()
+print(model_logit.summary())
+
+# Probit
+model_probit = sm.Probit(binary_data["patent_positive"], X_binary).fit()
+print(model_probit.summary())
+```
+
+#### 面板数据与固定效应：linearmodels
+
+对于面板回归，`statsmodels`不够用，要切换到`linearmodels`（用前需`pip install linearmodels`）：
+
+```python
+from linearmodels.panel import PanelOLS
+
+# 设置面板结构 （相当于Stata的xtset）
+df_panel = df.set_index(["firm_id", "year"])
+
+# 双向固定效应回归 （相当于Stata的reghdfe ..., absorb(firm_id year)）
+model_fe = PanelOLS.from_formula(
+    "innovation ~ 1 + rd_intensity + leverage + EntityEffects + TimeEffects",
+    data=df_panel,
+    drop_absorbed=True
+).fit(cov_type='clustered', cluster_entity=True)
+
+print(model_fe.summary)
+```
+
+这里的`EntityEffects`表示个体固定效应，`TimeEffects`表示时间固定效应，`cov_type="clustered"`与`cluster_entity=True`把标准误聚类到个体层面。它们与Stata中的吸收固定效应和个体聚类思路相近，但仍应核对两个软件的样本处理、自由度修正和默认设置。
+
+#### 工具变量回归
+
+```python
+from linearmodels.iv import IV2SLS
+
+# 2SLS估计 （相当于Stata的ivregress 2sls）
+model_iv = IV2SLS.from_formula(
+    "outcome ~ 1 + control1 + control2 + [treatment ~ z]",
+    data=df
+).fit()
+
+print(model_iv.summary)
+```
+
+这里方括号`[treatment ~ z]`表示用候选工具`z`识别内生变量`treatment`。语法正确不等于工具有效；必须另行论证相关性和外生性。论证外生性时，还要排查工具与未观测结果决定因素的关系，以及是否违反排除限制。父母教育通常会通过家庭资源等路径直接影响子女工资，不宜作为默认示例。
+
+到这里，Python里跑常见回归的方式就清楚了。**核心思路和Stata一模一样**：准备数据→选择模型→跑回归→看结果。只是Python的语法形式稍微不同，代码长一点。
+
+> **AI协作提示**：AI可以帮助翻译Stata与Python代码，但包的参数和默认值会变化。运行前应查阅对应版本的官方文档，并核对样本、固定效应、聚类层级和缺失值处理是否一致。
+
+### C.2.3 数据可视化：matplotlib简介
+
+Python里画图最常用的库是`matplotlib`。它的功能很全，但语法较为繁琐——这是Python画图的特点（也是缺点）。好消息是，大部分常用图我们只需要几行代码就能搞定。
+
+#### 散点图与拟合线
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 简单散点图
+plt.scatter(df["edu"], df["wage"], alpha=0.5)
+plt.xlabel("教育年限")
+plt.ylabel("工资")
+plt.title("教育与工资的关系")
+plt.show()
+
+# 加上拟合线
+coef = np.polyfit(df["edu"], df["wage"], 1)
+x_line = np.linspace(df["edu"].min(), df["edu"].max(), 100)
+y_line = coef[0]*x_line + coef[1]
+
+plt.scatter(df["edu"], df["wage"], alpha=0.5)
+plt.plot(x_line, y_line, color="red")
+plt.xlabel("教育年限")
+plt.ylabel("工资")
+plt.show()
+```
+
+#### 直方图
+
+```python
+plt.hist(df["wage"], bins=30, edgecolor="black")
+plt.xlabel("工资")
+plt.ylabel("频数")
+plt.title("工资分布")
+plt.show()
+```
+
+#### 折线图（常用于时间趋势）
+
+```python
+# 假设我们已经按年份算好了均值
+yearly_mean = df.groupby("year")["wage"].mean()
+
+plt.plot(yearly_mean.index, yearly_mean.values, marker="o")
+plt.xlabel("年份")
+plt.ylabel("平均工资")
+plt.title("工资趋势")
+plt.grid(True)
+plt.show()
+```
+
+#### 中文显示问题
+
+用matplotlib画图遇到中文时，常常会显示成方框——这是中文字体设置问题。最简单的解决方案：
+
+```python
+plt.rcParams["font.sans-serif"] = ["SimHei"]    # Windows系统
+# plt.rcParams["font.sans-serif"] = ["Songti SC"]   # Mac系统
+plt.rcParams["axes.unicode_minus"] = False
+```
+
+字体名称取决于本机已经安装的字体。若仍显示方框，应先查询系统字体并替换示例中的名称，而不能假定`SimHei`或`Songti SC`一定存在。
+
+> **AI协作提示**：可以让AI生成绘图代码草稿，但仍需检查坐标轴、单位、图例、颜色可辨识度以及图形是否准确反映数据。
+
+### C.2.4 前沿应用一瞥
+
+Python的一个主要优势，是拥有庞大的通用编程和数据科学生态，在大数据、文本处理、机器学习和接口调用等场景中往往更便利。这一节给你三段简短的代码示范，让你对Python能做什么有个直观印象。深入学习则需要在第10章和未来的研究中具体展开。
+
+#### 机器学习：用sklearn跑随机森林
+
+```python
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import OneHotEncoder
+
+# 准备特征和目标
+X = df[["edu", "exp", "female", "industry"]]
+y = df["wage"]
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=2025
+)
+
+# 类别变量先做独热编码；固定随机种子便于复现
+preprocess = ColumnTransformer(
+    [("industry", OneHotEncoder(handle_unknown="ignore"), ["industry"])],
+    remainder="passthrough"
+)
+model = make_pipeline(
+    preprocess,
+    RandomForestRegressor(n_estimators=300, random_state=2025)
+)
+model.fit(X_train, y_train)
+
+# 预测与评估
+score = model.score(X_test, y_test)
+print(f"R²: {score:.3f}")
+
+# 特征重要性需要映射编码后的列名，并用置换重要性等方法复核
+```
+
+这段代码展示了训练—测试划分、预处理、拟合和样本外评估的基本流程。实际分析还要处理缺失值、调参、交叉验证和评价指标选择。
+
+#### 文本分析：用jieba做中文分词
+
+```python
+import jieba
+
+text = "人工智能创新发展试验区与企业创新研究。"
+words = jieba.lcut(text)
+print(words)
+# 实际分词结果取决于当前jieba词典版本
+```
+
+分词结果可用于词频统计、情感分析或主题模型，但词典、停用词、分词歧义和验证方案都会影响最终变量。
+
+#### 调用大模型API
+
+```python
+import os
+from openai import OpenAI
+
+# 官方SDK会自动读取OPENAI_API_KEY环境变量
+client = OpenAI()
+
+response = client.responses.create(
+    model=os.environ["OPENAI_MODEL"],
+    input="请简要解释什么是双重差分法？"
+)
+
+print(response.output_text)
+```
+
+示例把模型名称放在`OPENAI_MODEL`环境变量中，避免把型号写死在脚本里。使用前应根据账户可用模型和官方文档设置该变量；API和SDK也会更新，出版前需要再次核对。批量处理文档还必须考虑成本、速率限制、失败重试、结构化输出、日志、隐私、版权和人工验证，不能把一条成功请求直接扩展成自动处理几千份文档。
+
+到这里，本附录介绍了阅读第10章示例和开展基础练习所需的主要概念。能否独立完成真实项目，还取决于数据结构、方法复杂度和持续练习。
+
+---
+
+## C.3 学习路径建议
+
+这份附录只是Python学习的起点，远不是终点。如果你想进一步深入，这里给你几条建议：
+
+**第一，带着研究问题去学，不要试图先把Python学完再做研究**。Python博大精深，如果你想“全部学会再开始用”，永远开始不了。最好的学习方式是：从一个具体研究任务出发，需要什么学什么，用什么练什么。
+
+**第二，优先在Python生态更便利的任务上使用Python**。继续用Stata做你已经熟练的回归分析，在大数据、文本、机器学习、API调用等Python工具更丰富的场景中再切换。这种按需切换是较高效的学习路径。
+
+**第三，有几个免费的优质资源值得参考**：
+
+- [Python官方教程](https://docs.python.org/zh-cn/3/tutorial/)——系统学习Python基础语法
+- [pandas官方文档](https://pandas.pydata.org/docs/)——查询数据处理函数和示例
+- [statsmodels官方文档](https://www.statsmodels.org/stable/)——查询统计模型的参数与默认设置
+- [linearmodels官方文档](https://bashtage.github.io/linearmodels/)——查询面板数据和工具变量模型
+
+**第四，把AI作为辅助工具**。可以让AI解释代码和报错，但应同时学会阅读报错信息、官方文档和最小可复现示例。
+
+**第五，坚持实际练习**。Python需要通过编写、运行、检查和修改代码来掌握。练习频率可以因人而异，关键是保留可复现脚本并复盘错误。
+
+已有的Stata经验会帮助你理解数据结构、变量处理和模型输出，但仍需留意两种软件在缺失值、分类变量、默认标准误和结果呈现方面的差异。计量思想与软件语法相互联系，却不能简单互相替代。
+
+拥抱Python，但不要焦虑——你已经走在正确的路上。
