@@ -401,6 +401,44 @@ a:hover {
   line-height: 1.58;
 }
 
+.contact-update-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.3rem;
+}
+
+.contact-update-card {
+  padding: 0.35rem 1.55rem 1.45rem;
+  border: 1px solid var(--course-line);
+  border-radius: var(--course-radius);
+  background: var(--course-white);
+  box-shadow: var(--course-shadow-sm);
+}
+
+.contact-update-card h3 {
+  margin-top: 1.25rem;
+  color: var(--course-wine);
+}
+
+.update-action {
+  display: inline-block;
+  margin-top: 0.45rem;
+  padding: 0.62rem 0.9rem;
+  border-radius: var(--course-radius-sm);
+  background: var(--course-wine);
+  color: #fffaf2 !important;
+  font-size: 0.92rem;
+  font-weight: 650;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.update-action:hover {
+  background: var(--course-wine-deep);
+  transform: translateY(-1px);
+}
+
 /* Reusable reading components */
 blockquote {
   margin: 1.7rem 0;
@@ -534,6 +572,10 @@ img {
   }
 
   .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-update-grid {
     grid-template-columns: 1fr;
   }
 }

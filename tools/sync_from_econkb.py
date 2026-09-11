@@ -84,6 +84,7 @@ TEXTBOOK_PAGES: list[tuple[str, str]] = [
 # Repository-only resource pages. They are not Feishu pages, so the generator
 # keeps them in the sidebar and llms.txt without trying to overwrite the files.
 EXTRA_RESOURCE_PAGES: list[tuple[str, str]] = [
+    ("course/updates.qmd", "课件与更新｜持续发布"),
     ("course/materials.qmd", "代码与数据｜下载与复现"),
 ]
 
@@ -130,6 +131,28 @@ PUBLIC_HOME_RESOURCES = r"""
 - [《中国工业经济》](https://ciejournal.ajcass.com/)：可从实证论文及其附件中寻找数据、代码和复现材料。
 - [《数量经济技术经济研究》](https://www.jqte.net/sljjjsjjyj/ch/index.aspx)：可关注“下载全文及数据”和开放科学实验室中的复现资源。
 - 阅读复现包时，先理解研究问题、样本和变量，再运行代码；不要只追求把结果数字跑得一模一样。
+:::
+:::
+
+## 教师与资料更新
+
+::: {.contact-update-grid}
+::: {.contact-update-card}
+### 联系教师
+
+**张呈磊**
+
+[chenglei_zhang@gduf.edu.cn](mailto:chenglei_zhang@gduf.edu.cn)
+
+课程内容、教材和复现材料相关问题可通过邮件联系。为便于回复，请在邮件主题中简要注明问题所属章节或讲次。
+:::
+
+::: {.contact-update-card}
+### 课件与更新
+
+网页讲义、课件、案例和补充材料将持续整理。可从[“课件与更新”](course/updates.qmd)查看当前可用内容及最近更新记录。
+
+[查看课件与更新 →](course/updates.qmd){.update-action}
 :::
 :::
 """

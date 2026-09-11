@@ -18,7 +18,7 @@ python3 tools/sync_from_econkb.py --econkb ~/Documents/EconKB
 
 | 产出 | 说明 |
 |---|---|
-| `index.qmd`、`course/*.qmd` | 38 个飞书课程页，另有1个仓库专用代码与数据页 |
+| `index.qmd`、`course/*.qmd` | 38 个飞书课程页，另有2个仓库专用页面（课件更新、代码与数据） |
 | `textbook/*.qmd` | 24 个教材页（含导读、附录、参考文献） |
 | `assets/images/` | 页面引用的图片 |
 | `_quarto.yml` 中的 AUTO-GENERATED 块 | 侧边栏导航 |

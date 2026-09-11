@@ -42,6 +42,7 @@
 - [专题讲义｜AI Agent辅助学习——从指定材料到核验答案的完整流程](https://zhang-chenglei.github.io/Econometrics-course/course/agent_learning_guide.html)
 - [专题讲义｜用蒙特卡洛模拟看懂计量经济学](https://zhang-chenglei.github.io/Econometrics-course/course/monte_carlo_guide.html)
 - [50.5｜教材章节与课程讲次对照](https://zhang-chenglei.github.io/Econometrics-course/course/ch14.html)
+- [课件与更新｜持续发布](https://zhang-chenglei.github.io/Econometrics-course/course/updates.html)
 - [代码与数据｜下载与复现](https://zhang-chenglei.github.io/Econometrics-course/course/materials.html)
 
 ## 教材

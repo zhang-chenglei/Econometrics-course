@@ -28,6 +28,8 @@ website:
         text: "课程大纲"
       - href: course/guide.qmd
         text: "15讲课程"
+      - href: course/updates.qmd
+        text: "课件与更新"
       - href: course/textbook.qmd
         text: "教材全文"
       - href: course/materials.qmd
@@ -182,6 +184,8 @@ website:
             text: "专题讲义｜AI Agent辅助学习——从指定材料到核验答案的完整流程"
           - href: course/monte_carlo_guide.qmd
             text: "专题讲义｜用蒙特卡洛模拟看懂计量经济学"
+          - href: course/updates.qmd
+            text: "课件与更新｜持续发布"
           - href: course/materials.qmd
             text: "代码与数据｜下载与复现"
       # <<< AUTO-GENERATED <<<
