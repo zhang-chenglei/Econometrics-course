@@ -583,12 +583,23 @@ def sidebar_yaml(manifest: dict[str, Any]) -> list[str]:
     root = next(page for page in pages if page["id"] == "root")
     lines.append("- href: index.qmd")
     lines.append(f"  text: {quote(display_title(root))}")
-    emit(children.get("root", []), 0)
-    for section, href, text in EXTRA_TOP_LEVEL_PAGES:
-        lines.append(f"- section: {quote(section)}")
-        lines.append("  contents:")
-        lines.append(f"    - href: {href}")
-        lines.append(f"      text: {quote(text)}")
+    def emit_extra_top_level_pages() -> None:
+        """Place historical resources before the final 99｜课程资料 section."""
+        for section, href, text in EXTRA_TOP_LEVEL_PAGES:
+            lines.append(f"- section: {quote(section)}")
+            lines.append("  contents:")
+            lines.append(f"    - href: {href}")
+            lines.append(f"      text: {quote(text)}")
+
+    top_level_nodes = children.get("root", [])
+    extras_emitted = False
+    for node in top_level_nodes:
+        if node["id"] == "resources" and not extras_emitted:
+            emit_extra_top_level_pages()
+            extras_emitted = True
+        emit([node], 0)
+    if not extras_emitted:
+        emit_extra_top_level_pages()
     return lines
 
 

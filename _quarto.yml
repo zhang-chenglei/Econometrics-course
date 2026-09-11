@@ -173,6 +173,10 @@ website:
             text: "50.4｜附录"
           - href: course/ch14.qmd
             text: "50.5｜教材章节与课程讲次对照"
+      - section: "60｜历年课程课件"
+        contents:
+          - href: course/basic_econometrics_slides.qmd
+            text: "2025—2026秋季学期计量基础课件"
       - section: "99｜课程资料"
         href: course/resources.qmd
         contents:
@@ -188,10 +192,6 @@ website:
             text: "课件与更新｜持续发布"
           - href: course/materials.qmd
             text: "代码与数据｜下载与复现"
-      - section: "60｜历年课程课件"
-        contents:
-          - href: course/basic_econometrics_slides.qmd
-            text: "2025—2026秋季学期计量基础课件"
       # <<< AUTO-GENERATED <<<
   page-footer:
     left: "计量经济学：理论与实践｜开放课程与复现资源"
