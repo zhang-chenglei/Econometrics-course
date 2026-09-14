@@ -1,4 +1,11 @@
-"""第1章案例：从样本均值到样本回归线。"""
+"""第1章案例：从样本到总体——大数定律、中心极限定理与OLS的重复抽样。
+
+生成正文图1-6（大数定律）、图1-7（中心极限定理）和图1-8（OLS斜率的抽样分布）。
+
+三个任务共用一条逻辑：样本量越大，样本信息越接近总体；把抽样这个过程重复
+多次，又能看出估计量本身的分布。全部使用教学用模拟数据，总体与真实参数由
+数据生成过程人为设定并已知。
+"""
 
 from pathlib import Path
 
@@ -10,36 +17,95 @@ import numpy as np
 import pandas as pd
 from scipy.stats import gaussian_kde, norm
 
-SEED = 20260910
+SEED = 20260914
 REPS = 3000
-POP_MEAN = 2.0
-POP_SD = 2.0
-BETA1 = 0.5
+
+LLN_SIZES = [10, 100, 1000, 10000]
+CLT_SIZES = [1, 5, 30, 100, 500]
+POP_LOW, POP_HIGH = 0.0, 10.0
+
+OLS_SIZES = [30, 100, 500]
+BETA0, BETA1 = 2.0, 0.5
 
 HERE = Path(__file__).resolve().parent
-IMAGE_DIR = Path(__file__).resolve().parents[3] / "图片"
+IMAGE_DIR = Path(__file__).resolve().parents[3] / "图片" / "教材插图"
 IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+
+plt.rcParams["font.sans-serif"] = ["Arial Unicode MS", "SimHei", "DejaVu Sans"]
+plt.rcParams["axes.unicode_minus"] = False
 
 rng = np.random.default_rng(SEED)
 
-# 任务1：大数定律——累计样本均值
-z = rng.exponential(scale=POP_MEAN, size=1000)
-running_mean = np.cumsum(z) / np.arange(1, len(z) + 1)
+# ---------------------------------------------------------------
+# 任务1：大数定律——样本量越大，样本分布越接近总体
+# 总体为标准正态分布 N(0,1)，总体均值 0。
+# ---------------------------------------------------------------
+lln_samples = {}
+print("任务1 大数定律（总体 N(0,1)，总体均值 0）：")
+for n in LLN_SIZES:
+    z = rng.normal(0, 1, size=n)
+    lln_samples[n] = z
+    print(f"  n={n:6d}：样本均值 {z.mean():+.4f}，样本标准差 {z.std(ddof=1):.4f}")
 
-# 任务2：中心极限定理——标准化样本均值
-sample_sizes = [5, 30, 100]
-clt_values = {}
-for n in sample_sizes:
-    means = rng.exponential(scale=POP_MEAN, size=(REPS, n)).mean(axis=1)
-    clt_values[n] = np.sqrt(n) * (means - POP_MEAN) / POP_SD
+fig, axes = plt.subplots(2, 2, figsize=(11, 8))
+for ax, n in zip(axes.ravel(), LLN_SIZES):
+    ax.hist(lln_samples[n], bins=30, density=True, color="#9FB8CC", edgecolor="white")
+    grid = np.linspace(-4, 4, 300)
+    ax.plot(grid, norm.pdf(grid), color="#2A6F97", linewidth=1.8)
+    ax.axvline(0, color="#C44536", linestyle="--", linewidth=1.2)
+    ax.set(title=f"n = {n}", xlabel="观测值", ylabel="密度", xlim=(-4, 4))
+fig.suptitle("大数定律：样本量越大，样本分布越接近总体分布", fontsize=14)
+fig.tight_layout()
+fig.savefig(IMAGE_DIR / "ch01-fig6-large-numbers.png", dpi=220, bbox_inches="tight")
 
-# 任务3：OLS斜率的重复抽样分布
+# ---------------------------------------------------------------
+# 任务2：中心极限定理——样本均值的分布随样本量增加趋近正态
+# 总体为均匀分布 U(0,10)，明显不是正态分布。
+# ---------------------------------------------------------------
+pop_mean = (POP_LOW + POP_HIGH) / 2
+pop_sd = (POP_HIGH - POP_LOW) / np.sqrt(12)
+
+clt_means = {}
+print(f"\n任务2 中心极限定理（总体 U(0,10)，总体均值 {pop_mean:.1f}）：")
+for n in CLT_SIZES:
+    means = rng.uniform(POP_LOW, POP_HIGH, size=(REPS, n)).mean(axis=1)
+    clt_means[n] = means
+    print(
+        f"  n={n:4d}：样本均值的均值 {means.mean():.4f}，"
+        f"标准差 {means.std(ddof=1):.4f}，理论标准差 {pop_sd / np.sqrt(n):.4f}"
+    )
+
+fig, axes = plt.subplots(2, 3, figsize=(15, 8.4))
+axes = axes.ravel()
+
+population = rng.uniform(POP_LOW, POP_HIGH, size=20000)
+axes[0].hist(population, bins=40, density=True, color="#B9B9B9", edgecolor="white")
+axes[0].set(title="总体分布 U(0,10)", xlabel="数值", ylabel="密度", xlim=(0, 10))
+
+grid_clt = np.linspace(0, 10, 400)
+for ax, n in zip(axes[1:], CLT_SIZES):
+    values = clt_means[n]
+    ax.hist(values, bins=40, density=True, color="#9FB8CC", edgecolor="white")
+    ax.plot(grid_clt, norm.pdf(grid_clt, pop_mean, pop_sd / np.sqrt(n)),
+            color="#C44536", linewidth=1.8)
+    ax.axvline(pop_mean, color="#2A6F97", linestyle="--", linewidth=1.2)
+    ax.set(title=f"样本均值分布 n = {n}", xlabel="样本均值", ylabel="密度",
+           xlim=(0, 10), ylim=(0, None))
+fig.suptitle("中心极限定理：总体不是正态，样本均值的分布却随样本量增加趋近正态", fontsize=14)
+fig.tight_layout()
+fig.savefig(IMAGE_DIR / "ch01-fig7-central-limit.png", dpi=220, bbox_inches="tight")
+
+# ---------------------------------------------------------------
+# 任务3：把重复抽样思想用到OLS——斜率的抽样分布
+# 真实模型 y = 2 + 0.5x + u，x ~ U(0,10)，u ~ N(0,1)。
+# ---------------------------------------------------------------
+print(f"\n任务3 OLS斜率的重复抽样（真实斜率 {BETA1}）：")
 ols_records = []
-for n in [30, 100, 500]:
+for n in OLS_SIZES:
     for _ in range(REPS):
         x = rng.uniform(0, 10, size=n)
         u = rng.normal(0, 1, size=n)
-        y = 2 + BETA1 * x + u
+        y = BETA0 + BETA1 * x + u
         slope = np.sum((x - x.mean()) * (y - y.mean())) / np.sum((x - x.mean()) ** 2)
         ols_records.append({"n": n, "beta1_hat": slope})
 
@@ -49,48 +115,22 @@ ols_summary = (
     .agg(mean="mean", std="std")
     .assign(bias=lambda d: d["mean"] - BETA1)
 )
+print(ols_summary.round(5).to_string())
 ols_summary.to_csv(HERE / "ch01_summary.csv", encoding="utf-8-sig")
 
-print("累计样本均值：")
-for n in [10, 100, 1000]:
-    print(f"n={n:4d}: {running_mean[n - 1]:.4f}")
-print("\nOLS重复抽样汇总：")
-print(ols_summary.round(5))
-
-# 汇总为一张三联图
-plt.rcParams["font.sans-serif"] = ["Arial Unicode MS", "SimHei", "DejaVu Sans"]
-plt.rcParams["axes.unicode_minus"] = False
-fig, axes = plt.subplots(1, 3, figsize=(16, 4.8))
-
-axes[0].plot(np.arange(1, 1001), running_mean, color="#2A6F97", linewidth=1.4)
-axes[0].axhline(POP_MEAN, color="#C44536", linestyle="--", label="总体均值=2")
-axes[0].set(title="A. 大数定律", xlabel="累计样本量", ylabel="累计样本均值")
-axes[0].legend(frameon=False)
-
-x_grid = np.linspace(-3.5, 5, 500)
-raw_standardized = (rng.exponential(scale=POP_MEAN, size=REPS) - POP_MEAN) / POP_SD
-for values, label, color, style in [
-    (raw_standardized, "原始观测", "#999999", ":"),
-    (clt_values[5], "样本均值 n=5", "#E07A5F", "-"),
-    (clt_values[30], "样本均值 n=30", "#3D85C6", "-"),
-    (clt_values[100], "样本均值 n=100", "#2A9D8F", "-"),
-]:
-    axes[1].plot(x_grid, gaussian_kde(values)(x_grid), label=label, color=color, linestyle=style)
-axes[1].plot(x_grid, norm.pdf(x_grid), color="black", linestyle="--", label="标准正态")
-axes[1].set(title="B. 中心极限定理", xlabel="标准化数值", ylabel="密度", xlim=(-3.5, 5))
-axes[1].legend(frameon=False, fontsize=8)
-
 colors = {30: "#E07A5F", 100: "#3D85C6", 500: "#2A9D8F"}
-beta_grid = np.linspace(ols_results.beta1_hat.quantile(0.002), ols_results.beta1_hat.quantile(0.998), 500)
-for n in [30, 100, 500]:
+beta_grid = np.linspace(
+    ols_results.beta1_hat.quantile(0.002), ols_results.beta1_hat.quantile(0.998), 500
+)
+fig, ax = plt.subplots(figsize=(8, 4.8))
+for n in OLS_SIZES:
     values = ols_results.loc[ols_results.n == n, "beta1_hat"]
-    axes[2].plot(beta_grid, gaussian_kde(values)(beta_grid), label=f"n={n}", color=colors[n])
-axes[2].axvline(BETA1, color="black", linestyle="--", label="真实斜率=0.5")
-axes[2].set(title="C. OLS斜率的抽样分布", xlabel="斜率估计值", ylabel="密度")
-axes[2].legend(frameon=False)
-
-fig.suptitle("从样本均值到OLS斜率：一次完整的蒙特卡洛实验", fontsize=15)
+    ax.plot(beta_grid, gaussian_kde(values)(beta_grid), label=f"n = {n}", color=colors[n])
+ax.axvline(BETA1, color="black", linestyle="--", label=f"真实斜率 = {BETA1}")
+ax.set(title="OLS斜率的抽样分布：一次估计会波动，样本越大越集中",
+       xlabel="斜率估计值", ylabel="密度")
+ax.legend(frameon=False)
 fig.tight_layout()
-output = IMAGE_DIR / "ch01-fig6-monte-carlo-foundations.png"
-fig.savefig(output, dpi=220, bbox_inches="tight")
-print(f"\n图形已保存：{output}")
+fig.savefig(IMAGE_DIR / "ch01-fig8-ols-sampling-distribution.png", dpi=220, bbox_inches="tight")
+
+print(f"\n图形已保存至：{IMAGE_DIR}")
