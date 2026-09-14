@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-"""Check that the published student code under materials/code/ is self-contained.
+"""Check that the published student code is self-contained.
 
-Students download these scripts and run them from wherever they happen to
-unpack them — a desktop folder, a downloads folder, a USB stick. Two kinds of
-path therefore must not appear in the code:
+The scan target is the student-facing repository
+(<https://github.com/zhang-chenglei/Econometrics-course-materials>), which
+``tools/sync_student_repo.py`` generates from EconKB. Students download those
+scripts and run them from wherever they happen to unpack them — a desktop
+folder, a downloads folder, a USB stick. Two kinds of path therefore must not
+appear in the code:
 
 * absolute paths to an author's computer (``/Users/...``, ``C:\\...``, ``~/...``);
 * paths that reach back into the author's repository (``图片/``, ``教材插图``
@@ -22,6 +25,7 @@ Findings are grouped by severity:
 Usage:
     python3 tools/check_materials_code.py            # report, non-zero on error
     python3 tools/check_materials_code.py --strict   # warnings fail too
+    python3 tools/check_materials_code.py --target <path to a student checkout>
 """
 
 from __future__ import annotations
@@ -46,9 +50,11 @@ DEPTH_RE = re.compile(r"""parents\[\s*\d+\s*\]""")
 
 SCAN_SUFFIXES = (".py", ".do")
 
-# Vendored or generated trees are not maintained by hand. `legacy/` is not
-# skipped: those scripts ship to students too, so they get the same check.
-SKIP_DIRS = {"__pycache__", ".ipynb_checkpoints"}
+# Vendored or generated trees are not maintained by hand.
+SKIP_DIRS = {"__pycache__", ".ipynb_checkpoints", ".git"}
+
+# Where the student repository is normally checked out, relative to this one.
+DEFAULT_TARGET = Path(__file__).resolve().parents[1].parent / "Econometrics-course-materials"
 
 
 def strip_comments(source: str, path: Path) -> str:
@@ -140,10 +146,18 @@ def main() -> None:
     parser.add_argument(
         "--strict", action="store_true", help="treat warnings as errors too"
     )
+    parser.add_argument(
+        "--target",
+        type=Path,
+        default=DEFAULT_TARGET,
+        help="学生仓库的本地检出目录",
+    )
     args = parser.parse_args()
 
-    repo = Path(__file__).resolve().parents[1]
-    root = repo / "materials" / "code"
+    repo = args.target.expanduser().resolve()
+    if not repo.is_dir():
+        raise SystemExit(f"找不到学生仓库：{repo}")
+    root = repo
 
     errors = 0
     warnings = 0

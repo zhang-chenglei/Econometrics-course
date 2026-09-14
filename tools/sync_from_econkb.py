@@ -657,8 +657,9 @@ def write_llms_txt(repo: Path, manifest: dict[str, Any], course_dir: Path) -> No
         "## 机器可读材料",
         "",
         f"- [代码与数据说明]({site}/materials/README.md)",
-        f"- [Python与Stata代码目录](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code)",
-        f"- [教学数据目录](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/data)",
+        "- [学生版代码与数据仓库]"
+        "(https://github.com/zhang-chenglei/Econometrics-course-materials)"
+        "：按教材章节组织的 Python / Stata 代码、AI任务卡与教学数据",
         "",
     ]
     (repo / "llms.txt").write_text("\n".join(lines), encoding="utf-8")

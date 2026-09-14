@@ -76,5 +76,4 @@
 ## 机器可读材料
 
 - [代码与数据说明](https://zhang-chenglei.github.io/Econometrics-course/materials/README.md)
-- [Python与Stata代码目录](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code)
-- [教学数据目录](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/data)
+- [学生版代码与数据仓库](https://github.com/zhang-chenglei/Econometrics-course-materials)：按教材章节组织的 Python / Stata 代码、AI任务卡与教学数据

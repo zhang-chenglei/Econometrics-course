@@ -4,27 +4,39 @@ pagetitle: "代码与数据｜下载与复现"
 
 # 代码与数据｜下载与复现
 
-> 这里汇集本课程公开使用的Stata代码、Python代码、AI任务卡与教学数据。所有材料均可下载到本地，也可以直接交给AI Agent阅读和解释。
+> 本课程公开使用的 Stata 代码、Python 代码、AI任务卡与教学数据，已按教材章节整理到一个独立仓库。下载到本地即可运行，也可以直接交给 AI Agent 阅读和解释。
 
 ## 一键获取
 
-- [下载整个课程仓库（ZIP）](https://github.com/zhang-chenglei/Econometrics-course/archive/refs/heads/main.zip)：包含课程网站源文件、教材、全部公开代码与教学数据。
-- [打开GitHub代码与数据目录](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials)：适合按文件夹浏览、复制单个文件或让Agent读取。
-- [阅读机器可读材料说明](../materials/README.md)：先了解目录结构、运行方法和数据使用边界。
+- [**下载全部代码与数据（ZIP）**](https://github.com/zhang-chenglei/Econometrics-course-materials/archive/refs/heads/main.zip)
+- [**打开代码仓库**](https://github.com/zhang-chenglei/Econometrics-course-materials)：按章浏览，点进任一章只下载这一章的文件。
 
-## 代码
+仓库里每章固定三样东西：
 
-### 教材与课堂案例
+| 内容 | 说明 |
+|------|------|
+| `python/` | 该章的 Python 脚本 |
+| `stata/` | 该章的 Stata do-file，与 Python 版一一对应 |
+| `AI任务卡.md` | 可直接交给 Agent，按“目标—步骤—核验—解释”完成练习 |
 
-- [Python代码](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code/textbook/python)：第1—10章案例、第二讲与第三讲课堂案例、蒙特卡洛模拟。
-- [Stata代码](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code/textbook/stata)：与教材案例相对应的do-file。
-- [AI任务卡](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code/textbook/ai_cards)：可直接交给Agent，按“目标—步骤—核验—解释”完成练习。
+每个脚本都是独立的，下载到桌面或任何位置都能直接运行，不需要改路径；第1—5章的脚本会把图和结果表存到脚本同级的 `output/` 文件夹。完整说明见仓库的 README。
 
-### 第11—14章综合案例
+## 按章进入
 
-- [人工智能试验区综合案例复现包](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/code/comprehensive_case)：包含Python、Stata和Jupyter Notebook版本。
-- Python用户可在综合案例目录中运行 `python 共享代码/run_all.py`，依次生成第11—14章结果。
-- Stata用户先把工作目录切换到 `materials`，再运行各章do-file。
+| 教材章节 | 代码与 AI任务卡 |
+|---|---|
+| 第1章 一元线性回归 | [第1章_一元线性回归](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第1章_一元线性回归) |
+| 第2章 多元线性回归：估计 | [第2章_多元线性回归_估计](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第2章_多元线性回归_估计) |
+| 第3章 多元线性回归：推断 | [第3章_多元线性回归_推断](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第3章_多元线性回归_推断) |
+| 第4章 模型形式扩展 | [第4章_模型形式扩展](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第4章_模型形式扩展) |
+| 第5章 模型设定与诊断 | [第5章_模型设定与诊断](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第5章_模型设定与诊断) |
+| 第6章 离散选择模型 | [第6章_离散选择模型](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第6章_离散选择模型) |
+| 第7章 面板数据模型 | [第7章_面板数据模型](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第7章_面板数据模型) |
+| 第8章 工具变量模型 | [第8章_工具变量模型](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第8章_工具变量模型) |
+| 第9章 因果推断前沿方法 | [第9章_因果推断前沿方法](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第9章_因果推断前沿方法) |
+| 第11—14章 综合案例 | [第11-14章_综合案例](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第11-14章_综合案例) |
+
+第11—14章是一个完整的实证项目复现包，含 Python、Stata 和 Jupyter Notebook 三个版本。Python 用户进入该文件夹后运行 `python 共享代码/run_all.py`，可依次生成第11—14章的全部结果；Stata 用户先切换工作目录到综合案例文件夹，再运行各章 do-file。
 
 ## 数据
 
@@ -32,24 +44,23 @@ pagetitle: "代码与数据｜下载与复现"
 
 这套数据用于第11—14章完整实证项目训练。企业编号已经匿名化，结果变量按照公开的数据生成过程构造，并植入已知效应。它适合检验代码、学习DID、制作表图和练习论文写作，但不能用于评价现实政策效果。
 
-- [下载CSV版](../materials/data/semisynthetic/ai_pilot_semisynthetic_2011_2024.csv)
-- [下载Excel版](../materials/data/semisynthetic/ai_pilot_semisynthetic_2011_2024.xlsx)
-- [变量字典](../materials/data/semisynthetic/variable_dictionary.csv)
-- [数据说明](../materials/data/semisynthetic/README.md)
+- [浏览数据目录](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/数据/半合成教学数据)
+- [下载CSV版](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/数据/半合成教学数据/ai_pilot_semisynthetic_2011_2024.csv)
+- [下载Excel版](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/数据/半合成教学数据/ai_pilot_semisynthetic_2011_2024.xlsx)
+- [变量字典](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/数据/半合成教学数据/variable_dictionary.csv)
 
 ### 人工智能试验区政策数据
 
 该目录整理18个国家新一代人工智能创新发展试验区的正式批复、处理时间和城市年度编码，适合学习政策事实核验、DID处理变量构造和数据合并。
 
-- [浏览政策数据与说明](https://github.com/zhang-chenglei/Econometrics-course/tree/main/materials/data/policy)
-- [下载政策批复表](../materials/data/policy/ai_pilot_approvals.csv)
-- [阅读政策来源](../materials/data/policy/sources.md)
+- [浏览政策数据与说明](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/数据/人工智能试验区政策数据)
+- [下载政策批复表](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/数据/人工智能试验区政策数据/ai_pilot_approvals.csv)
 
 ## 建议的使用顺序
 
 1. 先阅读对应教材或本讲指南，明确代码要回答的问题。
-2. 下载整个仓库，或只下载本次需要的代码和数据。
-3. 让Agent先阅读 `materials/README.md` 和相应AI任务卡，再帮助检查环境与路径。
+2. 进入对应章节，下载该章的全部文件，或下载整个仓库。
+3. 让Agent先阅读仓库 README 和该章的 `AI任务卡.md`，再帮助检查环境与路径。
 4. 自己运行代码，并将输出与讲义中的图表和结论核对。
 5. 修改变量、样本或模型时，记录修改内容及其理由，不只保留最终结果。
 
