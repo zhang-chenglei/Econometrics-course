@@ -1,6 +1,7 @@
-"""第2章案例：AI 使用与课程成绩——控制变量与遗漏变量偏误。
+"""案例二：AI 使用与课程成绩——控制变量与遗漏变量偏误。
 
-生成正文图2-4（遗漏模型与完整模型的 AI 系数及其置信区间）。
+生成一张模型比较表，以及一张图（遗漏模型与完整模型的 AI 系数及其置信区间），
+全部保存到本脚本同级的 output/ 文件夹。
 
 教学用模拟数据，数据生成过程人为设定且已知：
 
@@ -12,6 +13,7 @@
 不代表现实效果。
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -29,9 +31,12 @@ SEED = 20260914
 N = 800
 TRUE_BETA_AI = 1.25
 
-HERE = Path(__file__).resolve().parent
-IMAGE_DIR = Path(__file__).resolve().parents[3] / "图片" / "教材插图"
-IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+# 输出目录：默认写到本脚本同级的 output/，下载到任何位置都能直接运行，不依赖仓库结构。
+# 需要把生成的图汇入教材插图库时，运行时指定：
+#   CASE_OUTPUT_DIR=<仓库>/30_教学/09_计量教材/图片/教材插图 python 01_controls_ovb.py
+OUTPUT_DIR = Path(os.environ.get("CASE_OUTPUT_DIR", HERE / "output"))
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 rng = np.random.default_rng(SEED)
 
@@ -77,7 +82,7 @@ for label, xs in specs:
     )
 
 comparison = pd.DataFrame(rows)
-comparison.to_csv(HERE / "ch02_model_comparison.csv", index=False, encoding="utf-8-sig")
+comparison.to_csv(OUTPUT_DIR / "ch02_model_comparison.csv", index=False, encoding="utf-8-sig")
 
 print("模型比较（被解释变量：课程成绩；真实 AI 系数 = 1.25）：")
 print(comparison.round(4).to_string(index=False))
@@ -112,6 +117,6 @@ ax.set_xlabel("AI 使用时间的系数及 95% 置信区间")
 ax.set_title("遗漏变量被控制后，AI 系数回到真实值附近")
 ax.legend(frameon=False, loc="lower right")
 fig.tight_layout()
-output = IMAGE_DIR / "ch02-fig4-ovb-coefficient-path.png"
+output = OUTPUT_DIR / "ch02-fig4-ovb-coefficient-path.png"
 fig.savefig(output, dpi=220, bbox_inches="tight")
 print(f"\n图形已保存：{output}")

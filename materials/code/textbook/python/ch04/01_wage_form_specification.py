@@ -1,5 +1,9 @@
-"""第4章案例：从直线到曲线——工资模型的形式扩展。"""
+"""案例：从直线到曲线——工资模型的形式扩展。
 
+生成两张图和两份结果表，全部保存到本脚本同级的 output/ 文件夹。
+"""
+
+import os
 from pathlib import Path
 
 import matplotlib
@@ -11,9 +15,12 @@ import pandas as pd
 import statsmodels.api as sm
 
 SEED = 20260911
-HERE = Path(__file__).resolve().parent
-IMAGE_DIR = Path(__file__).resolve().parents[3] / "图片"
-IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+# 输出目录：默认写到本脚本同级的 output/，下载到任何位置都能直接运行，不依赖仓库结构。
+# 需要把生成的图汇入教材插图库时，运行时指定：
+#   CASE_OUTPUT_DIR=<仓库>/30_教学/09_计量教材/图片/教材插图 python 01_wage_form_specification.py
+OUTPUT_DIR = Path(os.environ.get("CASE_OUTPUT_DIR", HERE / "output"))
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 rng = np.random.default_rng(SEED)
 
 n = 800
@@ -72,7 +79,7 @@ comparison = pd.DataFrame(
         "r_squared": [m_level.rsquared, m_log.rsquared, m_quad.rsquared, m_inter.rsquared],
     }
 )
-comparison.to_csv(HERE / "ch04_model_comparison.csv", index=False, encoding="utf-8-sig")
+comparison.to_csv(OUTPUT_DIR / "ch04_model_comparison.csv", index=False, encoding="utf-8-sig")
 group_slopes = pd.DataFrame(
     {
         "group": ["男性", "女性"],
@@ -82,7 +89,7 @@ group_slopes = pd.DataFrame(
 )
 group_slopes["ci_lower"] = group_slopes.educ_slope - 1.96 * group_slopes.std_err
 group_slopes["ci_upper"] = group_slopes.educ_slope + 1.96 * group_slopes.std_err
-group_slopes.to_csv(HERE / "ch04_group_slopes.csv", index=False, encoding="utf-8-sig")
+group_slopes.to_csv(OUTPUT_DIR / "ch04_group_slopes.csv", index=False, encoding="utf-8-sig")
 
 print("模型比较：")
 print(comparison.round(5).to_string(index=False))
@@ -111,7 +118,7 @@ ax.axvline(turning, color="#2A6F97", linestyle="--", label=f"极值点≈{turnin
 ax.set(title="工作经验与预测对数工资", xlabel="工作经验（年）", ylabel="预测对数工资")
 ax.legend(frameon=False)
 fig.tight_layout()
-output1 = IMAGE_DIR / "ch04-fig4-experience-curve.png"
+output1 = OUTPUT_DIR / "ch04-fig4-experience-curve.png"
 fig.savefig(output1, dpi=220, bbox_inches="tight")
 
 # 男女教育—工资预测线
@@ -132,6 +139,6 @@ for female_value, label, color in [(0, "男性", "#2A6F97"), (1, "女性", "#D17
 ax.set(title="教育回报的不同：一个交互项的直观表达", xlabel="教育年限", ylabel="预测对数工资")
 ax.legend(frameon=False)
 fig.tight_layout()
-output2 = IMAGE_DIR / "ch04-fig5-education-gender.png"
+output2 = OUTPUT_DIR / "ch04-fig5-education-gender.png"
 fig.savefig(output2, dpi=220, bbox_inches="tight")
 print(f"\n图形已保存：{output1}\n图形已保存：{output2}")

@@ -1,5 +1,10 @@
-"""第2章案例：教育、经验与工资——控制变量、遗漏变量与FWL。"""
+"""备选案例：教育、经验与工资——控制变量、遗漏变量与FWL。
 
+用 FWL 定理演示遗漏变量偏误。生成一张图和一份模型比较表，
+全部保存到本脚本同级的 output/ 文件夹。
+"""
+
+import os
 from pathlib import Path
 
 import matplotlib
@@ -11,9 +16,12 @@ import pandas as pd
 import statsmodels.api as sm
 
 SEED = 20260910
-HERE = Path(__file__).resolve().parent
-IMAGE_DIR = Path(__file__).resolve().parents[3] / "图片"
-IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+# 输出目录：默认写到本脚本同级的 output/，下载到任何位置都能直接运行，不依赖仓库结构。
+# 需要把生成的图汇入教材插图库时，运行时指定：
+#   CASE_OUTPUT_DIR=<仓库>/30_教学/09_计量教材/图片/教材插图 python 01_controls_ovb_fwl.py
+OUTPUT_DIR = Path(os.environ.get("CASE_OUTPUT_DIR", HERE / "output"))
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 rng = np.random.default_rng(SEED)
 
 # 教学用工资数据：完整模型满足零条件均值与同方差。
@@ -38,7 +46,7 @@ comparison = pd.DataFrame(
         "r_squared": [omit.rsquared, full.rsquared],
     }
 )
-comparison.to_csv(HERE / "ch02_model_comparison.csv", index=False, encoding="utf-8-sig")
+comparison.to_csv(OUTPUT_DIR / "ch02_model_comparison.csv", index=False, encoding="utf-8-sig")
 
 # 任务2和3：FWL三步法
 controls = sm.add_constant(df[["exper", "tenure"]])
@@ -78,6 +86,6 @@ axes[2].set(title=f"C. 偏回归斜率={fwl.params['educ_resid']:.3f}", xlabel="
 
 fig.suptitle("FWL定理：先剔除相同控制变量，再比较剩余部分", fontsize=15)
 fig.tight_layout()
-output = IMAGE_DIR / "ch02-fig4-fwl-partial-regression.png"
+output = OUTPUT_DIR / "ch02-fig4-fwl-partial-regression.png"
 fig.savefig(output, dpi=220, bbox_inches="tight")
 print(f"\n图形已保存：{output}")

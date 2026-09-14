@@ -1,12 +1,14 @@
-"""第1章案例：从样本到总体——大数定律、中心极限定理与OLS的重复抽样。
+"""案例一：从样本到总体——大数定律、中心极限定理与OLS的重复抽样。
 
-生成正文图1-6（大数定律）、图1-7（中心极限定理）和图1-8（OLS斜率的抽样分布）。
+生成三张图（大数定律、中心极限定理、OLS斜率的抽样分布）和一份斜率汇总表，
+全部保存到本脚本同级的 output/ 文件夹。
 
 三个任务共用一条逻辑：样本量越大，样本信息越接近总体；把抽样这个过程重复
 多次，又能看出估计量本身的分布。全部使用教学用模拟数据，总体与真实参数由
 数据生成过程人为设定并已知。
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -27,9 +29,12 @@ POP_LOW, POP_HIGH = 0.0, 10.0
 OLS_SIZES = [30, 100, 500]
 BETA0, BETA1 = 2.0, 0.5
 
-HERE = Path(__file__).resolve().parent
-IMAGE_DIR = Path(__file__).resolve().parents[3] / "图片" / "教材插图"
-IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+# 输出目录：默认写到本脚本同级的 output/，下载到任何位置都能直接运行，不依赖仓库结构。
+# 需要把生成的图汇入教材插图库时，运行时指定：
+#   CASE_OUTPUT_DIR=<仓库>/30_教学/09_计量教材/图片/教材插图 python 01_monte_carlo_foundations.py
+OUTPUT_DIR = Path(os.environ.get("CASE_OUTPUT_DIR", HERE / "output"))
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 plt.rcParams["font.sans-serif"] = ["Arial Unicode MS", "SimHei", "DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
@@ -56,7 +61,7 @@ for ax, n in zip(axes.ravel(), LLN_SIZES):
     ax.set(title=f"n = {n}", xlabel="观测值", ylabel="密度", xlim=(-4, 4))
 fig.suptitle("大数定律：样本量越大，样本分布越接近总体分布", fontsize=14)
 fig.tight_layout()
-fig.savefig(IMAGE_DIR / "ch01-fig6-large-numbers.png", dpi=220, bbox_inches="tight")
+fig.savefig(OUTPUT_DIR / "ch01-fig6-large-numbers.png", dpi=220, bbox_inches="tight")
 
 # ---------------------------------------------------------------
 # 任务2：中心极限定理——样本均值的分布随样本量增加趋近正态
@@ -93,7 +98,7 @@ for ax, n in zip(axes[1:], CLT_SIZES):
            xlim=(0, 10), ylim=(0, None))
 fig.suptitle("中心极限定理：总体不是正态，样本均值的分布却随样本量增加趋近正态", fontsize=14)
 fig.tight_layout()
-fig.savefig(IMAGE_DIR / "ch01-fig7-central-limit.png", dpi=220, bbox_inches="tight")
+fig.savefig(OUTPUT_DIR / "ch01-fig7-central-limit.png", dpi=220, bbox_inches="tight")
 
 # ---------------------------------------------------------------
 # 任务3：把重复抽样思想用到OLS——斜率的抽样分布
@@ -116,7 +121,7 @@ ols_summary = (
     .assign(bias=lambda d: d["mean"] - BETA1)
 )
 print(ols_summary.round(5).to_string())
-ols_summary.to_csv(HERE / "ch01_summary.csv", encoding="utf-8-sig")
+ols_summary.to_csv(OUTPUT_DIR / "ch01_summary.csv", encoding="utf-8-sig")
 
 colors = {30: "#E07A5F", 100: "#3D85C6", 500: "#2A9D8F"}
 beta_grid = np.linspace(
@@ -131,6 +136,6 @@ ax.set(title="OLS斜率的抽样分布：一次估计会波动，样本越大越
        xlabel="斜率估计值", ylabel="密度")
 ax.legend(frameon=False)
 fig.tight_layout()
-fig.savefig(IMAGE_DIR / "ch01-fig8-ols-sampling-distribution.png", dpi=220, bbox_inches="tight")
+fig.savefig(OUTPUT_DIR / "ch01-fig8-ols-sampling-distribution.png", dpi=220, bbox_inches="tight")
 
-print(f"\n图形已保存至：{IMAGE_DIR}")
+print(f"\n图形已保存至：{OUTPUT_DIR}")

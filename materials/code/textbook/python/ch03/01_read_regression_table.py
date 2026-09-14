@@ -1,12 +1,13 @@
-"""第3章案例：读懂一张成绩回归表，并看清估计值的样本波动。
+"""案例三：读懂一张成绩回归表，并看清估计值的样本波动。
 
-生成正文图3-3（回归表中各系数的点估计与95%置信区间）和图3-4（换样本后 AI
-系数如何波动）。
+生成两张图（各系数的点估计与95%置信区间、换样本后 AI 系数如何波动）和两份
+结果表，全部保存到本脚本同级的 output/ 文件夹。
 
 数据与第2章完全同源：同一份数据生成过程、同一个随机种子，因此两章的数字可以直接
 对照。第2章关心"AI 系数等于多少"，本章关心"这个数字有多确定"。
 """
 
+import os
 from pathlib import Path
 
 import matplotlib
@@ -22,9 +23,12 @@ N = 800
 TRUE_BETA_AI = 1.25
 SPLIT_REPS = 5          # 重复几次随机平分，用来看样本波动的规律
 
-HERE = Path(__file__).resolve().parent
-IMAGE_DIR = Path(__file__).resolve().parents[3] / "图片" / "教材插图"
-IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+# 输出目录：默认写到本脚本同级的 output/，下载到任何位置都能直接运行，不依赖仓库结构。
+# 需要把生成的图汇入教材插图库时，运行时指定：
+#   CASE_OUTPUT_DIR=<仓库>/30_教学/09_计量教材/图片/教材插图 python 01_read_regression_table.py
+OUTPUT_DIR = Path(os.environ.get("CASE_OUTPUT_DIR", HERE / "output"))
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 rng = np.random.default_rng(SEED)
 
@@ -71,7 +75,7 @@ table = pd.DataFrame(
         "ci_upper": ci[1],
     }
 )
-table.to_csv(HERE / "ch03_regression_table.csv", encoding="utf-8-sig")
+table.to_csv(OUTPUT_DIR / "ch03_regression_table.csv", encoding="utf-8-sig")
 
 print("回归表（被解释变量：课程成绩）：")
 print(table.round(5).to_string())
@@ -132,7 +136,7 @@ for label, d in [
 
 sub = pd.DataFrame(rows, columns=["sample", "n", "ai_coef", "ci_lower", "ci_upper"])
 sub["covers_truth"] = (sub.ci_lower <= TRUE_BETA_AI) & (TRUE_BETA_AI <= sub.ci_upper)
-sub.to_csv(HERE / "ch03_sample_variation.csv", index=False, encoding="utf-8-sig")
+sub.to_csv(OUTPUT_DIR / "ch03_sample_variation.csv", index=False, encoding="utf-8-sig")
 
 # ------------------------------------------------------------------
 # 图3-3：回归表中各系数的点估计与置信区间（截距不绘制）
@@ -157,7 +161,7 @@ ax.invert_yaxis()
 ax.set_xlabel("回归系数及 95% 置信区间")
 ax.set_title("成绩回归表：点估计与不确定性")
 fig.tight_layout()
-output = IMAGE_DIR / "ch03-fig3-regression-table-and-ci.png"
+output = OUTPUT_DIR / "ch03-fig3-regression-table-and-ci.png"
 fig.savefig(output, dpi=220, bbox_inches="tight")
 
 # ------------------------------------------------------------------
@@ -178,7 +182,7 @@ ax.set_xlabel("AI 使用时间的系数及 95% 置信区间")
 ax.set_title("换一份样本，系数会变；但每次都落在可预期的范围内")
 ax.legend(frameon=False, loc="lower right")
 fig.tight_layout()
-output2 = IMAGE_DIR / "ch03-fig4-sample-variation.png"
+output2 = OUTPUT_DIR / "ch03-fig4-sample-variation.png"
 fig.savefig(output2, dpi=220, bbox_inches="tight")
 
 print(f"\n图形已保存：\n  {output}\n  {output2}")

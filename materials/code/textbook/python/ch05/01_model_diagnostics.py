@@ -1,5 +1,9 @@
-"""第5章案例：一份工资回归的完整诊断。"""
+"""案例：一份工资回归的完整诊断。
 
+生成一张图和四份结果表，全部保存到本脚本同级的 output/ 文件夹。
+"""
+
+import os
 from pathlib import Path
 
 import matplotlib
@@ -13,9 +17,12 @@ from statsmodels.stats.diagnostic import het_breuschpagan, het_white
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 SEED = 20260912
-HERE = Path(__file__).resolve().parent
-IMAGE_DIR = Path(__file__).resolve().parents[3] / "图片"
-IMAGE_DIR.mkdir(parents=True, exist_ok=True)
+HERE = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+# 输出目录：默认写到本脚本同级的 output/，下载到任何位置都能直接运行，不依赖仓库结构。
+# 需要把生成的图汇入教材插图库时，运行时指定：
+#   CASE_OUTPUT_DIR=<仓库>/30_教学/09_计量教材/图片/教材插图 python 01_model_diagnostics.py
+OUTPUT_DIR = Path(os.environ.get("CASE_OUTPUT_DIR", HERE / "output"))
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 rng = np.random.default_rng(SEED)
 
 n = 800
@@ -75,7 +82,7 @@ vif_table = pd.DataFrame(
         "vif": [variance_inflation_factor(X_vif.to_numpy(), i) for i in range(X_vif.shape[1])],
     }
 )
-vif_table.to_csv(HERE / "ch05_vif.csv", index=False, encoding="utf-8-sig")
+vif_table.to_csv(OUTPUT_DIR / "ch05_vif.csv", index=False, encoding="utf-8-sig")
 
 # 任务3：异方差与稳健标准误
 bp_lm, bp_lm_p, bp_f, bp_f_p = het_breuschpagan(naive.resid, naive.model.exog)
@@ -88,7 +95,7 @@ final_table = pd.DataFrame(
         "robust_se_HC1": robust_bse,
     }
 )
-final_table.to_csv(HERE / "ch05_final_regression.csv", encoding="utf-8-sig")
+final_table.to_csv(OUTPUT_DIR / "ch05_final_regression.csv", encoding="utf-8-sig")
 
 diagnostic = pd.DataFrame(
     [
@@ -98,7 +105,7 @@ diagnostic = pd.DataFrame(
     ],
     columns=["问题", "主要影响", "本案例处理", "处理后的限制"],
 )
-diagnostic.to_csv(HERE / "ch05_diagnostic_checklist.csv", index=False, encoding="utf-8-sig")
+diagnostic.to_csv(OUTPUT_DIR / "ch05_diagnostic_checklist.csv", index=False, encoding="utf-8-sig")
 
 print("遗漏变量比较：")
 print(ovb_table.round(5).to_string(index=False))
@@ -118,6 +125,6 @@ ax.scatter(naive.fittedvalues, naive.resid, s=15, alpha=0.35, color="#2A6F97")
 ax.axhline(0, color="black", linestyle="--", linewidth=1)
 ax.set(title="工资模型残差图：误差波动并不恒定", xlabel="拟合值", ylabel="残差")
 fig.tight_layout()
-output = IMAGE_DIR / "ch05-fig3-residual-heteroskedasticity.png"
+output = OUTPUT_DIR / "ch05-fig3-residual-heteroskedasticity.png"
 fig.savefig(output, dpi=220, bbox_inches="tight")
 print(f"\n图形已保存：{output}")
