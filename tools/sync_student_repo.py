@@ -16,7 +16,6 @@ actually run". This script writes a second, deliberately dull repository:
 
     README.md
     第1章_一元线性回归/
-      python/00_ai_score_scatter.py
       python/01_monte_carlo_foundations.py
       stata/01_monte_carlo_foundations.do
       AI任务卡.md
@@ -231,10 +230,31 @@ def main() -> None:
             shutil.copy2(source, target)
         written.append(target)
 
+    # Prune orphans. A file that is no longer generated has been retired from
+    # the student set (moved to `legacy/`, renamed, or dropped upstream), and
+    # leaving it behind would quietly keep shipping something the sources no
+    # longer declare. Only folders this script owns are touched — a student's
+    # own notes elsewhere in the checkout are none of its business.
+    managed = {folder.split("/")[0] for _chapter, folder in CHAPTERS}
+    managed |= {folder.split("/")[0] for _source, folder in BULK_DIRS}
+    managed |= {folder.split("/")[0] for _source, folder in DATA_DIRS}
+    keep = set(expected) | {repo / "README.md", repo / ".gitignore"}
+    removed: list[str] = []
+    for path in sorted(repo.rglob("*")):
+        if not path.is_file() or ".git" in path.parts or path in keep:
+            continue
+        if path.relative_to(repo).parts[0] in managed:
+            path.unlink()
+            removed.append(path.relative_to(repo).as_posix())
+
     (repo / "README.md").write_text(README, encoding="utf-8")
     (repo / ".gitignore").write_text(GITIGNORE, encoding="utf-8")
 
     print(f"写入 {len(written)} 个文件 + README.md → {repo}")
+    if removed:
+        print(f"移除 {len(removed)} 个已不再生成的旧文件：")
+        for path in removed:
+            print(f"  - {path}")
     folders = sorted({path.relative_to(repo).parts[0] for path in written})
     for folder in folders:
         count = sum(1 for path in written if path.relative_to(repo).parts[0] == folder)

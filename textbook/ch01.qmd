@@ -415,7 +415,6 @@ $Y_{i} = 2 + 0.5X_{i} + u_{i}$, $u_{i}\sim N(0,1)$
 
 > 📁 配套代码包：
 > - 案例任务：Stata `code/stata/ch01/01_monte_carlo_foundations.do`、Python `code/python/ch01/01_monte_carlo_foundations.py`
-> - 本节引例图（图1-1、图1-2、图1-4）：`code/python/ch01/00_ai_score_scatter.py`
 > - AI Agent任务卡：`code/ai_cards/ch01_ai_task_card.md`
 >
 > 提交产出：3张图 + 1张汇总表 + 300字结果解释 + 可复现代码 + `ai_log.md`
