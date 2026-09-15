@@ -30,8 +30,8 @@ body {
   color: var(--course-ink);
   background: var(--course-paper);
   font-family: var(--course-sans);
-  font-size: 17px;
-  line-height: 1.82;
+  font-size: 15px;
+  line-height: 1.72;
   text-wrap: pretty;
 }
 
@@ -55,7 +55,7 @@ h4,
 h1 {
   max-width: 18ch;
   margin-bottom: 1.8rem;
-  font-size: clamp(2.3rem, 4vw, 3.75rem);
+  font-size: clamp(1.8rem, 2.8vw, 2.7rem);
   line-height: 1.14;
 }
 
@@ -64,7 +64,7 @@ h2 {
   margin-top: 3.4rem;
   padding-bottom: 0.65rem;
   border-bottom: 1px solid var(--course-gold-soft);
-  font-size: clamp(1.65rem, 2.5vw, 2.15rem);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
 }
 
 h2::after {
@@ -79,7 +79,7 @@ h2::after {
 
 h3 {
   margin-top: 2rem;
-  font-size: 1.28rem;
+  font-size: 1.12rem;
 }
 
 p,
@@ -116,7 +116,7 @@ a:hover {
 .navbar-title {
   color: #fffaf2 !important;
   font-family: var(--course-serif);
-  font-size: 1.12rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.015em;
 }
@@ -124,7 +124,7 @@ a:hover {
 .navbar-nav .nav-link,
 .navbar .quarto-navbar-tools .quarto-navigation-tool {
   color: rgba(255, 250, 242, 0.86) !important;
-  font-size: 0.94rem;
+  font-size: 0.87rem;
   font-weight: 560;
 }
 
@@ -180,7 +180,7 @@ a:hover {
 
 #TOC .nav-link {
   color: var(--course-muted);
-  font-size: 0.88rem;
+  font-size: 0.82rem;
   line-height: 1.42;
 }
 
@@ -203,24 +203,24 @@ a:hover {
 .course-home section.level1 > h1 {
   grid-column: 1 / -1;
   max-width: none;
-  margin: 0 0 -1.2rem;
-  padding: clamp(2.7rem, 7vw, 5.5rem) clamp(2rem, 6vw, 5rem) 1.45rem;
+  margin: 0 0 -1.2rem; /* 必须等于 grid row-gap，否则两块之间会裂缝 */
+  padding: clamp(0.6rem, 0.85vw, 1.1rem) clamp(1.5rem, 3vw, 2.6rem) 0.5rem;
   border-radius: var(--course-radius-lg) var(--course-radius-lg) 0 0;
   background:
     linear-gradient(118deg, rgba(255,255,255,0.08), transparent 45%),
     var(--course-wine);
   color: #fffaf2;
-  font-size: clamp(3rem, 4vw, 4.8rem);
+  font-size: clamp(1.45rem, 1.9vw, 2.2rem);
   line-height: 1.04;
   box-shadow: var(--course-shadow-md);
 }
 
 .course-home section.level1 > h1::before {
   display: block;
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.35rem;
   color: var(--course-gold-soft);
   font-family: var(--course-sans);
-  font-size: 0.78rem;
+  font-size: 0.62rem;
   font-weight: 720;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -231,7 +231,7 @@ a:hover {
   display: block;
   width: min(15rem, 40%);
   height: 2px;
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
   background: var(--course-gold);
   content: "";
 }
@@ -239,7 +239,7 @@ a:hover {
 .course-home section.level1 > blockquote:first-of-type {
   grid-column: 1 / -1;
   margin: 0 0 0.4rem;
-  padding: 1rem clamp(2rem, 6vw, 5rem) clamp(2.7rem, 5vw, 4.2rem);
+  padding: 0.7rem clamp(1.5rem, 3vw, 2.6rem) 0.7rem;
   border: 0;
   border-radius: 0 0 var(--course-radius-lg) var(--course-radius-lg);
   background: var(--course-wine);
@@ -250,15 +250,15 @@ a:hover {
 .course-home section.level1 > blockquote:first-of-type p {
   max-width: 62rem;
   margin: 0;
-  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  font-size: clamp(0.76rem, 0.95vw, 0.86rem);
 }
 
 .course-home section.level1 > p:first-of-type,
 .course-home section.level1 > blockquote:nth-of-type(2) {
   position: relative;
-  min-height: 9.25rem;
+  min-height: 7rem;
   margin: 0;
-  padding: 1.7rem 1.8rem;
+  padding: 1.3rem 1.5rem;
   border: 1px solid var(--course-line);
   border-radius: var(--course-radius);
   background: var(--course-white);
@@ -267,33 +267,33 @@ a:hover {
 
 .course-home section.level1 > p:first-of-type {
   grid-column: 1 / 7;
-  padding-top: 3.7rem;
+  padding-top: 2.9rem;
 }
 
 .course-home section.level1 > p:first-of-type::before {
   position: absolute;
-  top: 1.25rem;
-  left: 1.8rem;
+  top: 1rem;
+  left: 1.5rem;
   color: var(--course-wine);
   font-family: var(--course-serif);
-  font-size: 1.16rem;
+  font-size: 1.05rem;
   font-weight: 700;
   content: "从教材开始";
 }
 
 .course-home section.level1 > blockquote:nth-of-type(2) {
   grid-column: 7 / -1;
-  padding-top: 3.7rem;
+  padding-top: 2.9rem;
   color: var(--course-ink);
 }
 
 .course-home section.level1 > blockquote:nth-of-type(2)::before {
   position: absolute;
-  top: 1.25rem;
-  left: 1.8rem;
+  top: 1rem;
+  left: 1.5rem;
   color: var(--course-wine);
   font-family: var(--course-serif);
-  font-size: 1.16rem;
+  font-size: 1.05rem;
   font-weight: 700;
   content: "进入复现工作台";
 }
@@ -350,7 +350,7 @@ a:hover {
   border-top: 2px solid var(--course-gold);
   background: var(--course-ivory);
   color: #40505a;
-  font-size: 0.94rem;
+  font-size: 0.87rem;
   line-height: 1.5;
 }
 
@@ -386,7 +386,7 @@ a:hover {
 .resource-card h3 {
   margin-top: 1.25rem;
   color: var(--course-wine);
-  font-size: 1.16rem;
+  font-size: 1.05rem;
 }
 
 .resource-card ul {
@@ -397,7 +397,7 @@ a:hover {
 .resource-card li {
   margin: 0.62rem 0;
   color: #4a5962;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   line-height: 1.58;
 }
 
@@ -428,7 +428,7 @@ a:hover {
   border-radius: var(--course-radius-sm);
   background: var(--course-wine);
   color: #fffaf2 !important;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-weight: 650;
   text-decoration: none;
   transition: background-color 160ms ease, transform 160ms ease;
@@ -457,7 +457,7 @@ table {
   overflow: hidden;
   border: 1px solid var(--course-line);
   border-radius: var(--course-radius-sm);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 thead th {
@@ -582,8 +582,8 @@ img {
 
 @media (max-width: 760px) {
   body {
-    font-size: 16px;
-    line-height: 1.72;
+    font-size: 14.5px;
+    line-height: 1.66;
   }
 
   main.content {
@@ -591,12 +591,12 @@ img {
   }
 
   h1 {
-    font-size: clamp(2rem, 10vw, 2.8rem);
+    font-size: clamp(1.7rem, 8.8vw, 2.4rem);
   }
 
   h2 {
     margin-top: 2.6rem;
-    font-size: 1.55rem;
+    font-size: 1.35rem;
   }
 
   .course-home section.level1 {
@@ -604,16 +604,16 @@ img {
   }
 
   .course-home section.level1 > h1 {
-    padding: 2.3rem 1.5rem 1rem;
-    font-size: clamp(2.45rem, 13vw, 3.7rem);
+    padding: 0.7rem 1.2rem 0.5rem;
+    font-size: clamp(1.3rem, 7.2vw, 1.95rem);
   }
 
   .course-home section.level1 > h1::before {
-    font-size: 0.67rem;
+    font-size: 0.6rem;
   }
 
   .course-home section.level1 > blockquote:first-of-type {
-    padding: 0.8rem 1.5rem 2.2rem;
+    padding: 0.6rem 1.2rem 0.6rem;
   }
 
   .course-home #讲学习路线 > ul {
