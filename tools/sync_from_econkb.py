@@ -3,7 +3,7 @@
 
 Sources are READ-ONLY and never modified:
 
-    <econkb>/30_教学/01_中级计量经济学（应用经济学硕士）/课程知识库/飞书课程版/
+    <econkb>/30_教学/01_本学期计量课/中级计量（研究生）/课程知识库/飞书课程版/
         manifest.json        -- 38 course pages: id / title / parent / source
         state.json           -- course page id -> 飞书 node_token
         textbook_links.json  -- textbook page id -> 飞书 url (+ per-heading block ids)
@@ -45,7 +45,7 @@ from typing import Any
 from PIL import Image
 
 
-COURSE_REL = Path("30_教学/01_中级计量经济学（应用经济学硕士）/课程知识库/飞书课程版")
+COURSE_REL = Path("30_教学/01_本学期计量课/中级计量（研究生）/课程知识库/飞书课程版")
 TEXTBOOK_REL = Path("30_教学/09_计量教材")
 
 # Textbook pages, in site order. Derived from textbook_links.json ids, but the
