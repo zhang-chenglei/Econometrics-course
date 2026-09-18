@@ -15,7 +15,7 @@ of it helps a student, who wants "the chapter I am on, and the two files I
 actually run". This script writes a second, deliberately dull repository:
 
     README.md
-    第1章_一元线性回归/
+    第2章_一元线性回归_推断/
       python/01_monte_carlo_foundations.py
       stata/01_monte_carlo_foundations.do
       AI任务卡.md
@@ -49,9 +49,8 @@ from pathlib import Path
 # EconKB chapter directory -> student-facing folder name. Chapter titles match
 # the textbook (`30_教学/09_计量教材/拆分章节/`).
 CHAPTERS: list[tuple[str, str]] = [
-    ("ch01", "第1章_一元线性回归"),
-    ("ch02", "第2章_多元线性回归_估计"),
-    ("ch03", "第3章_多元线性回归_推断"),
+    ("ch02", "第2章_一元线性回归_推断"),
+    ("ch03", "第3章_多元线性回归"),
     ("ch04", "第4章_模型形式扩展"),
     ("ch05", "第5章_模型设定与诊断"),
     ("ch06", "第6章_离散选择模型"),
@@ -120,14 +119,14 @@ README = """# 计量经济学：理论与实践｜课程代码与数据
 
 ```bash
 pip install numpy pandas scipy matplotlib statsmodels linearmodels
-python 第2章_多元线性回归_估计/python/01_controls_ovb.py
+python 第3章_多元线性回归/python/01_controls_ovb.py
 ```
 
 **Stata**：打开对应的 `.do` 文件直接运行。
 
 运行结果在哪里：
 
-- 第1—5章的脚本会把图和结果表保存到**脚本同级的 `output/` 文件夹**；
+- 第2—5章的脚本会把图和结果表保存到**脚本同级的 `output/` 文件夹**；
 - 第6—9章的脚本直接在终端打印结果；
 - 第11—14章综合案例需要**进入该文件夹**后再运行（它的各章脚本互相引用）。
 

@@ -55,8 +55,8 @@ TEXTBOOK_PAGES: list[tuple[str, str]] = [
     ("intro", "00_导论.md"),
     ("part1", "00a_第一部分_回归分析基础.md"),
     ("ch01", "01_第1章_一元线性回归.md"),
-    ("ch02", "02_第2章_多元线性回归_估计.md"),
-    ("ch03", "03_第3章_多元线性回归_推断.md"),
+    ("ch02", "02_第2章_一元线性回归_推断.md"),
+    ("ch03", "03_第3章_多元线性回归.md"),
     ("ch04", "04_第4章_模型形式扩展.md"),
     ("ch05", "05_第5章_模型设定与诊断.md"),
     ("part2", "05a_第二部分_从基础回归到复杂现实.md"),
@@ -76,6 +76,12 @@ TEXTBOOK_PAGES: list[tuple[str, str]] = [
     ("appendix_python", "附录3_Python入门.md"),
     ("ending", "结束语.md"),
 ]
+
+TEXTBOOK_PUBLIC_TITLES = {
+    "ch01": "第1章｜一元线性回归：估计",
+    "ch02": "第2章｜一元线性回归：推断",
+    "ch03": "第3章｜多元线性回归",
+}
 
 # Textbook pages reference images Obsidian-style: ![[ch01-fig1.png]]
 # Pages written by hand in this repo (not part of the 飞书 manifest) that belong
@@ -574,7 +580,7 @@ def sidebar_yaml(manifest: dict[str, Any]) -> list[str]:
     def textbook_entries() -> list[tuple[str, str]]:
         titles = load_json(course_dir / "textbook_links.json")["pages"]
         return [
-            (titles[page_id]["title"], f"textbook/{page_id}.qmd")
+            (TEXTBOOK_PUBLIC_TITLES.get(page_id, titles[page_id]["title"]), f"textbook/{page_id}.qmd")
             for page_id, _filename in TEXTBOOK_PAGES
             if page_id in titles
         ]
@@ -650,7 +656,8 @@ def write_llms_txt(repo: Path, manifest: dict[str, Any], course_dir: Path) -> No
     for page_id, _filename in TEXTBOOK_PAGES:
         entry = textbook_titles.get(page_id)
         if entry:
-            lines.append(f"- [{entry['title']}]({site}/textbook/{page_id}.html)")
+            title = TEXTBOOK_PUBLIC_TITLES.get(page_id, entry["title"])
+            lines.append(f"- [{title}]({site}/textbook/{page_id}.html)")
 
     lines.append("")
     lines += [

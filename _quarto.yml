@@ -128,11 +128,11 @@ website:
           - href: textbook/part1.qmd
             text: "50.1｜第一部分：回归分析基础"
           - href: textbook/ch01.qmd
-            text: "第1章｜一元线性回归"
+            text: "第1章｜一元线性回归：估计"
           - href: textbook/ch02.qmd
-            text: "第2章｜多元线性回归：估计"
+            text: "第2章｜一元线性回归：推断"
           - href: textbook/ch03.qmd
-            text: "第3章｜多元线性回归：推断"
+            text: "第3章｜多元线性回归"
           - href: textbook/ch04.qmd
             text: "第4章｜模型形式扩展"
           - href: textbook/ch05.qmd
