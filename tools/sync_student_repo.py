@@ -49,6 +49,7 @@ from pathlib import Path
 # EconKB chapter directory -> student-facing folder name. Chapter titles match
 # the textbook (`30_教学/09_计量教材/拆分章节/`).
 CHAPTERS: list[tuple[str, str]] = [
+    ("ch01", "第1章_一元线性回归"),
     ("ch02", "第2章_一元线性回归_推断"),
     ("ch03", "第3章_多元线性回归"),
     ("ch04", "第4章_模型形式扩展"),
