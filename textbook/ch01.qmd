@@ -6,7 +6,7 @@ pagetitle: "第1章 一元线性回归：估计"
 
 > “有些人一听到统计这个词就厌烦，但我却发现统计充满美感与趣味。”
 >
-> ——弗朗西斯·高尔顿（Francis Galton）
+> ——根据弗朗西斯·高尔顿《自然遗传》（Natural Inheritance，1889）相关论述意译
 
 ![](../assets/images/ch01-00-galton-quote.webp)
 

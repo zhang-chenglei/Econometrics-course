@@ -6,7 +6,7 @@ pagetitle: "第10章 现代计量工具：机器学习、贝叶斯与大模型"
 
 > “计算的目的，不是数字，而是洞见。”
 >
-> ——理查德·哈明（Richard Hamming）
+> ——理查德·哈明《数值方法：面向科学家与工程师》（Numerical Methods for Scientists and Engineers，1962）
 
 ![](../assets/images/ch10-00-hamming-insight-quote.webp)
 

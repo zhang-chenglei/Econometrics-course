@@ -6,7 +6,7 @@ pagetitle: "第2章 一元线性回归：推断"
 
 > “有道之士，贵以近知远，以今知古，以所见知所不见。”
 >
-> ——《吕氏春秋》
+> ——《吕氏春秋·察今》
 
 ![](../assets/images/ch02-00-lvshi-chunqiu-quote.webp)
 

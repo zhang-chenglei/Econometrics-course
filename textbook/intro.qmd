@@ -5,10 +5,8 @@ pagetitle: "导论"
 # 导论
 
 > “关于世界，最不可理解的事情就是它是可以被理解的。”
-
 >
-
-> ——阿尔伯特·爱因斯坦
+> ——根据阿尔伯特·爱因斯坦《物理学与现实》（Physics and Reality，1936）相关论述意译
 
 ![](../assets/images/ch00-00-einstein-quote.webp)
 
