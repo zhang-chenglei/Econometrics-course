@@ -25,24 +25,24 @@ pagetitle: "代码与数据｜下载与复现"
 
 | 教材章节 | 代码与 AI任务卡 |
 |---|---|
-| 第1章 一元线性回归 | [第1章_一元线性回归](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第1章_一元线性回归) |
-| 第2章 多元线性回归：估计 | [第2章_多元线性回归_估计](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第2章_多元线性回归_估计) |
-| 第3章 多元线性回归：推断 | [第3章_多元线性回归_推断](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第3章_多元线性回归_推断) |
-| 第4章 模型形式扩展 | [第4章_模型形式扩展](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第4章_模型形式扩展) |
-| 第5章 模型设定与诊断 | [第5章_模型设定与诊断](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第5章_模型设定与诊断) |
-| 第6章 离散选择模型 | [第6章_离散选择模型](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第6章_离散选择模型) |
-| 第7章 面板数据模型 | [第7章_面板数据模型](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第7章_面板数据模型) |
-| 第8章 工具变量模型 | [第8章_工具变量模型](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第8章_工具变量模型) |
-| 第9章 因果推断前沿方法 | [第9章_因果推断前沿方法](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第9章_因果推断前沿方法) |
-| 第11—14章 综合案例 | [第11-14章_综合案例](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第11-14章_综合案例) |
+| 第1章 一元线性回归：估计 | [第1章_一元线性回归_估计](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第1章_一元线性回归_估计) |
+| 第2章 一元线性回归：推断 | [第2章_一元线性回归_推断](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第2章_一元线性回归_推断) |
+| 第3章 多元线性回归：控制与解释 | [第3章_多元线性回归_控制与解释](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第3章_多元线性回归_控制与解释) |
+| 第4章 回归模型扩展：函数形式与二元结果 | [第4章_回归模型扩展_函数形式与二元结果](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第4章_回归模型扩展_函数形式与二元结果) |
+| 第5章 模型设定：变量选择、诊断与稳健推断 | [第5章_模型设定_变量选择诊断与稳健推断](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第5章_模型设定_变量选择诊断与稳健推断) |
+| 第6章 因果识别基础：反事实与内生性 | [第6章_因果识别基础_反事实与内生性](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第6章_因果识别基础_反事实与内生性) |
+| 第7章 面板数据：固定效应与随机效应 | [第7章_面板数据_固定效应与随机效应](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第7章_面板数据_固定效应与随机效应) |
+| 第8章 工具变量：内生性与外生变异 | [第8章_工具变量_内生性与外生变异](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第8章_工具变量_内生性与外生变异) |
+| 第9章 随机实验与准实验：DID与RDD | [第9章_随机实验与准实验_DID与RDD](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/第9章_随机实验与准实验_DID与RDD) |
+| 第11—15章 贯穿案例 | [code/comprehensive_case](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/code/comprehensive_case) |
 
-第11—14章是一个完整的实证项目复现包，含 Python、Stata 和 Jupyter Notebook 三个版本。Python 用户进入该文件夹后运行 `python 共享代码/run_all.py`，可依次生成第11—14章的全部结果；Stata 用户先切换工作目录到综合案例文件夹，再运行各章 do-file。
+第11—15章的**贯穿案例**是一个完整的实证项目复现包，位于 `code/comprehensive_case/`，含 Python、Stata 和 Jupyter Notebook 三个版本。**请保留仓库的目录结构**——案例脚本要向上找到仓库根目录的 `data/`：在仓库根目录运行 `python code/comprehensive_case/共享代码/run_all.py`，可依次生成第12—15章的全部结果；Stata 用户先切换工作目录到仓库根目录，再运行各章 do-file。
 
 ## 数据
 
 ### 半合成教学样本
 
-这套数据用于第11—14章完整实证项目训练。企业编号已经匿名化，结果变量按照公开的数据生成过程构造，并植入已知效应。它适合检验代码、学习DID、制作表图和练习论文写作，但不能用于评价现实政策效果。
+这套数据用于第11—15章贯穿案例的完整实证项目训练。企业编号已经匿名化，结果变量按照公开的数据生成过程构造，并植入已知效应。它适合检验代码、学习DID、制作表图和练习论文写作，但不能用于评价现实政策效果。
 
 - [浏览数据目录](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/数据/半合成教学数据)
 - [下载CSV版](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/数据/半合成教学数据/ai_pilot_semisynthetic_2011_2024.csv)

@@ -19,8 +19,8 @@ actually run". This script writes a second, deliberately dull repository:
       python/01_monte_carlo_foundations.py
       stata/01_monte_carlo_foundations.do
       AI任务卡.md
-    第11-14章_综合案例/...
-    数据/...
+    code/comprehensive_case/...
+    data/...
 
 Rules the student repo relies on:
 
@@ -49,29 +49,51 @@ from pathlib import Path
 # EconKB chapter directory -> student-facing folder name. Chapter titles match
 # the textbook (`30_教学/09_计量教材/拆分章节/`).
 CHAPTERS: list[tuple[str, str]] = [
-    ("ch01", "第1章_一元线性回归"),
+    ("ch01", "第1章_一元线性回归_估计"),
     ("ch02", "第2章_一元线性回归_推断"),
-    ("ch03", "第3章_多元线性回归"),
-    ("ch04", "第4章_模型形式扩展"),
-    ("ch05", "第5章_模型设定与诊断"),
-    ("ch06", "第6章_离散选择模型"),
-    ("ch07", "第7章_面板数据模型"),
-    ("ch08", "第8章_工具变量模型"),
-    ("ch09", "第9章_因果推断前沿方法"),
+    ("ch03", "第3章_多元线性回归_控制与解释"),
+    ("ch04", "第4章_回归模型扩展_函数形式与二元结果"),
+    ("ch05", "第5章_模型设定_变量选择诊断与稳健推断"),
+    ("ch06", "第6章_因果识别基础_反事实与内生性"),
+    ("ch07", "第7章_面板数据_固定效应与随机效应"),
+    ("ch08", "第8章_工具变量_内生性与外生变异"),
+    ("ch09", "第9章_随机实验与准实验_DID与RDD"),
 ]
 
 # Copied wholesale, keeping their internal layout: these are self-contained
 # reproduction packages whose scripts locate each other by relative path, so
 # flattening them would break `共享代码/run_all.py`.
+#
+# Target path follows the package's own declared contract — the scripts resolve
+# the data root by walking up from their own location until they find
+# `data/semisynthetic/`, so the package must sit under `code/` with the data at
+# the repository root (see code/comprehensive_case/README.md).
 BULK_DIRS: list[tuple[str, str]] = [
-    ("comprehensive_case", "第11-14章_综合案例"),
+    ("comprehensive_case", "code/comprehensive_case"),
 ]
 
 # Small teaching datasets, copied from this repository rather than EconKB
 # (EconKB holds the multi-hundred-MB working data, which is not public).
+# They land at the repository root, where the case package looks for them.
 DATA_DIRS: list[tuple[str, str]] = [
-    ("semisynthetic", "数据/半合成教学数据"),
-    ("policy", "数据/人工智能试验区政策数据"),
+    ("semisynthetic", "data/semisynthetic"),
+    ("policy", "data/policy"),
+]
+
+# Top-level folders previous versions of this script generated. The pruner only
+# touches folders it currently owns, so without this list a restructure would
+# leave the old layout sitting next to the new one and students would see both.
+RETIRED_FOLDERS = [
+    "第1章_一元线性回归",
+    "第3章_多元线性回归",
+    "第4章_模型形式扩展",
+    "第5章_模型设定与诊断",
+    "第6章_离散选择模型",
+    "第7章_面板数据模型",
+    "第8章_工具变量模型",
+    "第9章_因果推断前沿方法",
+    "第11-14章_综合案例",
+    "数据",
 ]
 
 SKIP_DIR_NAMES = {"__pycache__", ".ipynb_checkpoints"}
@@ -104,12 +126,14 @@ README = """# 计量经济学：理论与实践｜课程代码与数据
 | `stata/` | 该章的 Stata do-file，与 Python 版一一对应 |
 | `AI任务卡.md` | 可直接交给 AI Agent，按「目标—步骤—核验—解释」完成练习 |
 
+> 第6章（因果识别基础）**不设估计脚本**，只有 `AI任务卡.md`——该章的任务是概念性的。
+
 另有：
 
 | 文件夹 | 内容 |
 |--------|------|
-| `第11-14章_综合案例/` | 人工智能试验区综合案例复现包，含 Python、Stata、Jupyter Notebook 三版 |
-| `数据/` | 半合成教学样本、人工智能试验区政策数据 |
+| `code/comprehensive_case/` | 第12—15章人工智能试验区综合案例复现包，含 Python、Stata、Jupyter Notebook 三版 |
+| `data/` | 半合成教学样本、人工智能试验区政策数据（综合案例脚本从这里取数） |
 
 ## 运行
 
@@ -120,7 +144,7 @@ README = """# 计量经济学：理论与实践｜课程代码与数据
 
 ```bash
 pip install numpy pandas scipy matplotlib statsmodels linearmodels
-python 第3章_多元线性回归/python/01_controls_ovb.py
+python 第3章_多元线性回归_控制与解释/python/01_controls_ovb.py
 ```
 
 **Stata**：打开对应的 `.do` 文件直接运行。
@@ -128,8 +152,8 @@ python 第3章_多元线性回归/python/01_controls_ovb.py
 运行结果在哪里：
 
 - 第2—5章的脚本会把图和结果表保存到**脚本同级的 `output/` 文件夹**；
-- 第6—9章的脚本直接在终端打印结果；
-- 第11—14章综合案例需要**进入该文件夹**后再运行（它的各章脚本互相引用）。
+- 第7—9章的脚本直接在终端打印结果（第6章不设估计脚本）；
+- **综合案例（`code/comprehensive_case/`）必须保留仓库的目录结构再运行**——它的脚本要向上找到仓库根目录的 `data/`，只下载 `code/` 子目录会报找不到数据。
 
 ## 数据说明
 
@@ -142,7 +166,7 @@ python 第3章_多元线性回归/python/01_controls_ovb.py
 ## 遇到问题
 
 1. 看报错的最后一行缺少哪个包，`pip install` 装上即可；
-2. 确认运行目录——第11—14章综合案例要先进入该文件夹再运行；
+2. 确认运行目录——综合案例要先进入 `code/comprehensive_case/`，且仓库根目录的 `data/` 必须在它上面两层；
 3. 仍然解决不了，把「报错信息 + 你运行的命令 + 你在哪一章」发给任课教师。
 
 ## 相关链接
@@ -238,6 +262,9 @@ def main() -> None:
     managed = {folder.split("/")[0] for _chapter, folder in CHAPTERS}
     managed |= {folder.split("/")[0] for _source, folder in BULK_DIRS}
     managed |= {folder.split("/")[0] for _source, folder in DATA_DIRS}
+    # Folders this script used to own: prune them too, or a restructure leaves
+    # the old layout behind (no student files live there — the repo is generated).
+    managed |= set(RETIRED_FOLDERS)
     keep = set(expected) | {repo / "README.md", repo / ".gitignore"}
     removed: list[str] = []
     for path in sorted(repo.rglob("*")):

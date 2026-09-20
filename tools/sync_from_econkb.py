@@ -48,39 +48,68 @@ from PIL import Image
 COURSE_REL = Path("30_教学/01_本学期计量课/中级计量（研究生）/课程知识库/飞书课程版")
 TEXTBOOK_REL = Path("30_教学/09_计量教材")
 
-# Textbook pages, in site order. Derived from textbook_links.json ids, but the
-# order there is arbitrary, so it is pinned here.
+# Set in main(); the textbook title helper needs it at module level so the
+# sidebar, llms.txt and page generation all resolve titles the same way.
+textbook_dir: Path | None = None
+
+
+def textbook_title(page_id: str, filename: str) -> str:
+    """Display title for a textbook page.
+
+    The authoritative source's H1 wins, so the site follows the frozen book
+    baseline. The Feishu manifest (`textbook_links.json`) is only a fallback —
+    it still describes the pre-restructure 24-page set and is maintained on the
+    Feishu side. Pages absent from the manifest are still published.
+    """
+    if page_id in TEXTBOOK_PUBLIC_TITLES:
+        return TEXTBOOK_PUBLIC_TITLES[page_id]
+    if textbook_dir is not None:
+        source = textbook_dir / "拆分章节" / filename
+        if source.is_file():
+            heading = re.search(
+                r"^#\s+(.+?)\s*$", source.read_text(encoding="utf-8"), flags=re.MULTILINE
+            )
+            if heading:
+                return heading.group(1)
+    return page_id
+
+# Textbook pages, in site order. Mirrors 拆分章节/ (26 authoritative files:
+# 15 chapters + 3 part dividers + guide/intro/references/4 appendices/ending).
+# The order here is the site's reading order; the Feishu manifest's order is arbitrary.
 TEXTBOOK_PAGES: list[tuple[str, str]] = [
     ("guide", "0_导读与使用说明.md"),
     ("intro", "00_导论.md"),
-    ("part1", "00a_第一部分_回归分析基础.md"),
-    ("ch01", "01_第1章_一元线性回归.md"),
+    ("part1", "00a_第一部分_基础篇_回归与推断.md"),
+    ("ch01", "01_第1章_一元线性回归_估计.md"),
     ("ch02", "02_第2章_一元线性回归_推断.md"),
-    ("ch03", "03_第3章_多元线性回归.md"),
-    ("ch04", "04_第4章_模型形式扩展.md"),
-    ("ch05", "05_第5章_模型设定与诊断.md"),
-    ("part2", "05a_第二部分_从基础回归到复杂现实.md"),
-    ("ch06", "06_第6章_离散选择模型.md"),
-    ("ch07", "07_第7章_面板数据模型.md"),
-    ("ch08", "08_第8章_工具变量模型.md"),
-    ("ch09", "09_第9章_因果推断前沿方法.md"),
-    ("ch10", "10_第10章_大数据与非经典计量.md"),
-    ("part3", "10a_第三部分_从方法到实证项目.md"),
-    ("ch11", "11_第11章_研究问题与识别策略.md"),
-    ("ch12", "12_第12章_数据准备与变量构建.md"),
-    ("ch13", "13_第13章_模型估计与结果检验.md"),
-    ("ch14", "14_第14章_研究成果的呈现.md"),
-    ("references", "15_参考文献.md"),
+    ("ch03", "03_第3章_多元线性回归_控制与解释.md"),
+    ("ch04", "04_第4章_回归模型扩展_函数形式与二元结果.md"),
+    ("ch05", "05_第5章_模型设定_变量选择诊断与稳健推断.md"),
+    ("part2", "05a_第二部分_进阶篇_识别与现代方法.md"),
+    ("ch06", "06_第6章_因果识别基础_反事实与内生性.md"),
+    ("ch07", "07_第7章_面板数据_固定效应与随机效应.md"),
+    ("ch08", "08_第8章_工具变量_内生性与外生变异.md"),
+    ("ch09", "09_第9章_随机实验与准实验_DID与RDD.md"),
+    ("ch10", "10_第10章_现代计量工具_机器学习贝叶斯与大模型.md"),
+    ("part3", "10a_第三部分_实践篇_从问题到论文.md"),
+    ("ch11", "11_第11章_研究问题与文献定位.md"),
+    ("ch12", "12_第12章_研究设计与识别策略.md"),
+    ("ch13", "13_第13章_数据准备与变量构建.md"),
+    ("ch14", "14_第14章_模型估计与证据检验.md"),
+    ("ch15", "15_第15章_研究写作与成果呈现.md"),
+    ("references", "16_参考文献.md"),
     ("appendix_math", "附录1_数学基础.md"),
     ("appendix_stata", "附录2_Stata入门.md"),
     ("appendix_python", "附录3_Python入门.md"),
+    ("appendix_symbols", "附录4_符号与术语速查表.md"),
     ("ending", "结束语.md"),
 ]
 
+# Sidebar and browser-tab titles come from each source file's H1 (见
+# textbook_title())，so the site always跟着权威基线走。Only pages whose H1 is
+# not a usable sidebar label need an override here.
 TEXTBOOK_PUBLIC_TITLES = {
-    "ch01": "第1章｜一元线性回归：估计",
-    "ch02": "第2章｜一元线性回归：推断",
-    "ch03": "第3章｜多元线性回归",
+    "guide": "教材导读｜使用说明",
 }
 
 # Textbook pages reference images Obsidian-style: ![[ch01-fig1.png]]
@@ -456,11 +485,28 @@ def rewrite_body(text: str, feishu_map: dict[str, str], from_dir: str) -> str:
 
     text = COURSE_IMAGE_RE.sub(course_image_repl, text)
 
-    def image_repl(match: re.Match[str]) -> str:
-        target = f"{relative_to(from_dir, 'assets/images')}/{web_name(match.group(1))}"
-        return f"![]({target})"
+    # Textbook images are Obsidian wiki-style and invisible to a screen reader
+    # once rewritten, so carry the caption over as alt text. The book always
+    # puts the caption on the first non-empty line below the image ("图N-M 标题");
+    # images without one (章首引语配图、专栏插图) get an empty alt — decorative.
+    def caption_alt(pos: int) -> str:
+        for line in text[pos:].splitlines():
+            stripped = line.strip().lstrip("> ").strip()
+            if not stripped:
+                continue
+            caption = re.match(r"(?:图|表)\s?\d+-\d+[ 　]*(.+)$", stripped)
+            return caption.group(1).strip() if caption else ""
+        return ""
 
-    return WIKI_IMAGE_RE.sub(image_repl, text)
+    pieces: list[str] = []
+    cursor = 0
+    for match in WIKI_IMAGE_RE.finditer(text):
+        target = f"{relative_to(from_dir, 'assets/images')}/{web_name(match.group(1))}"
+        pieces.append(text[cursor : match.start()])
+        pieces.append(f"![{caption_alt(match.end())}]({target})")
+        cursor = match.end()
+    pieces.append(text[cursor:])
+    return "".join(pieces)
 
 
 def render_page(
@@ -578,11 +624,11 @@ def sidebar_yaml(manifest: dict[str, Any]) -> list[str]:
                     lines.append(f"{child_pad}  text: {quote(text)}")
 
     def textbook_entries() -> list[tuple[str, str]]:
-        titles = load_json(course_dir / "textbook_links.json")["pages"]
+        # Titles come from each source file's H1 (textbook_title), so a page the
+        # Feishu manifest does not know about still appears in the sidebar.
         return [
-            (TEXTBOOK_PUBLIC_TITLES.get(page_id, titles[page_id]["title"]), f"textbook/{page_id}.qmd")
-            for page_id, _filename in TEXTBOOK_PAGES
-            if page_id in titles
+            (textbook_title(page_id, filename), f"textbook/{page_id}.qmd")
+            for page_id, filename in TEXTBOOK_PAGES
         ]
 
     # Top level: manifest root's children, preceded by the homepage itself.
@@ -630,7 +676,6 @@ def splice_sidebar(quartoTemplate: Path, block: str) -> bool:
 def write_llms_txt(repo: Path, manifest: dict[str, Any], course_dir: Path) -> None:
     """Regenerate llms.txt so agents can index every page on the site."""
     site = "https://zhang-chenglei.github.io/Econometrics-course"
-    textbook_titles = load_json(course_dir / "textbook_links.json")["pages"]
 
     lines = [
         f"# {PUBLIC_SITE_TITLE}",
@@ -653,11 +698,8 @@ def write_llms_txt(repo: Path, manifest: dict[str, Any], course_dir: Path) -> No
         lines.append(f"- [{title}]({site}/{target})")
 
     lines += ["", "## 教材", ""]
-    for page_id, _filename in TEXTBOOK_PAGES:
-        entry = textbook_titles.get(page_id)
-        if entry:
-            title = TEXTBOOK_PUBLIC_TITLES.get(page_id, entry["title"])
-            lines.append(f"- [{title}]({site}/textbook/{page_id}.html)")
+    for page_id, filename in TEXTBOOK_PAGES:
+        lines.append(f"- [{textbook_title(page_id, filename)}]({site}/textbook/{page_id}.html)")
 
     lines.append("")
     lines += [
@@ -678,7 +720,7 @@ def main() -> None:
     parser.add_argument("--check", action="store_true", help="Report drift without writing")
     args = parser.parse_args()
 
-    global course_dir
+    global course_dir, textbook_dir
     repo = Path(__file__).resolve().parents[1]
     course_dir = args.econkb / COURSE_REL
     textbook_dir = args.econkb / TEXTBOOK_REL
@@ -698,14 +740,13 @@ def main() -> None:
             (page["id"], PUBLIC_PAGE_TITLES.get(page["id"], page["title"]), body, target)
         )
 
-    textbook_titles = load_json(course_dir / "textbook_links.json")["pages"]
     textbook_bodies: list[tuple[str, str, str, str]] = []
     for page_id, filename in TEXTBOOK_PAGES:
         source = textbook_dir / "拆分章节" / filename
         textbook_bodies.append(
             (
                 page_id,
-                textbook_titles[page_id]["title"],
+                textbook_title(page_id, filename),
                 source.read_text(encoding="utf-8"),
                 f"textbook/{page_id}.qmd",
             )

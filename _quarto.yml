@@ -122,51 +122,55 @@ website:
         href: course/textbook.qmd
         contents:
           - href: textbook/guide.qmd
-            text: "教材导读｜定位与使用说明"
+            text: "教材导读｜使用说明"
           - href: textbook/intro.qmd
-            text: "教材导论｜为什么学习计量经济学"
+            text: "导论"
           - href: textbook/part1.qmd
-            text: "50.1｜第一部分：回归分析基础"
+            text: "第一部分 基础篇：回归与推断"
           - href: textbook/ch01.qmd
-            text: "第1章｜一元线性回归：估计"
+            text: "第1章 一元线性回归：估计"
           - href: textbook/ch02.qmd
-            text: "第2章｜一元线性回归：推断"
+            text: "第2章 一元线性回归：推断"
           - href: textbook/ch03.qmd
-            text: "第3章｜多元线性回归"
+            text: "第3章 多元线性回归：控制与解释"
           - href: textbook/ch04.qmd
-            text: "第4章｜模型形式扩展"
+            text: "第4章 回归模型扩展：函数形式与二元结果"
           - href: textbook/ch05.qmd
-            text: "第5章｜模型设定与诊断"
+            text: "第5章 模型设定：变量选择、诊断与稳健推断"
           - href: textbook/part2.qmd
-            text: "50.2｜第二部分：模型深化与进阶"
+            text: "第二部分 进阶篇：识别与现代方法"
           - href: textbook/ch06.qmd
-            text: "第6章｜离散选择模型"
+            text: "第6章 因果识别基础：反事实与内生性"
           - href: textbook/ch07.qmd
-            text: "第7章｜面板数据模型"
+            text: "第7章 面板数据：固定效应与随机效应"
           - href: textbook/ch08.qmd
-            text: "第8章｜工具变量模型"
+            text: "第8章 工具变量：内生性与外生变异"
           - href: textbook/ch09.qmd
-            text: "第9章｜现代因果推断与准实验方法"
+            text: "第9章 随机实验与准实验：DID与RDD"
           - href: textbook/ch10.qmd
-            text: "第10章｜大数据与非经典计量"
+            text: "第10章 现代计量工具：机器学习、贝叶斯与大模型"
           - href: textbook/part3.qmd
-            text: "50.3｜第三部分：实证研究与应用"
+            text: "第三部分 实践篇：从问题到论文"
           - href: textbook/ch11.qmd
-            text: "第11章｜研究问题与识别策略"
+            text: "第11章 研究问题与文献定位"
           - href: textbook/ch12.qmd
-            text: "第12章｜数据准备与变量构建"
+            text: "第12章 研究设计与识别策略"
           - href: textbook/ch13.qmd
-            text: "第13章｜模型估计与结果检验"
+            text: "第13章 数据准备与变量构建"
           - href: textbook/ch14.qmd
-            text: "第14章｜研究成果的呈现"
+            text: "第14章 模型估计与证据检验"
+          - href: textbook/ch15.qmd
+            text: "第15章 研究写作与成果呈现"
           - href: textbook/references.qmd
             text: "参考文献"
           - href: textbook/appendix_math.qmd
-            text: "附录A｜数学基础"
+            text: "附录A 数学基础"
           - href: textbook/appendix_stata.qmd
-            text: "附录B｜Stata入门"
+            text: "附录B Stata入门"
           - href: textbook/appendix_python.qmd
-            text: "附录C｜Python入门"
+            text: "附录C Python入门"
+          - href: textbook/appendix_symbols.qmd
+            text: "附录D 符号与术语速查表"
           - href: textbook/ending.qmd
             text: "结束语"
           - href: course/textbook_appendices.qmd

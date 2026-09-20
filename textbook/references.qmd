@@ -4,94 +4,98 @@ pagetitle: "参考文献"
 
 # 参考文献
 
-- Acemoglu, D., Johnson, S., & Robinson, J. A. (2001). The colonial origins of comparative development: An empirical investigation. *American Economic Review*, 91(5), 1369–1401.
-- American Economic Association Data Editor. (n.d.). *Guidance for Preparing Data and Code Replication Packages*. <https://aeadataeditor.github.io/aea-de-guidance/>
-- Angrist, J. D. (1990). Lifetime earnings and the Vietnam era draft lottery: Evidence from Social Security administrative records. *American Economic Review*, 80(3), 313–336.
-- Angrist, J. D., & Krueger, A. B. (1991). Does compulsory school attendance affect schooling and earnings? *Quarterly Journal of Economics*, 106(4), 979–1014.
-- Angrist, J. D., & Pischke, J.-S. (2009). *Mostly Harmless Econometrics: An Empiricist's Companion*. Princeton University Press.
-- Angrist, J. D., & Pischke, J.-S. (2010). The credibility revolution in empirical economics: How better research design is taking the con out of econometrics. *Journal of Economic Perspectives*, 24(2), 3–30.
-- Angrist, J. D., & Pischke, J.-S. (2015). *Mastering 'Metrics: The Path from Cause to Effect*. Princeton University Press.
-- Arellano, M., & Bond, S. (1991). Some tests of specification for panel data: Monte Carlo evidence and an application to employment equations. *Review of Economic Studies*, 58(2), 277–297.
-- Asher, S., & Novosad, P. (2020). Rural roads and local economic development. *American Economic Review*, 110(3), 797–823.
-- Athey, S., & Imbens, G. W. (2019). Machine learning methods that economists should know about. *Annual Review of Economics*, 11, 685–725.
-- Baker, S. R., Bloom, N., & Davis, S. J. (2016). Measuring economic policy uncertainty. *Quarterly Journal of Economics*, 131(4), 1593–1636.
-- Bartik, T. J. (1991). *Who Benefits from State and Local Economic Development Policies?* W. E. Upjohn Institute for Employment Research.
-- Booth, W. C., Colomb, G. G., Williams, J. M., Bizup, J., & FitzGerald, W. T. (2016). *The Craft of Research* (4th ed.). University of Chicago Press.
-- Brambor, T., Clark, W. R., & Golder, M. (2006). Understanding interaction models: Improving empirical analyses. *Political Analysis*, 14(1), 63–82.
-- Breiman, L. (2001). Statistical modeling: The two cultures. *Statistical Science*, 16(3), 199–231.
-- Breusch, T. S., & Pagan, A. R. (1979). A simple test for heteroscedasticity and random coefficient variation. *Econometrica*, 47(5), 1287–1294.
-- Broman, K. W., & Woo, K. H. (2018). Data organization in spreadsheets. *The American Statistician*, 72(1), 2–10.
-- Callaway, B., & Sant'Anna, P. H. C. (2021). Difference-in-differences with multiple time periods. *Journal of Econometrics*, 225(2), 200–230.
-- Cameron, A. C., & Miller, D. L. (2015). A practitioner's guide to cluster-robust inference. *Journal of Human Resources*, 50(2), 317–372.
-- Cameron, A. C., & Trivedi, P. K. (2005). *Microeconometrics: Methods and Applications*. Cambridge University Press.
-- Card, D., & Krueger, A. B. (1994). Minimum wages and employment: A case study of the fast-food industry in New Jersey and Pennsylvania. *American Economic Review*, 84(4), 772–793.
-- Cattaneo, M. D., Idrobo, N., & Titiunik, R. (2020). *A Practical Introduction to Regression Discontinuity Designs: Foundations*. Cambridge University Press.
-- Chernozhukov, V., Chetverikov, D., Demirer, M., Duflo, E., Hansen, C., Newey, W., & Robins, J. (2018). Double/debiased machine learning for treatment and structural parameters. *The Econometrics Journal*, 21(1), C1–C68.
-- Cunningham, S. (2021). *Causal Inference: The Mixtape*. Yale University Press.
-- DoubleML Team. (n.d.). *DoubleML Documentation*. <https://docs.doubleml.org/>
-- Frisch, R., & Waugh, F. V. (1933). Partial time regressions as compared with individual trends. *Econometrica*, 1(4), 387–401.
-- Galton, F. (1886). Regression towards mediocrity in hereditary stature. *The Journal of the Anthropological Institute of Great Britain and Ireland*, 15, 246–263.
-- Gauss, C. F. (1809). *Theoria Motus Corporum Coelestium in Sectionibus Conicis Solem Ambientium*. Friedrich Perthes and I. H. Besser.
-- Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A., & Rubin, D. B. (2013). *Bayesian Data Analysis* (3rd ed.). Chapman & Hall/CRC.
-- Gentzkow, M., Kelly, B., & Taddy, M. (2019). Text as data. *Journal of Economic Literature*, 57(3), 535–574.
-- Gopen, G. D., & Swan, J. A. (1990). The science of scientific writing. *American Scientist*, 78(6), 550–558.
-- Greene, W. H. (2018). *Econometric Analysis* (8th ed.). Pearson.
-- Greenland, S., Senn, S. J., Rothman, K. J., Carlin, J. B., Poole, C., Goodman, S. N., & Altman, D. G. (2016). Statistical tests, P values, confidence intervals, and power: A guide to misinterpretations. *European Journal of Epidemiology*, 31, 337–350.
-- Haavelmo, T. (1944). The probability approach in econometrics. *Econometrica*, 12(Supplement), iii–vi, 1–115.
-- Halvorsen, R., & Palmquist, R. (1980). The interpretation of dummy variables in semilogarithmic equations. *American Economic Review*, 70(3), 474–475.
-- Hausman, J. A. (1978). Specification tests in econometrics. *Econometrica*, 46(6), 1251–1271.
-- Hernán, M. A., & Robins, J. M. (2020). *Causal Inference: What If*. Chapman & Hall/CRC.
-- Huntington-Klein, N. (2022). *The Effect: An Introduction to Research Design and Causality*. Chapman & Hall/CRC.
-- Imbens, G. W., & Lemieux, T. (2008). Regression discontinuity designs: A guide to practice. *Journal of Econometrics*, 142(2), 615–635.
-- Imbens, G. W., & Rubin, D. B. (2015). *Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction*. Cambridge University Press.
-- James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). *An Introduction to Statistical Learning: with Applications in R* (2nd ed.). Springer.
-- Korinek, A. (2023). Generative AI for economic research: Use cases and implications for economists. *Journal of Economic Literature*, 61(4), 1281–1317.
-- Kruschke, J. K. (2015). *Doing Bayesian Data Analysis: A Tutorial with R, JAGS, and Stan* (2nd ed.). Academic Press.
-- Leamer, E. E. (1983). Let's take the con out of econometrics. *American Economic Review*, 73(1), 31–43.
-- Legendre, A.-M. (1805). *Nouvelles méthodes pour la détermination des orbites des comètes*. Firmin Didot.
-- Long, J. S., & Freese, J. (2014). *Regression Models for Categorical Dependent Variables Using Stata* (3rd ed.). Stata Press.
-- Lovell, M. C. (1963). Seasonal adjustment of economic time series and multiple regression analysis. *Journal of the American Statistical Association*, 58(304), 993–1010.
-- McCloskey, D. N. (2019). *Economical Writing* (3rd ed.). University of Chicago Press.
-- McElreath, R. (2020). *Statistical Rethinking: A Bayesian Course with Examples in R and Stan* (2nd ed.). Chapman & Hall/CRC.
+本表收录三类材料：①**正文引用的文献**——正文以「作者（年份）」形式出现过的条目；②**本书配套代码所用的软件与文档**——`pandas`、`statsmodels`、`linearmodels`、`scikit-learn`、`PyMC`、`DoubleML` 等软件包与 Stata 官方手册；③**供进一步阅读的教材与专著**（含中文教材与英文经典教材、专著）。后两类是为完整性与可查证性而收录，不要求在正文逐一点名；正文引用的完整性以第①类为准。
+
+- Acemoglu, D., Johnson, S., & Robinson, J. A. (2001). The colonial origins of comparative development: An empirical investigation. *American Economic Review*, 91(5), 1369–1401. <https://doi.org/10.1257/aer.91.5.1369>
+- American Economic Association Data Editor. (n.d.). *Guidance for Preparing Data and Code Replication Packages*. <https://aeadataeditor.github.io/aea-de-guidance/>（访问日期 2026-09-19）
+- Amrhein, V., Greenland, S., & McShane, B. (2019). Scientists rise up against statistical significance. *Nature*, 567(7748), 305–307. <https://doi.org/10.1038/d41586-019-00857-9>
+- Angrist, J. D. (1990). Lifetime earnings and the Vietnam era draft lottery: Evidence from Social Security administrative records. *American Economic Review*, 80(3), 313–336. <https://www.jstor.org/stable/2006669>
+- Angrist, J. D., & Krueger, A. B. (1991). Does compulsory school attendance affect schooling and earnings? *Quarterly Journal of Economics*, 106(4), 979–1014. <https://doi.org/10.2307/2937954>
+- Angrist, J. D., & Pischke, J.-S. (2009). *Mostly Harmless Econometrics: An Empiricist's Companion*. Princeton University Press. <https://doi.org/10.1515/9781400829828>
+- Angrist, J. D., & Pischke, J.-S. (2010). The credibility revolution in empirical economics: How better research design is taking the con out of econometrics. *Journal of Economic Perspectives*, 24(2), 3–30. <https://doi.org/10.1257/jep.24.2.3>
+- Angrist, J. D., & Pischke, J.-S. (2015). *Mastering 'Metrics: The Path from Cause to Effect*. Princeton University Press. <https://press.princeton.edu/books/paperback/9780691152844/mastering-metrics>
+- Arellano, M., & Bond, S. (1991). Some tests of specification for panel data: Monte Carlo evidence and an application to employment equations. *Review of Economic Studies*, 58(2), 277–297. <https://doi.org/10.2307/2297968>
+- Asher, S., & Novosad, P. (2020). Rural roads and local economic development. *American Economic Review*, 110(3), 797–823. <https://doi.org/10.1257/aer.20180268>
+- Athey, S., & Imbens, G. W. (2019). Machine learning methods that economists should know about. *Annual Review of Economics*, 11, 685–725. <https://doi.org/10.1146/annurev-economics-080217-053433>
+- Baker, S. R., Bloom, N., & Davis, S. J. (2016). Measuring economic policy uncertainty. *Quarterly Journal of Economics*, 131(4), 1593–1636. <https://doi.org/10.1093/qje/qjw024>
+- Bartik, T. J. (1991). *Who Benefits from State and Local Economic Development Policies?* W. E. Upjohn Institute for Employment Research. <https://doi.org/10.17848/9780585223940>
+- Booth, W. C., Colomb, G. G., Williams, J. M., Bizup, J., & FitzGerald, W. T. (2016). *The Craft of Research* (4th ed.). University of Chicago Press. <https://doi.org/10.7208/chicago/9780226239873.001.0001>
+- Brambor, T., Clark, W. R., & Golder, M. (2006). Understanding interaction models: Improving empirical analyses. *Political Analysis*, 14(1), 63–82. <https://doi.org/10.1093/pan/mpi014>
+- Breiman, L. (2001). Statistical modeling: The two cultures. *Statistical Science*, 16(3), 199–231. <https://doi.org/10.1214/ss/1009213726>
+- Breusch, T. S., & Pagan, A. R. (1979). A simple test for heteroscedasticity and random coefficient variation. *Econometrica*, 47(5), 1287–1294. <https://doi.org/10.2307/1911963>
+- Broman, K. W., & Woo, K. H. (2018). Data organization in spreadsheets. *The American Statistician*, 72(1), 2–10. <https://doi.org/10.1080/00031305.2017.1375989>
+- Callaway, B., & Sant'Anna, P. H. C. (2021). Difference-in-differences with multiple time periods. *Journal of Econometrics*, 225(2), 200–230. <https://doi.org/10.1016/j.jeconom.2020.12.001>
+- Cameron, A. C., & Miller, D. L. (2015). A practitioner's guide to cluster-robust inference. *Journal of Human Resources*, 50(2), 317–372. <https://doi.org/10.3368/jhr.50.2.317>
+- Cameron, A. C., & Trivedi, P. K. (2005). *Microeconometrics: Methods and Applications*. Cambridge University Press. <https://doi.org/10.1017/CBO9780511811241>
+- Card, D., & Krueger, A. B. (1994). Minimum wages and employment: A case study of the fast-food industry in New Jersey and Pennsylvania. *American Economic Review*, 84(4), 772–793. <https://www.jstor.org/stable/2118030>
+- Cattaneo, M. D., Idrobo, N., & Titiunik, R. (2020). *A Practical Introduction to Regression Discontinuity Designs: Foundations*. Cambridge University Press. <https://doi.org/10.1017/9781108684606>
+- Chernozhukov, V., Chetverikov, D., Demirer, M., Duflo, E., Hansen, C., Newey, W., & Robins, J. (2018). Double/debiased machine learning for treatment and structural parameters. *The Econometrics Journal*, 21(1), C1–C68. <https://doi.org/10.1111/ectj.12097>
+- Cunningham, S. (2021). *Causal Inference: The Mixtape*. Yale University Press. <https://doi.org/10.2307/j.ctv1c29t27>
+- DoubleML Team. (n.d.). *DoubleML Documentation*. <https://docs.doubleml.org/>（访问日期 2026-09-19）
+- Frisch, R., & Waugh, F. V. (1933). Partial time regressions as compared with individual trends. *Econometrica*, 1(4), 387–401. <https://doi.org/10.2307/1907330>
+- Galton, F. (1886). Regression towards mediocrity in hereditary stature. *The Journal of the Anthropological Institute of Great Britain and Ireland*, 15, 246–263. <https://doi.org/10.2307/2841583>
+- Gauss, C. F. (1809). *Theoria Motus Corporum Coelestium in Sectionibus Conicis Solem Ambientium*. Friedrich Perthes and I. H. Besser. <https://www.deutsche-digitale-bibliothek.de/item/FWJGJ66K6554SXIW4OY4ZMCVMCS4BL4W>
+- Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A., & Rubin, D. B. (2013). *Bayesian Data Analysis* (3rd ed.). Chapman & Hall/CRC. <https://doi.org/10.1201/b16018>
+- Gentzkow, M., Kelly, B., & Taddy, M. (2019). Text as data. *Journal of Economic Literature*, 57(3), 535–574. <https://doi.org/10.1257/jel.20181020>
+- Gopen, G. D., & Swan, J. A. (1990). The science of scientific writing. *American Scientist*, 78(6), 550–558. <https://www.jstor.org/stable/29774235>
+- Greene, W. H. (2018). *Econometric Analysis* (8th ed.). Pearson. <https://www.pearson.com/en-us/subject-catalog/p/econometric-analysis/P200000006025/9780134461366>
+- Greenland, S., Senn, S. J., Rothman, K. J., Carlin, J. B., Poole, C., Goodman, S. N., & Altman, D. G. (2016). Statistical tests, P values, confidence intervals, and power: A guide to misinterpretations. *European Journal of Epidemiology*, 31, 337–350. <https://doi.org/10.1007/s10654-016-0149-3>
+- Haavelmo, T. (1944). The probability approach in econometrics. *Econometrica*, 12(Supplement), iii–vi, 1–115. <https://doi.org/10.2307/1906935>
+- Halvorsen, R., & Palmquist, R. (1980). The interpretation of dummy variables in semilogarithmic equations. *American Economic Review*, 70(3), 474–475. <https://EconPapers.repec.org/RePEc:aea:aecrev:v:70:y:1980:i:3:p:474-75>
+- Hausman, J. A. (1978). Specification tests in econometrics. *Econometrica*, 46(6), 1251–1271. <https://doi.org/10.2307/1913827>
+- Holland, P. W. (1986). Statistics and causal inference. *Journal of the American Statistical Association*, 81(396), 945–960. <https://doi.org/10.1080/01621459.1986.10478354>
+- Hernán, M. A., & Robins, J. M. (2020). *Causal Inference: What If*. Chapman & Hall/CRC. <https://miguelhernan.org/whatifbook>
+- Huntington-Klein, N. (2022). *The Effect: An Introduction to Research Design and Causality*. Chapman & Hall/CRC. <https://doi.org/10.1201/9781003226055>
+- Imbens, G. W., & Lemieux, T. (2008). Regression discontinuity designs: A guide to practice. *Journal of Econometrics*, 142(2), 615–635. <https://doi.org/10.1016/j.jeconom.2007.05.001>
+- Imbens, G. W., & Rubin, D. B. (2015). *Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction*. Cambridge University Press. <https://doi.org/10.1017/cbo9781139025751>
+- James, G., Witten, D., Hastie, T., & Tibshirani, R. (2021). *An Introduction to Statistical Learning: with Applications in R* (2nd ed.). Springer. <https://doi.org/10.1007/978-1-0716-1418-1>
+- Korinek, A. (2023). Generative AI for economic research: Use cases and implications for economists. *Journal of Economic Literature*, 61(4), 1281–1317. <https://doi.org/10.1257/jel.20231736>
+- Kruschke, J. K. (2015). *Doing Bayesian Data Analysis: A Tutorial with R, JAGS, and Stan* (2nd ed.). Academic Press. <https://shop.elsevier.com/books/doing-bayesian-data-analysis/kruschke/978-0-12-405888-0>
+- Leamer, E. E. (1983). Let's take the con out of econometrics. *American Economic Review*, 73(1), 31–43. <https://EconPapers.repec.org/RePEc:aea:aecrev:v:73:y:1983:i:1:p:31-43>
+- Legendre, A.-M. (1805). *Nouvelles méthodes pour la détermination des orbites des comètes*. Firmin Didot. <https://archive.org/details/nouvellesmthode00legegoog>
+- Long, J. S., & Freese, J. (2014). *Regression Models for Categorical Dependent Variables Using Stata* (3rd ed.). Stata Press. <https://www.stata-press.com/books/regression-models-categorical-dependent-variables/>
+- Lovell, M. C. (1963). Seasonal adjustment of economic time series and multiple regression analysis. *Journal of the American Statistical Association*, 58(304), 993–1010. <https://doi.org/10.1080/01621459.1963.10480682>
+- McCloskey, D. N. (2019). *Economical Writing* (3rd ed.). University of Chicago Press. <https://press.uchicago.edu/ucp/books/book/chicago/E/bo25674588.html>
+- McElreath, R. (2020). *Statistical Rethinking: A Bayesian Course with Examples in R and Stan* (2nd ed.). Chapman & Hall/CRC. <https://doi.org/10.1201/9780429029608>
 - McFadden, D. (1974). Conditional logit analysis of qualitative choice behavior. In P. Zarembka (Ed.), *Frontiers in Econometrics* (pp. 105–142). Academic Press.
-- Metropolis, N., & Ulam, S. (1949). The Monte Carlo method. *Journal of the American Statistical Association*, 44(247), 335–341.
-- Mincer, J. (1974). *Schooling, Experience, and Earnings*. Columbia University Press.
-- Morgan, M. S. (1990). *The History of Econometric Ideas*. Cambridge University Press.
-- Mundlak, Y. (1978). On the pooling of time series and cross section data. *Econometrica*, 46(1), 69–85.
-- Neyman, J. (1990). On the application of probability theory to agricultural experiments: Essay on principles, Section 9. *Statistical Science*, 5(4), 465–472. (Original work published 1923.)
-- pandas development team. (n.d.). *Pandas User Guide*. <https://pandas.pydata.org/docs/user_guide/>
-- Patsy developers. (n.d.). *Patsy Documentation*. <https://patsy.readthedocs.io/>
-- Pearl, J. (2009). *Causality: Models, Reasoning, and Inference* (2nd ed.). Cambridge University Press.
-- PyMC Developers. (n.d.). *PyMC Documentation*. <https://www.pymc.io/projects/docs/en/stable/>
-- Roth, J. (2022). Pretest with caution: Event-study estimates after testing for parallel trends. *American Economic Review: Insights*, 4(3), 305–322.
-- Rubin, D. B. (1974). Estimating causal effects of treatments in randomized and nonrandomized studies. *Journal of Educational Psychology*, 66(5), 688–701.
-- scikit-learn developers. (n.d.). *Scikit-learn User Guide*. <https://scikit-learn.org/stable/user_guide.html>
-- Sheppard, K. (n.d.). *linearmodels Documentation*. [Official documentation](https://bashtage.github.io/linearmodels/).
-- Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science*, 22(11), 1359–1366.
-- Staiger, D., & Stock, J. H. (1997). Instrumental variables regression with weak instruments. *Econometrica*, 65(3), 557–586.
-- StataCorp. (n.d.). *Getting Started with Stata*. Stata Press.
-- StataCorp. (n.d.). *Stata Base Reference Manual*. Stata Press.
-- StataCorp. (n.d.). *Stata Causal Inference and Treatment-Effects Reference Manual*. Stata Press.
-- StataCorp. (n.d.). *Stata Data Management Reference Manual*. Stata Press.
-- StataCorp. (n.d.). *Stata Longitudinal-Data/Panel-Data Reference Manual*. Stata Press.
-- statsmodels developers. (n.d.). *Statsmodels User Guide*. <https://www.statsmodels.org/stable/user-guide.html>
-- Stigler, S. M. (1986). *The History of Statistics: The Measurement of Uncertainty before 1900*. Harvard University Press.
-- Stock, J. H., & Watson, M. W. (2020). *Introduction to Econometrics* (4th ed.). Pearson.
-- Stock, J. H., & Yogo, M. (2005). Testing for weak instruments in linear IV regression. In D. W. K. Andrews & J. H. Stock (Eds.), *Identification and Inference for Econometric Models: Essays in Honor of Thomas Rothenberg* (pp. 80–108). Cambridge University Press.
-- Student. (1908). The probable error of a mean. *Biometrika*, 6(1), 1–25.
-- Sun, L., & Abraham, S. (2021). Estimating dynamic treatment effects in event studies with heterogeneous treatment effects. *Journal of Econometrics*, 225(2), 175–199.
-- Wager, S., & Athey, S. (2018). Estimation and inference of heterogeneous treatment effects using random forests. *Journal of the American Statistical Association*, 113(523), 1228–1242.
-- Wasserstein, R. L., & Lazar, N. A. (2016). The ASA statement on p-values: Context, process, and purpose. *The American Statistician*, 70(2), 129–133.
-- Wasserstein, R. L., Schirm, A. L., & Lazar, N. A. (2019). Moving to a world beyond “p < 0.05”. *The American Statistician*, 73(sup1), 1–19.
-- White, H. (1980). A heteroskedasticity-consistent covariance matrix estimator and a direct test for heteroskedasticity. *Econometrica*, 48(4), 817–838.
-- Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, 59(10), 1–23.
-- Wooldridge, J. M. (2010). *Econometric Analysis of Cross Section and Panel Data* (2nd ed.). MIT Press.
-- Wooldridge, J. M. (2020). *Introductory Econometrics: A Modern Approach* (7th ed.). Cengage.
-- Zotero. (n.d.). *Zotero Documentation*. <https://www.zotero.org/support/>
-- 陈强. (2014). 《高级计量经济学及Stata应用》（第2版）. 高等教育出版社.
-- 陈强. (2024). 《计量经济学及Stata应用》（第2版）. 高等教育出版社.
-- 李子奈, 潘文卿. (2020). 《计量经济学》（第5版）. 高等教育出版社.
-- 刘西川. (2020). 《实证论文写作八讲》. 北京大学出版社.
-- 庞皓. (2019). 《计量经济学》（第4版）. 科学出版社.
-- 邱嘉平. (2020). 《因果推断实用计量方法》. 上海财经大学出版社.
-- 赵西亮. (2017). 《基本有用的计量经济学》. 北京大学出版社.
+- Metropolis, N., & Ulam, S. (1949). The Monte Carlo method. *Journal of the American Statistical Association*, 44(247), 335–341. <https://doi.org/10.1080/01621459.1949.10483310>
+- Mincer, J. (1974). *Schooling, Experience, and Earnings*. National Bureau of Economic Research; distributed by Columbia University Press. <https://www.nber.org/books-and-chapters/schooling-experience-and-earnings>
+- Morgan, M. S. (1990). *The History of Econometric Ideas*. Cambridge University Press. <https://www.cambridge.org/core/books/history-of-econometric-ideas/38F67DC80AD3B977B1668D3DE8C4C733>
+- Mundlak, Y. (1978). On the pooling of time series and cross section data. *Econometrica*, 46(1), 69–85. <https://doi.org/10.2307/1913646>
+- Splawa-Neyman, J., Dabrowska, D. M., & Speed, T. P. (1990). On the application of probability theory to agricultural experiments: Essay on principles, Section 9. *Statistical Science*, 5(4), 465–472. (Original work published 1923) <https://doi.org/10.1214/ss/1177012031>
+- pandas development team. (n.d.). *Pandas User Guide*. <https://pandas.pydata.org/docs/user_guide/>（访问日期 2026-09-19）
+- Patsy developers. (n.d.). *Patsy Documentation*. <https://patsy.readthedocs.io/>（访问日期 2026-09-19）
+- Pearl, J. (2009). *Causality: Models, Reasoning, and Inference* (2nd ed.). Cambridge University Press. <https://doi.org/10.1017/CBO9780511803161>
+- PyMC Developers. (n.d.). *PyMC Documentation*. <https://www.pymc.io/projects/docs/en/stable/>（访问日期 2026-09-19）
+- Roth, J. (2022). Pretest with caution: Event-study estimates after testing for parallel trends. *American Economic Review: Insights*, 4(3), 305–322. <https://doi.org/10.1257/aeri.20210236>
+- Rubin, D. B. (1974). Estimating causal effects of treatments in randomized and nonrandomized studies. *Journal of Educational Psychology*, 66(5), 688–701. <https://doi.org/10.1037/h0037350>
+- scikit-learn developers. (n.d.). *Scikit-learn User Guide*. <https://scikit-learn.org/stable/user_guide.html>（访问日期 2026-09-19）
+- Sheppard, K. (n.d.). *linearmodels Documentation*. [Official documentation](https://bashtage.github.io/linearmodels/).（访问日期 2026-09-19）
+- Simmons, J. P., Nelson, L. D., & Simonsohn, U. (2011). False-positive psychology: Undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science*, 22(11), 1359–1366. <https://doi.org/10.1177/0956797611417632>
+- Staiger, D., & Stock, J. H. (1997). Instrumental variables regression with weak instruments. *Econometrica*, 65(3), 557–586. <https://doi.org/10.2307/2171753>
+- StataCorp. (2025). *Getting Started with Stata for Mac* (Release 19). Stata Press. <https://www.stata.com/manuals/gsm.pdf>（访问日期 2026-09-19）
+- StataCorp. (n.d.). *Stata Base Reference Manual*. Stata Press. <https://www.stata.com/manuals/r.pdf>（访问日期 2026-09-19）
+- StataCorp. (2025). *Stata Causal Inference and Treatment-Effects Estimation Reference Manual* (Release 19). Stata Press. <https://www.stata.com/manuals/causal.pdf>（访问日期 2026-09-19）
+- StataCorp. (n.d.). *Stata Data Management Reference Manual*. Stata Press. <https://www.stata.com/manuals/d.pdf>（访问日期 2026-09-19）
+- StataCorp. (n.d.). *Stata Longitudinal-Data/Panel-Data Reference Manual*. Stata Press. <https://www.stata.com/manuals/xt.pdf>（访问日期 2026-09-19）
+- statsmodels developers. (n.d.). *Statsmodels User Guide*. <https://www.statsmodels.org/stable/user-guide.html>（访问日期 2026-09-19）
+- Stigler, S. M. (1986). *The History of Statistics: The Measurement of Uncertainty before 1900*. Belknap Press of Harvard University Press. <https://www.hup.harvard.edu/books/9780674403413>（访问日期 2026-09-19）
+- Stock, J. H., & Watson, M. W. (2020). *Introduction to Econometrics* (4th ed.). Pearson. <https://www.pearson.com/en-us/subject-catalog/p/Stock-Introduction-to-Econometrics-4th-Edition/P200000006421/9780134461991>（访问日期 2026-09-19）
+- Stock, J. H., & Yogo, M. (2005). Testing for weak instruments in linear IV regression. In D. W. K. Andrews & J. H. Stock (Eds.), *Identification and Inference for Econometric Models: Essays in Honor of Thomas Rothenberg* (pp. 80–108). Cambridge University Press. <https://doi.org/10.1017/cbo9780511614491.006>
+- Student. (1908). The probable error of a mean. *Biometrika*, 6(1), 1–25. <https://doi.org/10.1093/biomet/6.1.1>
+- Sun, L., & Abraham, S. (2021). Estimating dynamic treatment effects in event studies with heterogeneous treatment effects. *Journal of Econometrics*, 225(2), 175–199. <https://doi.org/10.1016/j.jeconom.2020.09.006>
+- Wager, S., & Athey, S. (2018). Estimation and inference of heterogeneous treatment effects using random forests. *Journal of the American Statistical Association*, 113(523), 1228–1242. <https://doi.org/10.1080/01621459.2017.1319839>
+- Wasserstein, R. L., & Lazar, N. A. (2016). The ASA statement on p-values: Context, process, and purpose. *The American Statistician*, 70(2), 129–133. <https://doi.org/10.1080/00031305.2016.1154108>
+- Wasserstein, R. L., Schirm, A. L., & Lazar, N. A. (2019). Moving to a world beyond “p < 0.05”. *The American Statistician*, 73(sup1), 1–19. <https://doi.org/10.1080/00031305.2019.1583913>
+- White, H. (1980). A heteroskedasticity-consistent covariance matrix estimator and a direct test for heteroskedasticity. *Econometrica*, 48(4), 817–838. <https://doi.org/10.2307/1912934>
+- Wickham, H. (2014). Tidy data. *Journal of Statistical Software*, 59(10), 1–23. <https://doi.org/10.18637/jss.v059.i10>
+- Wooldridge, J. M. (2010). *Econometric Analysis of Cross Section and Panel Data* (2nd ed.). MIT Press. <https://mitpress.mit.edu/9780262232586/econometric-analysis-of-cross-section-and-panel-data/>（访问日期 2026-09-19）
+- Wooldridge, J. M. (2020). *Introductory Econometrics: A Modern Approach* (7th ed.). Cengage. <https://www.cengage.com/c/isbn/9781337558860/>（访问日期 2026-09-19）
+- Zotero. (n.d.). *Zotero Documentation*. <https://www.zotero.org/support/>（访问日期 2026-09-19）
+- 陈强. (2014). 《高级计量经济学及Stata应用》（第2版）. 高等教育出版社. ISBN 978-7-04-032983-4. <https://xuanshu.hep.com.cn/front/h5Mobile/bookDetails?bookId=59cece14ba9eb884cf81edbe>
+- 陈强. (2024). 《计量经济学及Stata应用》（第2版）. 高等教育出版社. ISBN 978-7-04-061301-8. <https://xuanshu.hep.com.cn/front/h5Mobile/bookDetails?bookId=6531628c74ce561611bd9745>
+- 李子奈, 潘文卿. (2020). 《计量经济学》（第5版）. 高等教育出版社. ISBN 978-7-04-054522-7.
+- 刘西川. (2020). 《实证论文写作八讲》. 北京大学出版社. ISBN 978-7-301-31772-3.
+- 庞皓. (2019). 《计量经济学》（第4版）. 科学出版社. ISBN 978-7-03-060313-5.
+- 邱嘉平. (2020). 《因果推断实用计量方法》. 上海财经大学出版社. ISBN 978-7-5642-3586-4. <http://www.sufep.com/e/action/ShowInfo.php?classid=27&id=19427>
+- 赵西亮. (2017). 《基本有用的计量经济学》. 北京大学出版社. ISBN 978-7-301-28481-0.

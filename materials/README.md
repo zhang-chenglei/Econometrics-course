@@ -7,7 +7,7 @@
 **<https://github.com/zhang-chenglei/Econometrics-course-materials>**
 
 那里按教材章节组织，点进任一章即见该章的 `python/`、`stata/` 与 `AI任务卡.md`，
-另有第11—14章综合案例与 `数据/`。下载 ZIP 后可直接运行，不需要改路径。
+另有 `code/comprehensive_case/`（第11—15章贯穿案例）与 `data/`。下载 ZIP 后按根目录的相对结构运行即可，不需要改脚本里的路径。
 
 ## 本目录
 
