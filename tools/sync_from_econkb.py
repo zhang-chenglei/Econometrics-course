@@ -488,7 +488,12 @@ def rewrite_body(text: str, feishu_map: dict[str, str], from_dir: str) -> str:
     # Textbook images are Obsidian wiki-style and invisible to a screen reader
     # once rewritten, so carry the caption over as alt text. The book always
     # puts the caption on the first non-empty line below the image ("图N-M 标题");
-    # images without one (章首引语配图、专栏插图) get an empty alt — decorative.
+    # images without one (章首引语配图、专栏插图) stay decorative.
+    #
+    # Use the `fig-alt` attribute, NOT the Markdown alt slot: `![文字](图)` makes
+    # Quarto emit a visible <figcaption>, which would print the caption twice
+    # (the book already carries it on its own line) while leaving <img> without
+    # an alt attribute — both the wrong result and an accessibility miss.
     def caption_alt(pos: int) -> str:
         for line in text[pos:].splitlines():
             stripped = line.strip().lstrip("> ").strip()
@@ -502,8 +507,10 @@ def rewrite_body(text: str, feishu_map: dict[str, str], from_dir: str) -> str:
     cursor = 0
     for match in WIKI_IMAGE_RE.finditer(text):
         target = f"{relative_to(from_dir, 'assets/images')}/{web_name(match.group(1))}"
+        alt = caption_alt(match.end()).replace('"', "'")
+        attribute = f'{{fig-alt="{alt}"}}' if alt else ""
         pieces.append(text[cursor : match.start()])
-        pieces.append(f"![{caption_alt(match.end())}]({target})")
+        pieces.append(f"![]({target}){attribute}")
         cursor = match.end()
     pieces.append(text[cursor:])
     return "".join(pieces)
