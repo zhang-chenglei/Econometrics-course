@@ -40,6 +40,16 @@ pagetitle: "代码与数据｜下载与复现"
 
 ## 数据
 
+### 第4讲：AI 使用与学生成绩
+
+这是一份用于“从相关到因果”教学的 800 人合成横截面数据。案例重点是定义反事实、识别威胁与重新设计研究，不代表任何现实学校或学生群体的 AI 使用效果。
+
+- [进入第4讲案例实操](lesson4_lab.qmd)
+- [下载 Stata 数据](../materials/data/ai-score-case/AI_score_case.dta)
+- [下载 CSV 数据](../materials/data/ai-score-case/AI_score_case.csv)
+- [查看变量说明](../materials/data/ai-score-case/变量说明.md)
+- [下载起始 do-file](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/%E7%AC%AC6%E7%AB%A0_%E5%9B%A0%E6%9E%9C%E8%AF%86%E5%88%AB%E5%9F%BA%E7%A1%80_%E5%8F%8D%E4%BA%8B%E5%AE%9E%E4%B8%8E%E5%86%85%E7%94%9F%E6%80%A7/stata/01_ai_score_causal_design.do)
+
 ### 半合成教学样本
 
 这套数据用于第11—15章贯穿案例的完整实证项目训练。企业编号已经匿名化，结果变量按照公开的数据生成过程构造，并植入已知效应。它适合检验代码、学习DID、制作表图和练习论文写作，但不能用于评价现实政策效果。

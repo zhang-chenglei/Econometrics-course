@@ -44,7 +44,7 @@ pagetitle: "课件与更新｜持续发布"
 - [第1讲｜课程介绍与计量研究思维](intro.qmd) · [下载PPT课件](../materials/slides/lecture01-intermediate-econometrics-introduction.pptx)
 - [第2讲｜回归基础复习（一）](part1_guide.qmd)：[案例实操](lesson2_lab.qmd) · [代码与结果](lesson2_code.qmd) · [本讲验收](lesson2_check.qmd) · [下载PDF课件](../materials/slides/lecture02-regression-review.pdf)
 - [第3讲｜回归基础复习（二）](ch01.qmd)：[案例实操](lesson3_lab.qmd) · [代码与结果](lesson3_code.qmd) · [本讲验收](lesson3_check.qmd) · [下载PDF课件](../materials/slides/lecture03-model-specification-and-diagnostics.pdf)
-- [第4讲｜内生性与因果推断初步](ch02.qmd)：[下载PDF课件](../materials/slides/lecture04-from-correlation-to-causation.pdf)
+- [第4讲｜内生性与因果推断初步](ch02.qmd)：[案例实操](lesson4_lab.qmd) · [代码与结果](lesson4_code.qmd) · [下载PDF课件](../materials/slides/lecture04-from-correlation-to-causation.pdf)
 
 ### 拓展模型
 

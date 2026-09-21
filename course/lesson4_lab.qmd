@@ -1,0 +1,319 @@
+---
+pagetitle: "第4讲 Agent Lab：AI 使用真的能提高学生成绩吗？"
+---
+
+# 第4讲 Agent Lab：AI 使用真的能提高学生成绩吗？
+
+<link rel="stylesheet" href="../assets/lesson04-agent-lab.css">
+
+::: {.agent-lab data-lab-id="lesson04-agent-lab"}
+
+<div class="agent-lab-hero">
+  <p class="agent-lab-kicker">Lesson 04 · From correlation to identification</p>
+  <h2>从“跑出显著”走向“构造可信比较”</h2>
+  <p>某高校发现，使用生成式 AI 时间更长的学生，期末成绩往往也更高。你的任务不是替这句话加上显著性星号，而是判断：<strong>哪一个比较才有资格回答因果问题？</strong></p>
+<div class="causal-path" aria-label="案例学习主线">
+<span>相关</span>
+<b>→</b>
+<span>质疑</span>
+<b>→</b>
+<span>反事实</span>
+<b>→</b>
+<span>研究设计</span>
+<b>→</b>
+<span>识别</span>
+</div>
+</div>
+
+> **Agent 的位置：**帮助你读数据、生成代码、追问替代解释和审查研究设计；“这个系数能不能解释为因果”必须由你根据时序、比较和识别假设作出判断。
+
+<div class="lab-progress" aria-label="案例完成进度">
+  <span class="lab-progress__label" data-progress-text>0 / 10 steps completed</span>
+  <div class="lab-progress__track"><div class="lab-progress__fill" data-progress-fill></div></div>
+  <button class="lab-reset" type="button" data-reset-lab>清除本页记录</button>
+</div>
+
+## 案例文件
+
+::: {.download-grid}
+::: {.download-card}
+**Stata 数据**
+<small>含变量标签，可直接 `use`</small>
+
+[下载 AI_score_case.dta](../materials/data/ai-score-case/AI_score_case.dta)
+:::
+
+::: {.download-card}
+**CSV 数据**
+<small>适用于 Python、R、Excel 或 Agent 检查</small>
+
+[下载 AI_score_case.csv](../materials/data/ai-score-case/AI_score_case.csv)
+:::
+
+::: {.download-card}
+**变量说明**
+<small>重点看变量的测量时点</small>
+
+[打开变量说明](../materials/data/ai-score-case/变量说明.md)
+:::
+
+::: {.download-card}
+**起始 do-file**
+<small>包含主线代码和留白，不含结论</small>
+
+[下载 AI_score_case_start.do](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/%E7%AC%AC6%E7%AB%A0_%E5%9B%A0%E6%9E%9C%E8%AF%86%E5%88%AB%E5%9F%BA%E7%A1%80_%E5%8F%8D%E4%BA%8B%E5%AE%9E%E4%B8%8E%E5%86%85%E7%94%9F%E6%80%A7/stata/01_ai_score_causal_design.do)
+:::
+:::
+
+数据共有 800 名匿名模拟学生。它只用于教学，不对应任何真实学校，也不能证明现实中的 AI 学习效果。
+
+::: {.lab-step #step-1}
+<div class="lab-step-number">Step 01 · Define before regress</div>
+
+### 把一句模糊提问改写成可检验问题
+
+先区分三句话：
+
+1. 使用 AI 较多的学生，成绩是否更高？——**描述/相关问题**；
+2. 已知学生特征，能否预测其期末成绩？——**预测问题**；
+3. 如果让同一个学生每周多使用 1 小时 AI，他的成绩会怎样？——**因果问题**。
+
+::: {.think-first}
+**Think First**
+
+本案例真正想回答哪一句？处理变量、结果变量、研究单位和目标效应分别是什么？先写，再问 Agent。
+
+<textarea class="lab-note" data-note-id="step1" aria-label="Step 1 思考记录" placeholder="例如：我想估计……"></textarea>
+:::
+
+<div class="prompt-panel">
+  <div class="prompt-panel__head"><span>给 Agent 的起始任务</span><button class="copy-prompt" type="button" data-copy-target="prompt-1">Copy Prompt</button></div>
+  <pre id="prompt-1">我正在完成“AI 使用是否提高学生成绩”的计量案例。请先把研究问题分别改写成描述、预测和因果三种版本，并指出因果版本中的研究单位、处理、结果和目标效应。此时不要替我选择控制变量，也不要运行回归。</pre>
+</div>
+
+<div class="step-complete"><label><input type="checkbox" data-progress-id="step1"> 我已写清目标问题</label></div>
+:::
+
+::: {.lab-step #step-2}
+<div class="lab-step-number">Step 02 · Know the data</div>
+
+### 先认识数据，再决定它能回答什么
+
+在 Stata 中打开 `.dta` 文件：
+
+```stata
+describe
+summarize final_score ai_hours prior_score motivation digital_skill ///
+    study_hours assignment_quality
+codebook gender class_id
+```
+
+注意每个变量在什么时候测量：课程开始前、学习过程中，还是期末。这里只要求你先建立时间顺序，不需要立刻决定“应该控制哪些变量”。
+
+::: {.think-first}
+**Think First**
+
+这份横截面数据观察到了什么，又缺少了什么？如果要知道“同一个学生多用 1 小时 AI 会怎样”，还需要什么信息？
+
+<textarea class="lab-note" data-note-id="step2" aria-label="Step 2 思考记录"></textarea>
+:::
+
+<div class="step-complete"><label><input type="checkbox" data-progress-id="step2"> 我已理解变量与数据边界</label></div>
+:::
+
+::: {.lab-step #step-3}
+<div class="lab-step-number">Step 03 · See before estimate</div>
+
+### 画出数据中的第一印象
+
+```stata
+histogram ai_hours, frequency title("每周 AI 使用小时数")
+histogram final_score, frequency title("期末成绩")
+twoway (scatter final_score ai_hours, mcolor(%35)) ///
+       (lfit final_score ai_hours), ///
+       title("AI 使用与期末成绩")
+correlate final_score ai_hours prior_score motivation digital_skill
+```
+
+记录异常值、样本范围和散点图方向。此时可以写“正相关/负相关/没有明显关系”，不要写“提高/降低”。
+
+<div class="prompt-panel">
+  <div class="prompt-panel__head"><span>让 Agent 做数据体检</span><button class="copy-prompt" type="button" data-copy-target="prompt-3">Copy Prompt</button></div>
+  <pre id="prompt-3">请根据我粘贴的 describe、summarize、codebook 和相关系数输出，检查变量范围、缺失值与异常值，并用“相关关系”的语言概括数据。请明确列出哪些信息仍不足以支持因果解释。</pre>
+</div>
+
+<div class="step-complete"><label><input type="checkbox" data-progress-id="step3"> 我已完成描述统计与图形</label></div>
+:::
+
+::: {.lab-step #step-4}
+<div class="lab-step-number">Step 04 · The tempting regression</div>
+
+### 跑一个“很诱人”的简单回归
+
+```stata
+regress final_score ai_hours, vce(robust)
+estimates store naive
+```
+
+记录 `ai_hours` 的系数、稳健标准误、p 值、置信区间和 $R^2$。用正确单位解释：每周 AI 使用时间相差 1 小时的学生，期末成绩平均相差多少分。
+
+::: {.think-first}
+**Think First**
+
+如果系数为正且高度显著，你能否把“相差”改成“提高”？写出至少三个不能直接这样改写的理由。
+
+<textarea class="lab-note" data-note-id="step4" aria-label="Step 4 思考记录"></textarea>
+:::
+
+<div class="step-complete"><label><input type="checkbox" data-progress-id="step4"> 我已解释天真回归但没有越界</label></div>
+:::
+
+::: {.lab-step #step-5}
+<div class="lab-step-number">Step 05 · Draw the competing stories</div>
+
+### 让一个观察事实面对多个因果故事
+
+至少画出四种可能：
+
+- `AI 使用 → 期末成绩`；
+- `学习动机 → AI 使用` 且 `学习动机 → 期末成绩`；
+- `基础成绩 → AI 使用` 且 `基础成绩 → 期末成绩`；
+- `期末成绩预期 → AI 使用`（反向因果或同时决定）。
+
+这些故事都可能产生相似的散点图。此处的任务不是给每个箭头贴上术语，而是说明：**仅凭当前相关关系，为什么无法在这些故事之间作出选择。**
+
+<div class="prompt-panel">
+  <div class="prompt-panel__head"><span>让 Agent 找替代解释</span><button class="copy-prompt" type="button" data-copy-target="prompt-5">Copy Prompt</button></div>
+  <pre id="prompt-5">把“AI 使用与成绩正相关”当作需要被挑战的观察事实。请提出至少五个彼此不同、但都可能产生这种相关的因果故事。对每个故事说明：数据中谁先发生、它为什么会造成相关、仅靠当前横截面数据能否排除。最后告诉我，哪一项新增信息最能区分这些故事。不要直接建议“多加控制变量”。</pre>
+</div>
+
+<div class="step-complete"><label><input type="checkbox" data-progress-id="step5"> 我已列出竞争性因果故事</label></div>
+:::
+
+::: {.lab-step #step-6}
+<div class="lab-step-number">Step 06 · Controls are not a design</div>
+
+### 加入控制变量后，因果问题解决了吗？
+
+```stata
+regress final_score ai_hours prior_score motivation digital_skill ///
+    study_hours i.gender i.class_id, vce(robust)
+estimates store adjusted
+```
+
+比较 `naive` 与 `adjusted` 两列的 AI 系数。它的用途是让你看到：不同学生原本就不一样，原始相关有一部分来自这些可观察差异。
+
+```stata
+estimates table naive adjusted, b(%9.3f) se(%9.3f) stats(N r2)
+```
+
+::: {.think-first}
+**Think First**
+
+系数变小能证明什么，不能证明什么？“控制了数据里所有变量”为什么仍然不是一个研究设计？
+
+<textarea class="lab-note" data-note-id="step6" aria-label="Step 6 思考记录"></textarea>
+:::
+
+<div class="step-complete"><label><input type="checkbox" data-progress-id="step6"> 我已说明控制变量的能力边界</label></div>
+:::
+
+::: {.lab-step #step-7}
+<div class="lab-step-number">Step 07 · Name the missing counterfactual</div>
+
+### 从“还要控制谁”转向“缺少哪个反事实”
+
+对学生 $i$，把每周 AI 使用强度记为 $a$，潜在结果写成 $Y_i(a)$。现实中只观察到该学生实际使用强度对应的一个结果，无法同时观察同一个学生在另一个使用强度下的成绩。
+
+请完成一句话：
+
+> 为估计每周多使用 1 小时 AI 的平均因果效应，我希望比较 ______；现实数据用 ______ 替代了这个反事实，但二者可能因为 ______ 而不可比。
+
+<textarea class="lab-note" data-note-id="step7" aria-label="Step 7 反事实记录"></textarea>
+
+<div class="step-complete"><label><input type="checkbox" data-progress-id="step7"> 我已写清缺失的反事实</label></div>
+:::
+
+::: {.lab-step #step-8}
+<div class="lab-step-number">Step 08 · Compare designs, not labels</div>
+
+### 比较三种重新设计研究的方案
+
+先让 Agent 分别扮演三位研究者：
+
+- A 主张随机向一部分学生提供 AI 培训与额度；
+- B 主张利用不同班级分阶段开放 AI 工具；
+- C 主张利用某个资格分数线附近的访问权限差异。
+
+不要问“哪个方法最高级”，而要逐一追问：谁和谁比较？外生变化从哪里来？哪条假设最脆弱？最终效应适用于谁？
+
+<div class="prompt-panel">
+  <div class="prompt-panel__head"><span>研究设计辩论提示词</span><button class="copy-prompt" type="button" data-copy-target="prompt-8">Copy Prompt</button></div>
+  <pre id="prompt-8">请分别扮演三位研究者，为“AI 使用是否提高学生成绩”提出：A 随机鼓励设计，B 分阶段开放形成的准实验，C 资格阈值设计。每位研究者必须用同一模板回答：1）实际比较谁和谁；2）反事实怎样构造；3）识别 variation 来自哪里；4）最关键且最容易失败的假设；5）效应适用于谁。最后做交叉质询，但不要替我选最终方案。</pre>
+</div>
+
+<textarea class="lab-note" data-note-id="step8" aria-label="Step 8 研究设计比较记录" placeholder="记录三种设计的强项、弱点与适用条件"></textarea>
+
+<div class="step-complete"><label><input type="checkbox" data-progress-id="step8"> 我已比较三种研究设计</label></div>
+:::
+
+::: {.lab-step #step-9}
+<div class="lab-step-number">Step 09 · Research Design Card</div>
+
+### 重新设计研究，而不是继续堆控制变量
+
+可以考虑随机鼓励设计、分阶段开放形成的准实验、可信的工具变量、阈值规则，或有重复观测时的个体固定效应。方法名称不是答案；必须说明它利用什么外生 variation、构造什么反事实、依赖什么假设。
+
+<div class="research-card">
+  <div class="design-field design-field--wide"><label for="rd-question">研究问题</label><textarea id="rd-question" data-design-field="question" placeholder="如果让同一类学生……"></textarea></div>
+  <div class="design-field"><label for="rd-unit">研究对象与单位</label><input id="rd-unit" data-design-field="unit" placeholder="学生—学期"></div>
+  <div class="design-field"><label for="rd-estimand">目标因果参数</label><input id="rd-estimand" data-design-field="estimand" placeholder="例如平均处理效应"></div>
+  <div class="design-field"><label for="rd-treatment">处理 / 核心解释变量</label><input id="rd-treatment" data-design-field="treatment"></div>
+  <div class="design-field"><label for="rd-outcome">结果变量</label><input id="rd-outcome" data-design-field="outcome"></div>
+  <div class="design-field design-field--wide"><label for="rd-counterfactual">理想反事实</label><textarea id="rd-counterfactual" data-design-field="counterfactual"></textarea></div>
+  <div class="design-field"><label for="rd-threat">主要识别威胁</label><textarea id="rd-threat" data-design-field="threat"></textarea></div>
+  <div class="design-field"><label for="rd-strategy">拟采用的研究设计</label><textarea id="rd-strategy" data-design-field="strategy"></textarea></div>
+  <div class="design-field"><label for="rd-variation">识别 variation 来自哪里</label><textarea id="rd-variation" data-design-field="variation"></textarea></div>
+  <div class="design-field"><label for="rd-assumption">关键识别假设</label><textarea id="rd-assumption" data-design-field="assumption"></textarea></div>
+  <div class="design-field"><label for="rd-checks">诊断与证伪</label><textarea id="rd-checks" data-design-field="checks"></textarea></div>
+  <div class="design-field"><label for="rd-boundary">结论边界</label><textarea id="rd-boundary" data-design-field="boundary"></textarea></div>
+  <div class="design-actions"><button class="lab-button" type="button" data-copy-design>Copy as Markdown</button><button class="lab-button lab-button--secondary" type="button" data-print-lab>打印 / 保存为 PDF</button></div>
+</div>
+
+<div class="step-complete"><label><input type="checkbox" data-progress-id="step9"> 我已完成 Research Design Card</label></div>
+:::
+
+::: {.lab-step #step-10}
+<div class="lab-step-number">Step 10 · Adversarial review</div>
+
+### 让 Agent 当匿名审稿人，而不是答案生成器
+
+把你的回归结果、变量时序图和 Research Design Card 一起交给 Agent。
+
+<div class="prompt-panel">
+  <div class="prompt-panel__head"><span>匿名审稿人提示词</span><button class="copy-prompt" type="button" data-copy-target="prompt-reviewer">Copy Prompt</button></div>
+  <pre id="prompt-reviewer">你现在是计量经济学论文的匿名审稿人。请严格审查我关于“AI 使用是否提高学生成绩”的 Research Design Card 和回归结果。按以下结构输出：1）我真正想估计的因果效应；2）实际比较谁和谁；3）这个比较能否代表缺失的反事实；4）识别 variation 来自哪里；5）最关键的三项识别威胁；6）哪些假设可以做诊断、哪些不能仅靠数据证明；7）结论措辞应收缩到哪里。不要只建议加入更多控制变量。</pre>
+</div>
+
+## 最终提交区
+
+提交一个文件夹，包含：
+
+1. 补充注释后的 do-file 与运行日志；
+2. 描述统计、散点图和两列回归对比表；
+3. 不超过 400 字的结果说明，按“发现相关—提出质疑—定义反事实—重做设计”组织；
+4. 从本页复制出的 `Research Design Card.md`；
+5. 一页 `ai_log.md`：记录你问了什么、Agent 给了什么、你核验和修改了什么。
+
+最终文字必须分别说明：**数据支持的相关结论、不能支持的因果结论、需要何种设计才可能推进因果解释。**
+
+<div class="step-complete"><label><input type="checkbox" data-progress-id="step10"> 我已完成匿名审稿与最终提交</label></div>
+:::
+
+## 完成后查看案例分析
+
+先完成自己的预测和回归，再打开[第4讲代码和结果分析](lesson4_code.qmd)。分析页会公开模拟数据的生成逻辑与参考结果，因此不建议提前阅读。
+
+<script defer src="../assets/lesson04-agent-lab.js"></script>
+
+:::

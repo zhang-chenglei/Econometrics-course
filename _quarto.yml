@@ -83,8 +83,13 @@ website:
                 text: "代码和结果分析"
               - href: course/lesson3_check.qmd
                 text: "本讲验收"
-          - href: course/ch02.qmd
-            text: "第4讲｜内生性与因果推断初步"
+          - section: "第4讲｜内生性与因果推断初步"
+            href: course/ch02.qmd
+            contents:
+              - href: course/lesson4_lab.qmd
+                text: "案例实操"
+              - href: course/lesson4_code.qmd
+                text: "代码和结果分析"
       - section: "20｜第二部分：拓展模型"
         href: course/part2.qmd
         contents:

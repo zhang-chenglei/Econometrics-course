@@ -218,6 +218,13 @@ RDD通常要求阈值附近的潜在结果连续，且个体不能精确操纵�
 
 本讲结束后，你应当形成一条从初级计量进入中级计量的基本逻辑：
 
+## 本讲案例入口
+
+本讲配套使用同一份学生合成数据完成“相关—质疑—反事实—研究设计—识别”的完整练习：
+
+- [打开第4讲 Agent Lab：案例实操](https://zhang-chenglei.github.io/Econometrics-course/course/lesson4_lab.html)
+- [完成后核对：代码和结果分析](https://zhang-chenglei.github.io/Econometrics-course/course/lesson4_code.html)
+
 > **先判断研究在问什么，再用反事实定义因果；因为反事实不可见，才需要识别策略；因为识别假设不同，才需要学习不同的中级计量方法。**
 
 面对一个声称具有因果关系的实证结论，可以用下面五个问题进行自检：

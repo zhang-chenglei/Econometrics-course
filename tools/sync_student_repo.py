@@ -76,6 +76,7 @@ BULK_DIRS: list[tuple[str, str]] = [
 # (EconKB holds the multi-hundred-MB working data, which is not public).
 # They land at the repository root, where the case package looks for them.
 DATA_DIRS: list[tuple[str, str]] = [
+    ("ai-score-case", "data/ai-score-case"),
     ("semisynthetic", "data/semisynthetic"),
     ("policy", "data/policy"),
 ]

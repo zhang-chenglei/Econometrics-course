@@ -16,9 +16,10 @@
 - `data/`：教学数据，供 `course/materials.qmd` 的直链下载使用
   - `semisynthetic/`：匿名半合成企业面板与变量说明
   - `policy/`：人工智能试验区公开政策事实与处理时间编码
+  - `ai-score-case/`：第4讲“AI 使用与学生成绩”合成案例数据
 - `slides/`：课堂讲义文件
 
-代码不放在这里。原先的 `materials/code/` 已移出，学生所需内容全部在
+学生运行代码不放在这里。原先的 `materials/code/` 已移出，学生所需内容全部在
 上面那个仓库；维护者请在 EconKB `30_教学/09_计量教材/code/` 改源文件，
 再由课程网站仓库的 `tools/sync_student_repo.py` 同步到学生仓库。
 

@@ -19,6 +19,8 @@
 - [代码和结果分析](https://zhang-chenglei.github.io/Econometrics-course/course/lesson3_code.html)
 - [本讲验收](https://zhang-chenglei.github.io/Econometrics-course/course/lesson3_check.html)
 - [第4讲｜内生性与因果推断初步](https://zhang-chenglei.github.io/Econometrics-course/course/ch02.html)
+- [案例实操](https://zhang-chenglei.github.io/Econometrics-course/course/lesson4_lab.html)
+- [代码和结果分析](https://zhang-chenglei.github.io/Econometrics-course/course/lesson4_code.html)
 - [20｜第二部分：拓展模型](https://zhang-chenglei.github.io/Econometrics-course/course/part2.html)
 - [第5讲｜面板数据（一）](https://zhang-chenglei.github.io/Econometrics-course/course/ch03.html)
 - [第6讲｜面板数据（二）](https://zhang-chenglei.github.io/Econometrics-course/course/ch04.html)
