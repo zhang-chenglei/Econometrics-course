@@ -33,7 +33,7 @@ pagetitle: "第12讲：数据与变量"
 
 ## 对应教材
 
-- [第12章：数据准备与变量构建](../textbook/ch12.qmd)
+- [第13章：数据准备与变量构建](../textbook/ch13.qmd)
 - [数据清理：缺失值、异常值与匹配合并](../textbook/ch13.qmd)
 - [变量构造与转换](../textbook/ch13.qmd)
 - [描述性统计的呈现技巧](../textbook/ch13.qmd)

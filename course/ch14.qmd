@@ -7,21 +7,21 @@ pagetitle: "50.5 教材章节与课程讲次对照"
 ## 从课程讲次查教材
 
 - 第1讲：[教材导读](../textbook/guide.qmd)与[导论](../textbook/intro.qmd)；
-- 第2讲：[第1章](../textbook/ch01.qmd)、[第2章](../textbook/ch02.qmd)及FWL相关内容；
-- 第3讲：[第3章](../textbook/ch03.qmd)—[第5章](../textbook/ch05.qmd)；
-- 第4讲：[导论](../textbook/intro.qmd)、第5章及第7—9章方法导引；
+- 第2讲：[第1章](../textbook/ch01.qmd)、[第2章](../textbook/ch02.qmd)与[第3章](../textbook/ch03.qmd)（含FWL相关内容）；
+- 第3讲：[第4章](../textbook/ch04.qmd)—[第5章](../textbook/ch05.qmd)；
+- 第4讲：[第6章](../textbook/ch06.qmd)及第7—9章方法导引；
 - 第5—6讲：[第7章](../textbook/ch07.qmd)；
 - 第7—8讲：[第8章](../textbook/ch08.qmd)；
 - 第9讲：[第9章](../textbook/ch09.qmd)中的双重差分与断点回归；
 - 第10讲：[第10章](../textbook/ch10.qmd)；
-- 第11讲：[第11章](../textbook/ch11.qmd)；
-- 第12讲：[第12章](../textbook/ch12.qmd)；
-- 第13—14讲：[第13章](../textbook/ch13.qmd)及第14章相关内容；
-- 第15讲：[第14章](../textbook/ch14.qmd)。
+- 第11讲：[第11章](../textbook/ch11.qmd)与[第12章](../textbook/ch12.qmd)；
+- 第12讲：[第13章](../textbook/ch13.qmd)；
+- 第13—14讲：[第14章](../textbook/ch14.qmd)；
+- 第15讲：[第15章](../textbook/ch15.qmd)。
 
 ## 自主学习
 
-- 离散选择模型：[第6章](../textbook/ch06.qmd)。
+- 离散选择模型：[第4章](../textbook/ch04.qmd)第4节。
 
 ## 教材中课堂不逐章讲授的内容
 

@@ -33,7 +33,7 @@ pagetitle: "第15讲：成果呈现与项目汇报"
 
 ## 对应教材
 
-- [第14章：研究成果的呈现](../textbook/ch14.qmd)
+- [第15章：研究写作与成果呈现](../textbook/ch15.qmd)
 - [实证论文的结构与写作规范](../textbook/ch15.qmd)
 - [表格与图形的规范化呈现](../textbook/ch15.qmd)
 - [学术规范与可复现性基础](../textbook/ch15.qmd)
