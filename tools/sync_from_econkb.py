@@ -10,7 +10,7 @@ Sources are READ-ONLY and never modified:
         lessons/*.md         -- course page bodies
         图片/                 -- course images
     <econkb>/30_教学/09_计量教材/
-        拆分章节/*.md         -- 24 textbook page bodies
+        拆分章节/*.md         -- 26 textbook page bodies
         图片/{教材插图,小黑,封面图}/ -- textbook images
 
 Generated in this repo:
@@ -18,7 +18,7 @@ Generated in this repo:
     index.qmd                 -- from manifest page "root"
     course/<id>.qmd           -- one per remaining manifest page
     textbook/<id>.qmd         -- one per TEXTBOOK_PAGES entry
-    assets/images/*.png       -- images referenced by any synced page
+    assets/images/*.webp      -- images referenced by any synced page (re-encoded)
     the AUTO-GENERATED block in _quarto.yml (the sidebar)
 
 飞书 links inside the Markdown are rewritten to in-site links, so a reader who

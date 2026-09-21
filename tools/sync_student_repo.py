@@ -8,7 +8,7 @@ EconKB keeps the teaching code in a layout that mirrors how it is maintained:
       python/ch01/legacy/01_monte_carlo_single.py
       stata/ch01/01_monte_carlo_foundations.do
       ai_cards/ch01_ai_task_card.md
-      comprehensive_case/第11章/代码/ch11_research_design.py
+      comprehensive_case/第12章/代码/ch12_research_design.py
 
 Every folder there earns its keep for whoever maintains the material, and none
 of it helps a student, who wants "the chapter I am on, and the two files I

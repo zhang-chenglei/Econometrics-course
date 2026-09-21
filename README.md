@@ -20,7 +20,7 @@ python3 tools/sync_from_econkb.py --econkb ~/Documents/EconKB
 
 | 产出 | 说明 |
 |---|---|
-| `index.qmd`、`course/*.qmd` | 38 个飞书课程页，另有3个仓库专用页面（课件更新、代码与数据、2025—2026秋季学期计量基础课件） |
+| `index.qmd`、`course/*.qmd` | **37 个飞书课程页**（`course/*.qmd` 中来自 `manifest.json` 的那部分）**＋ 主页 `index.qmd`**（manifest 的 `root`），另有 3 个仓库专用页面（课件更新、代码与数据、2025—2026秋季学期计量基础课件）。<br>合计 `manifest.json` 38 页 = root + 37；`ls course/*.qmd` 得 **40**（37 + 3 个仓库专用页），数不一致是正常的 |
 | `textbook/*.qmd` | 26 个教材页（15 章 + 三部分 + 导读/导论/参考文献/附录A—D/结束语） |
 | `assets/images/` | 页面引用的图片 |
 | `_quarto.yml` 中的 AUTO-GENERATED 块 | 侧边栏导航 |
