@@ -22,6 +22,10 @@ Findings are grouped by severity:
     error   breaks or pollutes a student's machine
     warn    depth-dependent; works only inside this repository's layout
 
+`code/comprehensive_case/` 例外：该包按自身 README 的契约**必须**保留仓库目录结构
+（脚本向上找到仓库根的 `data/semisynthetic/`），因此那里的深度依赖不判为 warn；
+上列两条 error 级检查对它照常执行。
+
 Usage:
     python3 tools/check_materials_code.py            # report, non-zero on error
     python3 tools/check_materials_code.py --strict   # warnings fail too
@@ -87,6 +91,34 @@ def strip_comments(source: str, path: Path) -> str:
     return "".join(blanked)
 
 
+def strip_comment_tokens(source: str) -> str:
+    """只清空注释，**保留字符串字面量**。
+
+    绝对路径只可能写在字符串里，而 `strip_comments` 连字符串一起清空——两者不能
+    共用。2026-09-21 实测：`p = "/Users/feichang513/x"` 在 Python 文件里**从未被
+    检出**（Stata 那侧因为不清字符串反而正常），等于这条 error 级检查对 Python
+    一直是空跑。
+    """
+    lines = source.splitlines(keepends=True)
+    line_start = [0]
+    for line in lines:
+        line_start.append(line_start[-1] + len(line))
+    blanked = list(source)
+    try:
+        for token in tokenize.generate_tokens(io.StringIO(source).readline):
+            if token.type != tokenize.COMMENT:
+                continue
+            (start_row, start_col), (end_row, end_col) = token.start, token.end
+            if start_row != end_row:
+                continue
+            base = line_start[start_row - 1]
+            for offset in range(start_col, end_col):
+                blanked[base + offset] = " "
+    except (tokenize.TokenError, IndentationError):
+        return source
+    return "".join(blanked)
+
+
 def strip_stata_comments(source: str) -> str:
     """Blank out Stata comments. Line-based, which is enough for a path check."""
     lines = []
@@ -115,9 +147,15 @@ def scan(path: Path, repo: Path) -> list[tuple[str, int, str]]:
 
     findings: list[tuple[str, int, str]] = []
 
-    for match in ABSOLUTE_RE.finditer(code):
+    # 绝对路径检查要**保留字符串**（路径就写在字符串里），与下面两条用的 code 不同。
+    path_source = (
+        strip_stata_comments(source)
+        if path.suffix == ".do"
+        else strip_comment_tokens(source)
+    )
+    for match in ABSOLUTE_RE.finditer(path_source):
         findings.append(
-            ("error", find_line(code, match.start()), "写死的本机绝对路径")
+            ("error", find_line(path_source, match.start()), "写死的本机绝对路径")
         )
 
     for match in REPO_ONLY_RE.finditer(code):
@@ -129,14 +167,21 @@ def scan(path: Path, repo: Path) -> list[tuple[str, int, str]]:
             )
         )
 
-    for match in DEPTH_RE.finditer(code):
-        findings.append(
-            (
-                "warn",
-                find_line(code, match.start()),
-                "依赖脚本所在目录深度，换位置就跑偏",
+    # 综合案例包是**文档化的例外**：它的 README 明确要求保留仓库目录结构才跑得起来
+    # （脚本向上走到仓库根找 `data/semisynthetic/`，学生包 README 也照此提醒），
+    # 所以那里的 `parents[n]` 是包级契约的一部分，不是疏漏。**只对这条 warn 开豁免**，
+    # 绝对路径与仓库内部目录两条 error 级检查照旧执行。
+    depth_exempt = "comprehensive_case" in path.parts
+
+    if not depth_exempt:
+        for match in DEPTH_RE.finditer(code):
+            findings.append(
+                (
+                    "warn",
+                    find_line(code, match.start()),
+                    "依赖脚本所在目录深度，换位置就跑偏",
+                )
             )
-        )
 
     return findings
 

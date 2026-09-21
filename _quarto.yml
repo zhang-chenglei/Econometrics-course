@@ -218,7 +218,10 @@ format:
     smooth-scroll: true
     link-external-newwindow: true
     html-math-method: mathjax
-    lang: zh-CN
+    # Quarto 只带 `_language-zh.yml` / `_language-zh-TW.yml`，**没有 `zh-CN` 包**
+    # （见 <quarto>/share/language/）。写 `zh-CN` 会让语言包加载失败，连带
+    # 「摘要」等小节标题回退成英文 Abstract。必须写 `zh`。
+    lang: zh
 
 execute:
   freeze: true
