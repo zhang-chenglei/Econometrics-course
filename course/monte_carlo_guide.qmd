@@ -46,7 +46,7 @@ pagetitle: "专题讲义：用蒙特卡洛模拟看懂计量经济学"
 
 下面的实验使用 100,000 个随机点，得到的估计约为 3.1461。它不比数学公式更适合计算圆周率，但非常适合展示蒙特卡洛方法的基本思想：**把一个问题转化为可重复的随机试验，再用大量重复结果逼近我们关心的量。**
 
-![](../assets/images/monte_carlo/01_pi_monte_carlo.webp)
+![](../assets/images/monte_carlo/01_pi_monte_carlo.webp){fig-alt=""}
 
 核心 Python 代码只有几行：
 
@@ -250,7 +250,7 @@ y = 2 + 3 * x + 5 * z + rng.normal(size=n)
 
 单个随机变量可以非常不稳定，但越来越多观测的平均值通常会靠近总体均值。本例故意从右偏的指数分布中抽样，总体均值设为 2。图的左侧显示单个观测仍然忽高忽低；右侧显示累计样本均值逐渐稳定在 2 附近。
 
-![](../assets/images/monte_carlo/02_law_of_large_numbers.webp)
+![](../assets/images/monte_carlo/02_law_of_large_numbers.webp){fig-alt=""}
 
 #### 核心代码
 
@@ -283,7 +283,7 @@ running_mean = np.cumsum(sample) / np.arange(1, 5001)
 
 指数分布明显右偏，并不是正态分布。现在反复进行 5,000 次抽样，每次都计算一个样本均值。图中从 `n=1` 到 `n=100`，我们看到的不是原始数据，而是 5,000 个“样本均值”的分布。
 
-![](../assets/images/monte_carlo/03_central_limit_theorem.webp)
+![](../assets/images/monte_carlo/03_central_limit_theorem.webp){fig-alt=""}
 
 #### 核心代码
 
@@ -328,7 +328,7 @@ sample_means = rng.exponential(
 
 真实回归线是 `E(y|x)=2+0.5x`。但研究者只能拿到一份含有 80 个观测的样本，因此估计出来的样本回归线通常不会与真实线完全重合。
 
-![](../assets/images/monte_carlo/04_sample_vs_population_regression.webp)
+![](../assets/images/monte_carlo/04_sample_vs_population_regression.webp){fig-alt=""}
 
 #### 核心代码
 
@@ -365,7 +365,7 @@ print(model.params)
 
 本例把真实斜率设为 0.5，对每个样本量重复抽样 2,000 次。
 
-![](../assets/images/monte_carlo/05_ols_unbiased_precision.webp)
+![](../assets/images/monte_carlo/05_ols_unbiased_precision.webp){fig-alt=""}
 
 #### 已验证的模拟结果
 
@@ -421,7 +421,7 @@ print(np.mean(beta_hats), np.std(beta_hats, ddof=1))
 - OLS 斜率均值约为 2.002，模拟标准差约为 0.080；
 - 正确加权的 WLS 均值约为 2.002，模拟标准差约为 0.060。
 
-![](../assets/images/monte_carlo/06_efficiency_ols_wls.webp)
+![](../assets/images/monte_carlo/06_efficiency_ols_wls.webp){fig-alt=""}
 
 #### 核心代码
 
@@ -466,7 +466,7 @@ wls = sm.WLS(y, design, weights=1 / sigma**2).fit()
 
 在这个虚拟世界中，`x` 对 `y` 的真实因果效应是 3，`z` 同时影响 `x` 和 `y`。如果回归时遗漏 `z`，`5z` 就进入新的误差项；由于 `x` 与 `z` 正相关，`x` 也与新误差项相关，OLS 的零条件期望不再成立。
 
-![](../assets/images/monte_carlo/07_omitted_variable_bias.webp)
+![](../assets/images/monte_carlo/07_omitted_variable_bias.webp){fig-alt=""}
 
 #### 已验证的模拟结果
 

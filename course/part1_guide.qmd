@@ -47,7 +47,7 @@ pagetitle: "第2讲：回归基础复习（一）"
 
 ### 本讲三部分
 
-![](../assets/images/lesson02-structure.webp)
+![](../assets/images/lesson02-structure.webp){fig-alt=""}
 
 #### 第一部分：什么是回归
 

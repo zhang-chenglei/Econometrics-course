@@ -33,7 +33,7 @@ pagetitle: "第4讲：内生性与因果推断初步"
 
 ### 本讲三部分
 
-![](../assets/images/lesson04-structure.webp)
+![](../assets/images/lesson04-structure.webp){fig-alt=""}
 
 #### 第一部分：研究问题与反事实
 

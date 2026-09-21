@@ -108,7 +108,7 @@ strong_slope = m_inter.params["ai"] + m_inter.params["ai_strong"]
 
 Python样本中，根据一次项和二次项估计值计算的极值点约为**17.2 小时/周**（Stata为17.8）。
 
-![](../assets/images/lesson03/ch04-ai-score-curve.webp)
+![](../assets/images/lesson03/ch04-ai-score-curve.webp){fig-alt=""}
 
 AI 一次项为正、平方项为负时，曲线呈倒U形，说明模型中 AI 使用的边际作用逐渐下降。极值点位于样本范围（0—24 小时/周）内，但它仍是其他变量给定时的平均预测关系，不代表每个学生每周用满17.2小时后成绩都会下降。
 
@@ -121,7 +121,7 @@ AI 一次项为正、平方项为负时，曲线呈倒U形，说明模型中 AI 
 | 基础弱 | 0.02020 | 0.00196 | [0.01636, 0.02403] |
 | 基础好 | 0.02697 | 0.00297 | [0.02114, 0.03280] |
 
-![](../assets/images/lesson03/ch04-ai-base.webp)
+![](../assets/images/lesson03/ch04-ai-base.webp){fig-alt=""}
 
 基础弱是基准组，因此`ai`主效应是基础弱组斜率；基础好组斜率等于`ai`主效应与`ai×strong`交互项之和。对线性组合做推断时，标准误还必须考虑两个估计系数的协方差，不能只把两个标准误相加。
 
@@ -199,7 +199,7 @@ fwl = sm.OLS(score_resid, ai_resid).fit()
 
 两个数字**完全相等**（Python样本相差约 2.2×10⁻¹⁵，纯属浮点误差）。这正是 FWL 定理的内容：把 X 和 Y 各净化一遍以后，“剩余解释剩余”得到的斜率，就等于原多元回归中 X 的系数。
 
-![](../assets/images/lesson03/ch05-fwl-net-variation.webp)
+![](../assets/images/lesson03/ch05-fwl-net-variation.webp){fig-alt=""}
 
 这张图的横轴是“净 AI 使用时间”，纵轴是“净成绩 variation”，斜率 0.3959 与多元回归完全一致。它把“控制”的含义画了出来：
 
@@ -256,7 +256,7 @@ Python固定样本的检验结果为：
 
 两项检验都拒绝同方差原假设，与数据生成时让误差波动随 AI 使用时间增大的设定一致。
 
-![](../assets/images/lesson03/ch05-residual-heteroskedasticity.webp)
+![](../assets/images/lesson03/ch05-residual-heteroskedasticity.webp){fig-alt=""}
 
 残差图可以直接看出这一点：拟合值较小时残差集中在零附近，拟合值较大时残差明显散开，呈现漏斗形。
 

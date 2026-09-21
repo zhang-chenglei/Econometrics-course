@@ -37,7 +37,7 @@ pagetitle: "第3讲：回归基础复习（二）"
 
 ### 本讲三部分
 
-![](../assets/images/lesson03-structure.webp)
+![](../assets/images/lesson03-structure.webp){fig-alt=""}
 
 #### 第一部分：函数形式——经济关系应该怎样写进模型
 
@@ -152,7 +152,7 @@ pagetitle: "第3讲：回归基础复习（二）"
 
 那么，多元回归究竟做了什么事？**Frisch–Waugh–Lovell 定理**（FWL）给出了一个可以手算的答案，它把“控制”拆成三步：
 
-![](../assets/images/lesson03/05_fwl_partialling_out.webp)
+![](../assets/images/lesson03/05_fwl_partialling_out.webp){fig-alt=""}
 
 1. **净化 X**：把 AI 使用时间对能力（及其他控制变量）回归，取残差，得到“不能被能力解释的 AI 使用差异”；
 2. **净化 Y**：把成绩对能力（及其他控制变量）回归，取残差，得到“不能被能力解释的成绩差异”；

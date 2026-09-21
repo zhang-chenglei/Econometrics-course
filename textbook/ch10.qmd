@@ -8,7 +8,7 @@ pagetitle: "第10章 现代计量工具：机器学习、贝叶斯与大模型"
 >
 > ——理查德·哈明《数值方法：面向科学家与工程师》（Numerical Methods for Scientists and Engineers，1962）
 
-![](../assets/images/ch10-00-hamming-insight-quote.webp)
+![](../assets/images/ch10-00-hamming-insight-quote.webp){fig-alt=""}
 
 > **本章定位：选学与前沿导览**
 >

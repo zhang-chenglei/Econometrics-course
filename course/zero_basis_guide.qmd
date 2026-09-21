@@ -54,7 +54,7 @@ pagetitle: "零基础补强指南——不用背语法，也能跑通 Stata 和 
 - **β₁（斜率）**：**教育每多一年，工资平均涨多少**——这是我们最想知道的数；
 - **u（误差项）**：所有其他没写进模型的因素（能力、行业、运气……）。
 
-![](../assets/images/xiaohei/ch01-01-ols-compromise.webp)
+![](../assets/images/xiaohei/ch01-01-ols-compromise.webp){fig-alt=""}
 
 *图：回归线是散点的「折中」（教材第 1 章小黑插画）*
 
@@ -68,7 +68,7 @@ pagetitle: "零基础补强指南——不用背语法，也能跑通 Stata 和 
 - **估计** = 用手里这「一勺样本」，把 β₁ 估出来，记作 **β̂₁**（读「贝塔帽」）；
 - **方法** = **最小二乘法（OLS）**：在所有可能的直线里，找一条让「每个点到线的距离（残差）平方和最小」的。
 
-![](../assets/images/image5.webp)
+![](../assets/images/image5.webp){fig-alt=""}
 
 *图：总体回归线 vs 样本回归线（教材第 1 章）——虚线是「真实」那条线，实线是「你估出来」的那条，两者不完全重合，这是正常的*
 
@@ -90,7 +90,7 @@ pagetitle: "零基础补强指南——不用背语法，也能跑通 Stata 和 
 
 > t = 系数 ÷ 标准误（「系数有多大」÷「误差有多大」）
 
-![](../assets/images/xiaohei/ch03-01-t-test-signal-noise.webp)
+![](../assets/images/xiaohei/ch03-01-t-test-signal-noise.webp){fig-alt=""}
 
 *图：t 检验 = 信号 vs 噪声（教材第 3 章小黑插画）*
 

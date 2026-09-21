@@ -478,10 +478,23 @@ def rewrite_body(text: str, feishu_map: dict[str, str], from_dir: str) -> str:
 
     text = FEISHU_LINK_RE.sub(link_repl, text)
 
+    def course_caption_alt(pos: int) -> str:
+        """课程页图片的替代文本：讲义把图题写在图片**下一行**（「图一 …」「图N-M …」）。"""
+        for line in text[pos:].splitlines():
+            stripped = line.strip().lstrip("> ").strip()
+            if not stripped:
+                continue
+            caption = re.match(r"图[一二三四五六七八九十\d]+(?:-\d+)?[ 　:：]*(.+)$", stripped)
+            return caption.group(1).strip() if caption else ""
+        return ""
+
     def course_image_repl(match: re.Match[str]) -> str:
-        alt, sub_path = match.group(1), match.group(3)
+        _alt, sub_path = match.group(1), match.group(3)
         target = f"{relative_to(from_dir, 'assets/images')}/{web_name(sub_path)}"
-        return f"![{alt}]({target})"
+        # 讲义源里图片本身的 alt 槽是空的；图题在下一行，从那里取（同教材侧口径）。
+        # 取不到就写 `{fig-alt=""}`——显式空值表示装饰图，比完全没有 alt 属性好。
+        alt = course_caption_alt(match.end()).replace('"', "'")
+        return f"![]({target}){{fig-alt=\"{alt}\"}}"
 
     text = COURSE_IMAGE_RE.sub(course_image_repl, text)
 
@@ -494,6 +507,11 @@ def rewrite_body(text: str, feishu_map: dict[str, str], from_dir: str) -> str:
     # Quarto emit a visible <figcaption>, which would print the caption twice
     # (the book already carries it on its own line) while leaving <img> without
     # an alt attribute — both the wrong result and an accessibility miss.
+    #
+    # Decorative images get `{fig-alt=""}` rather than no attribute at all:
+    # bare `![](图)` emits an <img> **with no alt attribute**, which screen
+    # readers announce as an unlabelled image; `alt=""` is the correct way to
+    # say "skip this one" (verified against Quarto's output both ways).
     def caption_alt(pos: int) -> str:
         for line in text[pos:].splitlines():
             stripped = line.strip().lstrip("> ").strip()
@@ -508,7 +526,7 @@ def rewrite_body(text: str, feishu_map: dict[str, str], from_dir: str) -> str:
     for match in WIKI_IMAGE_RE.finditer(text):
         target = f"{relative_to(from_dir, 'assets/images')}/{web_name(match.group(1))}"
         alt = caption_alt(match.end()).replace('"', "'")
-        attribute = f'{{fig-alt="{alt}"}}' if alt else ""
+        attribute = f'{{fig-alt="{alt}"}}'
         pieces.append(text[cursor : match.start()])
         pieces.append(f"![]({target}){attribute}")
         cursor = match.end()

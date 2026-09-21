@@ -97,15 +97,15 @@ Stata主脚本运行结果（随机数算法不同，数值略有差异）：
 - **偏误由分布中心与真实值的距离体现**（本设定下接近0），**精度由分布的宽度体现**（样本量越大越窄）；
 - 估计量是随机变量——换一个样本就会得到不同的斜率。这正是本讲反复强调“估计量有抽样分布”的直接证据，也是后面必须报告标准误的原因。
 
-![](../assets/images/lesson02/ch01-large-numbers.webp)
+![](../assets/images/lesson02/ch01-large-numbers.webp){fig-alt="大数定律：样本量从10放大到10000，直方图从散乱逐渐贴合标准正态曲线。"}
 
 图一 大数定律：样本量从10放大到10000，直方图从散乱逐渐贴合标准正态曲线。
 
-![](../assets/images/lesson02/ch01-central-limit.webp)
+![](../assets/images/lesson02/ch01-central-limit.webp){fig-alt="中心极限定理：第一格是总体 $U(0,10)$（矩形，不是正态），第二格是 n=1 的样本均值分布（与总体分布相同），其后各格随样本量增加迅速变成钟形并收窄。"}
 
 图二 中心极限定理：第一格是总体 $U(0,10)$（矩形，不是正态），第二格是 n=1 的样本均值分布（与总体分布相同），其后各格随样本量增加迅速变成钟形并收窄。
 
-![](../assets/images/lesson02/ch01-ols-sampling-distribution.webp)
+![](../assets/images/lesson02/ch01-ols-sampling-distribution.webp){fig-alt="OLS斜率的抽样分布：三组都围绕真实斜率0.5，样本量越大越集中。"}
 
 图三 OLS斜率的抽样分布：三组都围绕真实斜率0.5，样本量越大越集中。
 
@@ -183,7 +183,7 @@ Stata参考结果（种子不同，数值略有差异）：
 
 值得一提：年龄和性别与 AI 使用时间的相关系数分别只有0.08和−0.07，所以它们在这次系数变化中几乎不起作用——真正让系数回头的是认知能力。这也说明**控制变量不是越多越好**。
 
-![](../assets/images/lesson02/ch02-ovb-coefficient-path.webp)
+![](../assets/images/lesson02/ch02-ovb-coefficient-path.webp){fig-alt=""}
 
 遗漏模型的置信区间整体位于真实值右侧，完整模型才第一次把真实值包进区间。偏误不是随机波动，增加样本量也不会消除它。
 
@@ -253,7 +253,7 @@ for part in (order[:400], order[400:]):
 
 样本量800，$R^2=0.7682$，调整$R^2=0.7671$，整体$F=658.783$（$p<0.001$）。
 
-![](../assets/images/lesson02/ch03-regression-table-and-ci.webp)
+![](../assets/images/lesson02/ch03-regression-table-and-ci.webp){fig-alt=""}
 
 AI 使用时间的系数为1.27155，表示在该模型中控制年龄、性别和认知能力后，每周多用一小时 AI，课程成绩平均相差约1.27分。
 
@@ -290,7 +290,7 @@ AI 系数的 $t$ 值可由 `1.27155/0.05868` 重新计算，结果约为21.67。
 
 两者都落在上面那个范围附近，置信区间也都覆盖1.25。
 
-![](../assets/images/lesson02/ch03-fig4-sample-variation.webp)
+![](../assets/images/lesson02/ch03-fig4-sample-variation.webp){fig-alt=""}
 
 点估计确实在动，但每一次的置信区间都盖住同一条真实系数线。标准误和置信区间不消除波动，而是把波动的大小变成可以计算、可以报告的东西。
 
