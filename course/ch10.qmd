@@ -34,8 +34,8 @@ pagetitle: "第13讲：模型与基准结果"
 ## 对应教材
 
 - [第13章：模型估计与结果检验](../textbook/ch13.qmd)
-- [主回归：基准回归是研究的锚](../textbook/ch13.qmd)
-- [稳健性检验：让结论经得起推敲](../textbook/ch13.qmd)
+- [主回归：基准回归是研究的锚](../textbook/ch14.qmd)
+- [稳健性检验：让结论经得起推敲](../textbook/ch14.qmd)
 
 ## AI 使用说明
 

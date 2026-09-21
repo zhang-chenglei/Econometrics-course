@@ -33,10 +33,10 @@ pagetitle: "第14讲：结果深化与写作修改"
 
 ## 对应教材
 
-- [第13章：异质性分析](../textbook/ch13.qmd)
-- [第13章：机制分析](../textbook/ch13.qmd)
-- [第14章：结果解读与经济学讨论](../textbook/ch14.qmd)
-- [第14章：AI辅助研究写作](../textbook/ch14.qmd)
+- [第14章：异质性分析](../textbook/ch14.qmd)
+- [第14章：机制分析](../textbook/ch14.qmd)
+- [第15章：结果解读与经济学讨论](../textbook/ch15.qmd)
+- [第15章：AI辅助研究写作](../textbook/ch15.qmd)
 
 ## AI 使用说明
 

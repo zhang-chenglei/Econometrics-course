@@ -21,12 +21,14 @@ python3 tools/sync_from_econkb.py --econkb ~/Documents/EconKB
 | 产出 | 说明 |
 |---|---|
 | `index.qmd`、`course/*.qmd` | 38 个飞书课程页，另有3个仓库专用页面（课件更新、代码与数据、2025—2026秋季学期计量基础课件） |
-| `textbook/*.qmd` | 24 个教材页（含导读、附录、参考文献） |
+| `textbook/*.qmd` | 26 个教材页（15 章 + 三部分 + 导读/导论/参考文献/附录A—D/结束语） |
 | `assets/images/` | 页面引用的图片 |
 | `_quarto.yml` 中的 AUTO-GENERATED 块 | 侧边栏导航 |
 | `llms.txt` | 供 AI agent 索引的全站页面清单 |
 
-公开代码与教学数据位于 `materials/`。其中包含教材主代码、课堂案例、AI任务卡、第11—15章贯穿案例的复现代码、匿名半合成教学样本和公开政策编码；内部母表、原始年鉴及受许可约束的数据不进入公开仓库。
+随站公开发布的教学数据与课件位于 `materials/`：`materials/data/` 是匿名半合成教学样本与公开政策编码，`materials/slides/` 是课堂课件。
+
+⚠️ **教材代码与 AI 任务卡不在本仓库**——它们在独立的学生代码仓库 `Econometrics-course-materials`（由 `tools/sync_student_repo.py` 从 EconKB 生成）。内部母表、原始年鉴及受许可约束的数据不进入任何公开仓库。
 
 课程页里的飞书链接会被重写为**站内链接**；指向站外（本站未收录）的链接则还原为纯文本。
 

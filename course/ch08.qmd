@@ -35,8 +35,8 @@ pagetitle: "第11讲：选题与研究设计"
 
 - [第11章：研究问题与识别策略](../textbook/ch11.qmd)
 - [研究问题从哪里来](../textbook/ch11.qmd)
-- [识别策略的选择](../textbook/ch11.qmd)
-- [实证研究的研究设计书模板](../textbook/ch11.qmd)
+- [识别策略的选择](../textbook/ch12.qmd)
+- [实证研究的研究设计书模板](../textbook/ch12.qmd)
 
 ## AI 使用说明
 

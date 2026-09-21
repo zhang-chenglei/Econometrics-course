@@ -174,9 +174,9 @@ website:
           - href: textbook/ending.qmd
             text: "结束语"
           - href: course/textbook_appendices.qmd
-            text: "50.4｜附录"
+            text: "附录"
           - href: course/ch14.qmd
-            text: "50.5｜教材章节与课程讲次对照"
+            text: "教材章节与课程讲次对照"
       - section: "60｜历年课程课件"
         contents:
           - href: course/basic_econometrics_slides.qmd

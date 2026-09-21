@@ -22,7 +22,7 @@ pagetitle: "自学专题：离散选择模型"
 - 比较预测概率与平均边际效应；
 - 用普通语言解释结果，并完成自测。
 
-需要时可直接跳到[线性概率模型](../textbook/ch06.qmd)、[Logit与Probit](../textbook/ch06.qmd)或[边际效应的解读](../textbook/ch06.qmd)。
+需要时可直接跳到[线性概率模型](../textbook/ch04.qmd)、[Logit与Probit](../textbook/ch04.qmd)或[边际效应的解读](../textbook/ch04.qmd)。
 
 ## AI协作任务
 

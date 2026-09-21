@@ -366,10 +366,10 @@ p 值回答的是「**能不能拒绝** `H₀`」，但还有一个信息量更�
 
 - [第1章：什么是回归](../textbook/ch01.qmd)
 - [第1章：最小二乘法](../textbook/ch01.qmd)
-- [第2章：多元线性回归的估计](../textbook/ch02.qmd)
-- [第2章：多元线性回归估计量的统计性质](../textbook/ch02.qmd)
-- [第3章：统计推断基础](../textbook/ch03.qmd)
-- [第3章：t检验、置信区间与F检验](../textbook/ch03.qmd)
+- [第2章：统计推断基础](../textbook/ch02.qmd)
+- [第2章：t检验、置信区间与F检验](../textbook/ch02.qmd)
+- [第3章：多元线性回归的估计](../textbook/ch03.qmd)
+- [第3章：多元线性回归估计量的统计性质](../textbook/ch03.qmd)
 
 ## 配套学习资源
 

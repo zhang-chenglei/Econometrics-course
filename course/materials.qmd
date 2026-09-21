@@ -44,17 +44,17 @@ pagetitle: "代码与数据｜下载与复现"
 
 这套数据用于第11—15章贯穿案例的完整实证项目训练。企业编号已经匿名化，结果变量按照公开的数据生成过程构造，并植入已知效应。它适合检验代码、学习DID、制作表图和练习论文写作，但不能用于评价现实政策效果。
 
-- [浏览数据目录](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/数据/半合成教学数据)
-- [下载CSV版](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/数据/半合成教学数据/ai_pilot_semisynthetic_2011_2024.csv)
-- [下载Excel版](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/数据/半合成教学数据/ai_pilot_semisynthetic_2011_2024.xlsx)
-- [变量字典](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/数据/半合成教学数据/variable_dictionary.csv)
+- [浏览数据目录](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/data/semisynthetic)
+- [下载CSV版](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/data/semisynthetic/ai_pilot_semisynthetic_2011_2024.csv)
+- [下载Excel版](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/data/semisynthetic/ai_pilot_semisynthetic_2011_2024.xlsx)
+- [变量字典](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/data/semisynthetic/variable_dictionary.csv)
 
 ### 人工智能试验区政策数据
 
 该目录整理18个国家新一代人工智能创新发展试验区的正式批复、处理时间和城市年度编码，适合学习政策事实核验、DID处理变量构造和数据合并。
 
-- [浏览政策数据与说明](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/数据/人工智能试验区政策数据)
-- [下载政策批复表](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/数据/人工智能试验区政策数据/ai_pilot_approvals.csv)
+- [浏览政策数据与说明](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/data/policy)
+- [下载政策批复表](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/data/policy/ai_pilot_approvals.csv)
 
 ## 建议的使用顺序
 
