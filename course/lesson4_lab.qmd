@@ -14,9 +14,7 @@ pagetitle: "第4讲 案例实操：AI 使用真的能提高学生成绩吗？"
 
 整个案例沿着一条主线展开：
 
-$$
-\text{相关}\rightarrow\text{质疑}\rightarrow\text{反事实}\rightarrow\text{研究设计}\rightarrow\text{识别}
-$$
+**相关 → 质疑 → 反事实 → 研究设计 → 识别**
 
 Agent 在本案例中的角色是帮你提出更好的问题、寻找替代解释和审查研究设计，而不是替你根据显著性下结论。
 
@@ -24,9 +22,9 @@ Agent 在本案例中的角色是帮你提出更好的问题、寻找替代解�
 
 可以使用 Stata 或 Python 中的任意一种：
 
-- [下载 Stata 数据](../materials/data/ai-score-case/AI_score_case.dta)
-- [下载 CSV 数据](../materials/data/ai-score-case/AI_score_case.csv)
-- [查看变量说明](../materials/data/ai-score-case/变量说明.md)
+- [下载 Stata 数据](https://zhang-chenglei.github.io/Econometrics-course/materials/data/ai-score-case/AI_score_case.dta)
+- [下载 CSV 数据](https://zhang-chenglei.github.io/Econometrics-course/materials/data/ai-score-case/AI_score_case.csv)
+- [查看变量说明](https://zhang-chenglei.github.io/Econometrics-course/materials/data/ai-score-case/变量说明.md)
 - [下载 Stata 起始 do-file](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/%E7%AC%AC6%E7%AB%A0_%E5%9B%A0%E6%9E%9C%E8%AF%86%E5%88%AB%E5%9F%BA%E7%A1%80_%E5%8F%8D%E4%BA%8B%E5%AE%9E%E4%B8%8E%E5%86%85%E7%94%9F%E6%80%A7/stata/01_ai_score_causal_design.do)
 - [下载 Python 起始代码](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/%E7%AC%AC6%E7%AB%A0_%E5%9B%A0%E6%9E%9C%E8%AF%86%E5%88%AB%E5%9F%BA%E7%A1%80_%E5%8F%8D%E4%BA%8B%E5%AE%9E%E4%B8%8E%E5%86%85%E7%94%9F%E6%80%A7/python/01_ai_score_causal_design.py)
 
@@ -79,9 +77,7 @@ plt.show()
 
 ## 第三步：跑一个最简单的回归
 
-$$
-final\_score_i=\beta_0+\beta_1 ai\_hours_i+u_i
-$$
+**final_scoreᵢ = β₀ + β₁ ai_hoursᵢ + uᵢ**
 
 ### Stata
 
@@ -98,7 +94,7 @@ naive = smf.ols("final_score ~ ai_hours", data=df).fit(cov_type="HC1")
 print(naive.summary())
 ```
 
-记录 $\hat\beta_1$、稳健标准误、$p$ 值和 $R^2$，然后分别完成下面两句话：
+记录 β̂₁、稳健标准误、p 值和 R²，然后分别完成下面两句话：
 
 - 这个回归直接告诉我：AI 每周使用时间相差 1 小时的学生，期末成绩平均相差 ______ 分。
 - 这个回归还不能告诉我：________________________________。
@@ -115,11 +111,9 @@ print(naive.summary())
 
 ## 第五步：把缺失的反事实写出来
 
-如果学生 $i$ 在每周使用 $a$ 小时 AI 时的潜在成绩是 $Y_i(a)$，那么每周多使用 1 小时的个体因果效应是：
+如果学生 i 在每周使用 a 小时 AI 时的潜在成绩是 Yᵢ(a)，那么每周多使用 1 小时的个体因果效应是：
 
-$$
-Y_i(a+1)-Y_i(a).
-$$
+**Yᵢ(a+1) − Yᵢ(a)**
 
 但同一个学生在同一学期只能实现一个 AI 使用强度。请填写：
 
@@ -181,4 +175,4 @@ $$
 - 是否说明了最脆弱的假设和结论边界？
 - 最终结论是否严格限于教学用合成数据？
 
-[完成后查看代码和结果分析](lesson4_code.qmd)
+[完成后查看代码和结果分析](https://zhang-chenglei.github.io/Econometrics-course/course/lesson4_code.html)
