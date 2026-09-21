@@ -33,7 +33,7 @@ pagetitle: "课件与更新｜持续发布"
 | 第1讲 | 课程介绍与计量研究思维 | [查看指南](intro.qmd) | [下载PPT](../materials/slides/lecture01-intermediate-econometrics-introduction.pptx) | 2026-09-11 |
 | 第2讲 | 回归基础复习（一）：三个基本问题 | [查看指南](part1_guide.qmd) | [下载PDF](../materials/slides/lecture02-regression-review.pdf) | 2026-09-14 |
 | 第3讲 | 回归基础复习（二）：模型设定与诊断 | [查看指南](ch01.qmd) | [下载PDF](../materials/slides/lecture03-model-specification-and-diagnostics.pdf) | 2026-09-20 |
-| 第4讲 | 内生性与因果推断初步：从相关到因果 | [查看指南](ch02.qmd) | [下载PDF](../materials/slides/lecture04-from-correlation-to-causation.pdf) | 2026-09-20 |
+| 第4讲 | 内生性与因果推断初步：从相关到因果 | [查看指南](ch02.qmd) | [下载PDF](../materials/slides/lecture04-from-correlation-to-causation.pdf) | 2026-09-21 |
 
 其余讲次的课件将在整理完成后陆续补充。本表中的链接始终指向当前版本；课件更新后无需更换收藏地址。
 
