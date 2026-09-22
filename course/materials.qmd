@@ -40,16 +40,16 @@ pagetitle: "代码与数据｜下载与复现"
 
 ## 数据
 
-### 第4讲：AI 使用与学生成绩
+### 第4讲：企业 AI 使用与创新产出
 
-这是一份用于“从相关到因果”教学的 800 人合成横截面数据。案例重点是定义反事实、识别威胁与重新设计研究，不代表任何现实学校或学生群体的 AI 使用效果。
+这是一份用于“从相关到因果”教学的 800 家企业合成横截面数据。案例重点是定义反事实、识别威胁与重新设计研究，不代表任何现实企业的 AI 使用效果。
 
 - [进入第4讲案例实操](lesson4_lab.qmd)
-- [下载 Stata 数据](../materials/data/ai-score-case/AI_score_case.dta)
-- [下载 CSV 数据](../materials/data/ai-score-case/AI_score_case.csv)
-- [查看变量说明](../materials/data/ai-score-case/变量说明.md)
-- [下载起始 do-file](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/%E7%AC%AC6%E7%AB%A0_%E5%9B%A0%E6%9E%9C%E8%AF%86%E5%88%AB%E5%9F%BA%E7%A1%80_%E5%8F%8D%E4%BA%8B%E5%AE%9E%E4%B8%8E%E5%86%85%E7%94%9F%E6%80%A7/stata/01_ai_score_causal_design.do)
-- [下载起始 Python 代码](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/%E7%AC%AC6%E7%AB%A0_%E5%9B%A0%E6%9E%9C%E8%AF%86%E5%88%AB%E5%9F%BA%E7%A1%80_%E5%8F%8D%E4%BA%8B%E5%AE%9E%E4%B8%8E%E5%86%85%E7%94%9F%E6%80%A7/python/01_ai_score_causal_design.py)
+- [下载 Stata 数据](../materials/data/firm-ai-innovation-case/firm_ai_innovation_case.dta)
+- [下载 CSV 数据](../materials/data/firm-ai-innovation-case/firm_ai_innovation_case.csv)
+- [查看变量说明](../materials/data/firm-ai-innovation-case/变量说明.md)
+- [下载起始 do-file](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/%E7%AC%AC6%E7%AB%A0_%E5%9B%A0%E6%9E%9C%E8%AF%86%E5%88%AB%E5%9F%BA%E7%A1%80_%E5%8F%8D%E4%BA%8B%E5%AE%9E%E4%B8%8E%E5%86%85%E7%94%9F%E6%80%A7/stata/01_firm_ai_innovation_causal_design.do)
+- [下载起始 Python 代码](https://github.com/zhang-chenglei/Econometrics-course-materials/raw/main/%E7%AC%AC6%E7%AB%A0_%E5%9B%A0%E6%9E%9C%E8%AF%86%E5%88%AB%E5%9F%BA%E7%A1%80_%E5%8F%8D%E4%BA%8B%E5%AE%9E%E4%B8%8E%E5%86%85%E7%94%9F%E6%80%A7/python/01_firm_ai_innovation_causal_design.py)
 
 ### 半合成教学样本
 
