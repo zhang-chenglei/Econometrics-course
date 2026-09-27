@@ -93,8 +93,13 @@ website:
       - section: "20｜第二部分：拓展模型"
         href: course/part2.qmd
         contents:
-          - href: course/ch03.qmd
-            text: "第5讲｜面板数据（一）"
+          - section: "第5讲｜面板数据（一）"
+            href: course/ch03.qmd
+            contents:
+              - href: course/lesson5_lab.qmd
+                text: "案例实操"
+              - href: course/lesson5_code.qmd
+                text: "代码和结果分析"
           - href: course/ch04.qmd
             text: "第6讲｜面板数据（二）"
           - href: course/ch05.qmd
