@@ -34,6 +34,7 @@ pagetitle: "课件与更新｜持续发布"
 | 第2讲 | 回归基础复习（一）：三个基本问题 | [查看指南](part1_guide.qmd) | [下载PDF](../materials/slides/lecture02-regression-review.pdf) | 2026-09-14 |
 | 第3讲 | 回归基础复习（二）：模型设定与诊断 | [查看指南](ch01.qmd) | [下载PDF](../materials/slides/lecture03-model-specification-and-diagnostics.pdf) | 2026-09-20 |
 | 第4讲 | 内生性与因果推断初步：从相关到因果 | [查看指南](ch02.qmd) | [下载PDF](../materials/slides/lecture04-from-correlation-to-causation.pdf) | 2026-09-21 |
+| 第5讲 | 面板数据模型（上）：从看不见的干扰到固定效应与随机效应 | [查看指南](ch03.qmd) | [下载PDF](../materials/slides/lecture05-panel-data-models.pdf) | 2026-09-28 |
 
 其余讲次的课件将在整理完成后陆续补充。本表中的链接始终指向当前版本；课件更新后无需更换收藏地址。
 
@@ -48,7 +49,7 @@ pagetitle: "课件与更新｜持续发布"
 
 ### 拓展模型
 
-- [第5讲｜面板数据（一）](ch03.qmd)
+- [第5讲｜面板数据（一）](ch03.qmd)：[案例实操](lesson5_lab.qmd) · [代码与结果](lesson5_code.qmd) · [下载PDF课件](../materials/slides/lecture05-panel-data-models.pdf)
 - [第6讲｜面板数据（二）](ch04.qmd)
 - [第7讲｜工具变量（一）](ch05.qmd)
 - [第8讲｜工具变量（二）](part2_guide.qmd)
@@ -72,6 +73,7 @@ pagetitle: "课件与更新｜持续发布"
 
 ## 最近更新
 
+- **2026-09-28**：发布第5讲《面板数据模型（上）：从看不见的干扰到固定效应与随机效应》PDF课件（173页）。
 - **2026-09-20**：第4讲《内生性与因果推断初步：从相关到因果》课件修订版发布（153页）——专业术语补充中英对照、末页参考文献补全为标准格式、新增附录术语对照表。
 - **2026-09-20**：发布第3讲《回归基础复习（二）：模型设定与诊断》PDF课件（161页）和第4讲《内生性与因果推断初步：从相关到因果》PDF课件（155页）。
 - **2026-09-14**：发布第2讲《回归基础复习（一）：三个基本问题》PDF课件（107页）；本讲指南与课件同步更新。
