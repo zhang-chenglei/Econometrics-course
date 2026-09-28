@@ -197,7 +197,7 @@ $$E(\alpha_i \mid X_{i1}, X_{i2}, \ldots, X_{iT}) = 0$$
 
 ## 本讲案例入口
 
-- [案例实操](https://zhang-chenglei.github.io/Econometrics-course/course/lesson5_lab.html)：用一份 200 家公司 × 5 年的模拟面板数据，完成混合 OLS、固定效应、三种 FE 方法对照、随机效应与豪斯曼检验、双向固定效应五个任务；
+- [案例实操](https://zhang-chenglei.github.io/Econometrics-course/course/lesson5_lab.html)：用一份 200 家公司 × 5 年的模拟面板数据，依次完成四个任务——混合 OLS 与固定效应、三种 FE 方法对照、随机效应与豪斯曼检验、双向固定效应与模型选择；
 - [代码和结果分析](https://zhang-chenglei.github.io/Econometrics-course/course/lesson5_code.html)：参考结果与解释，做完自己的分析后再对照。
 
 ## 对应教材
