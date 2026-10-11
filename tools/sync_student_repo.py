@@ -81,6 +81,12 @@ DATA_DIRS: list[tuple[str, str]] = [
     ("policy", "data/policy"),
 ]
 
+# 讲次专用的独立案例包；与教材章节代码并列，不手工编辑学生仓库副本。
+LECTURE_PACKAGES = [
+    ("30_教学/01_本学期计量课/中级计量（研究生）/课件/第六讲/student_package",
+     "lectures/lecture06_temperature_growth"),
+]
+
 # Top-level folders previous versions of this script generated. The pruner only
 # touches folders it currently owns, so without this list a restructure would
 # leave the old layout sitting next to the new one and students would see both.
@@ -135,6 +141,7 @@ README = """# 计量经济学：理论与实践｜课程代码与数据
 |--------|------|
 | `code/comprehensive_case/` | 第12—15章人工智能试验区综合案例复现包，含 Python、Stata、Jupyter Notebook 三版 |
 | `data/` | 半合成教学样本、人工智能试验区政策数据（综合案例脚本从这里取数） |
+| `lectures/lecture06_temperature_growth/` | 第六讲温度冲击案例：作者真实公开数据、Stata估计、Python运行入口与参考结果；须保留整个案例目录 |
 
 ## 运行
 
@@ -158,11 +165,12 @@ python 第3章_多元线性回归_控制与解释/python/01_controls_ovb.py
 
 ## 数据说明
 
-- 全部为教学用合成数据，真实参数由数据生成过程人为设定。它适合检查方法、
+- 教材章节模拟样本为教学用合成数据，真实参数由数据生成过程人为设定。它适合检查方法、
   练习操作，**不代表现实中的经济效果或政策效果**。
 - 综合案例中的企业样本已匿名化，其中的效应也是人为植入的，
   不得用于评价现实政策。
 - 引用教学数据时请标注“半合成教学数据”。
+- 第六讲温度冲击案例是 Dell、Jones 与 Olken (2012) 的真实公开研究数据，不能称为合成样本；来源、许可与署名要求见案例包 README。
 
 ## 遇到问题
 
@@ -208,6 +216,12 @@ def plan(econkb: Path, repo: Path) -> dict[Path, Path]:
         root = site_data / source_dir
         for path in sorted(root.rglob("*")):
             if path.is_file() and not SKIP_DIR_NAMES & set(path.parts):
+                expected[repo / target_dir / path.relative_to(root)] = path
+
+    for source_dir, target_dir in LECTURE_PACKAGES:
+        root = econkb / source_dir
+        for path in sorted(root.rglob("*")):
+            if path.is_file() and not (SKIP_DIR_NAMES | {"output"}) & set(path.relative_to(root).parts):
                 expected[repo / target_dir / path.relative_to(root)] = path
 
     return expected
@@ -263,6 +277,7 @@ def main() -> None:
     managed = {folder.split("/")[0] for _chapter, folder in CHAPTERS}
     managed |= {folder.split("/")[0] for _source, folder in BULK_DIRS}
     managed |= {folder.split("/")[0] for _source, folder in DATA_DIRS}
+    managed |= {folder.split("/")[0] for _source, folder in LECTURE_PACKAGES}
     # Folders this script used to own: prune them too, or a restructure leaves
     # the old layout behind (no student files live there — the repo is generated).
     managed |= set(RETIRED_FOLDERS)

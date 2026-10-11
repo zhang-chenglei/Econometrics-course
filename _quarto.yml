@@ -100,8 +100,13 @@ website:
                 text: "案例实操"
               - href: course/lesson5_code.qmd
                 text: "代码和结果分析"
-          - href: course/ch04.qmd
-            text: "第6讲｜面板数据（二）"
+          - section: "第6讲｜面板数据（二）"
+            href: course/ch04.qmd
+            contents:
+              - href: course/lesson6_lab.qmd
+                text: "案例实操"
+              - href: course/lesson6_code.qmd
+                text: "代码和结果分析"
           - href: course/ch05.qmd
             text: "第7讲｜工具变量（一）"
           - href: course/part2_guide.qmd

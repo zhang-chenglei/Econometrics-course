@@ -26,6 +26,8 @@
 - [案例实操](https://zhang-chenglei.github.io/Econometrics-course/course/lesson5_lab.html)
 - [代码和结果分析](https://zhang-chenglei.github.io/Econometrics-course/course/lesson5_code.html)
 - [第6讲｜面板数据（二）](https://zhang-chenglei.github.io/Econometrics-course/course/ch04.html)
+- [案例实操](https://zhang-chenglei.github.io/Econometrics-course/course/lesson6_lab.html)
+- [代码和结果分析](https://zhang-chenglei.github.io/Econometrics-course/course/lesson6_code.html)
 - [第7讲｜工具变量（一）](https://zhang-chenglei.github.io/Econometrics-course/course/ch05.html)
 - [第8讲｜工具变量（二）](https://zhang-chenglei.github.io/Econometrics-course/course/part2_guide.html)
 - [第9讲｜双重差分与断点回归](https://zhang-chenglei.github.io/Econometrics-course/course/ch06.html)
