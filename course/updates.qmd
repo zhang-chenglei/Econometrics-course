@@ -37,8 +37,11 @@ pagetitle: "课件与更新｜持续发布"
 | 第5讲 | 面板数据模型（上）：从看不见的干扰到固定效应与随机效应 | [查看指南](ch03.qmd) | [下载PDF](../materials/slides/lecture05-panel-data-models.pdf) | 2026-09-28 |
 | 第6讲 | 面板数据模型（下）：固定效应、标准误与模型扩展 | [查看指南](ch04.qmd) | [下载PDF](../materials/slides/lecture06-panel-data-models-extensions.pdf) | 2026-10-12 |
 | 第7讲 | 工具变量（一）：从内生性到识别逻辑 | [查看指南](ch05.qmd) | [下载PDF](../materials/slides/lecture07-instrumental-variables-part1.pdf) | 2026-10-19 |
+| 第8讲 | 工具变量（二）：从两个条件出发——找法、案例与实证问题 | [查看指南](part2_guide.qmd) | [下载PDF](../materials/slides/lecture08-instrumental-variables-part2.pdf) | 2026-10-27 |
+| 第9讲 | 双重差分与断点回归：从反事实到可信的比较 | [查看指南](ch06.qmd) | [下载PDF](../materials/slides/lecture09-did-rd.pdf) | 2026-11-03 |
+| 第10讲 | 机器学习在计量经济学中的应用：从预测到因果 | [查看指南](ch07.qmd) | [下载PDF](../materials/slides/lecture10-machine-learning.pdf) | 2026-11-10 |
 
-其余讲次的课件将在整理完成后陆续补充。本表中的链接始终指向当前版本；课件更新后无需更换收藏地址。
+第11讲起的课件将在整理完成后陆续补充。本表中的链接始终指向当前版本；课件更新后无需更换收藏地址。
 
 ## 15讲资料导航
 
@@ -54,9 +57,9 @@ pagetitle: "课件与更新｜持续发布"
 - [第5讲｜面板数据（一）](ch03.qmd)：[案例实操](lesson5_lab.qmd) · [代码与结果](lesson5_code.qmd) · [下载PDF课件](../materials/slides/lecture05-panel-data-models.pdf)
 - [第6讲｜面板数据（二）](ch04.qmd)：[案例实操](lesson6_lab.qmd) · [代码与结果](lesson6_code.qmd) · [下载PDF课件](../materials/slides/lecture06-panel-data-models-extensions.pdf)
 - [第7讲｜工具变量（一）](ch05.qmd)：[下载PDF课件](../materials/slides/lecture07-instrumental-variables-part1.pdf)
-- [第8讲｜工具变量（二）](part2_guide.qmd)
-- [第9讲｜双重差分与断点回归](ch06.qmd)
-- [第10讲｜前沿模型与非经典计量](ch07.qmd)
+- [第8讲｜工具变量（二）](part2_guide.qmd)：[下载PDF课件](../materials/slides/lecture08-instrumental-variables-part2.pdf)
+- [第9讲｜双重差分与断点回归](ch06.qmd)：[下载PDF课件](../materials/slides/lecture09-did-rd.pdf)
+- [第10讲｜前沿模型与非经典计量](ch07.qmd)：[下载PDF课件](../materials/slides/lecture10-machine-learning.pdf)
 
 ### 实证项目
 
@@ -75,6 +78,9 @@ pagetitle: "课件与更新｜持续发布"
 
 ## 最近更新
 
+- **2026-11-10**：发布第10讲《机器学习在计量经济学中的应用：从预测，到控制变量，再到“谁受益更多”》PDF课件（76页）。
+- **2026-11-03**：发布第9讲《双重差分与断点回归：从反事实到可信的比较》PDF课件（104页）。
+- **2026-10-27**：发布第8讲《工具变量（二）：从两个条件出发——找法、案例与实证问题》PDF课件（145页）。
 - **2026-10-12**：第6讲将第33—34帧的时间趋势内容替换为农业、工业、投资和政治稳定的拓展分析（45帧、含逐步展示共152页）。新增结果直接引用原稿表5 Panel A与表6列(4)，标明表号和列号；区分显著与不显著结果，说明相关结果尚不能证明完整的影响链条。保留异质性与滞后分析，同步调整学习目标和总结，原下载地址不变。
 - **2026-10-12**：第6讲澄清第27帧的聚类建议（45帧、含逐步展示共151页）。表格保留一般稳健、企业聚类与城市聚类三种情形，移除突然出现的企业＋行业×年份例子；下方说明两种关联无法由一种分组覆盖时可考虑双向聚类，不要求包含年份，也不是逐级升级。其他课件页保持不变，原下载地址不变。
 - **2026-10-12**：第6讲完成建议表格与概念顺序修订（45帧、含逐步展示共152页）。第4帧仅介绍国家固定效应，不提前出现地区×年份概念；第7帧第三项目标改为一般性的模型扩展。第26帧先讨论、第27帧再给参考建议；第17、27、39帧统一用“什么情况—通常可考虑—为什么—注意什么”表格总结固定效应、标准误与模型扩展。学生页面移除制作提示，保留原稿出处、示意说明及必要的规格差异。原下载地址不变。
