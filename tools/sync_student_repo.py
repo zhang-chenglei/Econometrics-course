@@ -85,6 +85,8 @@ DATA_DIRS: list[tuple[str, str]] = [
 LECTURE_PACKAGES = [
     ("30_教学/01_本学期计量课/中级计量（研究生）/课件/第六讲/student_package",
      "lectures/lecture06_temperature_growth"),
+    ("30_教学/01_本学期计量课/中级计量（研究生）/课件/第七讲/student_package",
+     "lectures/lecture07_instrumental_variables"),
 ]
 
 # Top-level folders previous versions of this script generated. The pruner only
@@ -142,6 +144,7 @@ README = """# 计量经济学：理论与实践｜课程代码与数据
 | `code/comprehensive_case/` | 第12—15章人工智能试验区综合案例复现包，含 Python、Stata、Jupyter Notebook 三版 |
 | `data/` | 半合成教学样本、人工智能试验区政策数据（综合案例脚本从这里取数） |
 | `lectures/lecture06_temperature_growth/` | 第六讲温度冲击案例：作者真实公开数据、Stata估计、Python运行入口与参考结果；须保留整个案例目录 |
+| `lectures/lecture07_instrumental_variables/` | 第七讲工具变量案例：500家虚构企业的固定教学样本、OLS/2SLS/弱工具/过度识别/DWH的Stata与Python代码及参考结果 |
 
 ## 运行
 

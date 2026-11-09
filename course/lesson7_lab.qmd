@@ -1,0 +1,120 @@
+---
+pagetitle: "第7讲 案例实操：研发投入会提高企业绩效吗？"
+---
+
+# 第7讲 案例实操：研发投入会提高企业绩效吗？
+
+> 先读[本讲讲义](https://zhang-chenglei.github.io/Econometrics-course/course/ch05.html)，再完成任务。每一步先写自己的预测，再让 Agent 帮忙运行或核对。参考答案见[代码和结果分析](https://zhang-chenglei.github.io/Econometrics-course/course/lesson7_code.html)。
+
+## 案例与准备
+
+本案例使用教材第8章 §8.5 的**完全生成**截面企业数据：500 家虚构企业，研究研发投入 `RD` 对净资产收益率 `ROE` 的影响。数据中人为设定了一个不可观测的 `ability`，它同时影响 `RD` 和 `ROE`，所以 `RD` 是内生的。科研资源密度 `ResDensity` 和高校数量 `University` 在 DGP 中是外生工具。
+
+课堂上的入学抽签负责讲“什么是工具、为什么能识别”；本案例负责把 OLS、第一阶段、2SLS、弱工具、过度识别和 DWH 检验完整跑一遍。**模拟结果不构成真实企业研发回报的证据。**
+
+1. [下载课程代码与数据 ZIP](https://github.com/zhang-chenglei/Econometrics-course-materials/archive/refs/heads/main.zip)，解压后进入 **`lectures/lecture07_instrumental_variables/`**；也可以先[浏览第七讲案例包](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/lectures/lecture07_instrumental_variables)。保留整个案例目录。
+2. 准备 Python 3.11 或以上版本。Stata 17 或以上可选；有 Stata 时可以对照两套结果。
+3. 在案例目录运行：
+
+```sh
+python3 -m pip install -r scripts/requirements.txt
+python3 run_case.py --mode teaching
+```
+
+如果 Stata 不在默认位置：
+
+```sh
+python3 run_case.py --mode teaching --stata "Stata可执行文件的完整路径"
+```
+
+只运行 Python：
+
+```sh
+python3 run_case.py --mode teaching --no-stata
+```
+
+Python 结果写入 `output/python/`，Stata 结果写入 `output/stata/`，参考结果在 `reference/`。建立一份 `ai_log.md`，记录预测、Agent 建议、实际结果和人工核验。
+
+## 先写识别清单
+
+在运行之前，先建立 `identification.md`，至少写清：
+
+| 项目 | 你要写的内容 |
+|---|---|
+| 内生变量 | 哪个变量可能内生？为什么？ |
+| 工具变量 | 单工具和双工具分别是什么？ |
+| 外生控制 | 哪些变量进入两阶段？ |
+| 目标参数 | 你想估计什么？本 DGP 的真值是多少？ |
+| 相关性机制 | 工具为什么能推动 `RD`？ |
+| 排除限制威胁 | 工具可能通过哪些其他路径影响 `ROE`？ |
+
+先写一句预测：本案例中 OLS 的 `RD` 系数会比 IV 更大还是更小？为什么？
+
+## 任务1：OLS 与 IV——看见内生性偏误
+
+1. 用 OLS 估计 `ROE` 对 `RD`、`size`、`age` 的回归，使用稳健标准误。
+2. 用 2SLS，以 `ResDensity` 作为 `RD` 的工具，控制 `size`、`age`。
+3. 整理一张 OLS vs IV 对比表：`RD` 的系数和标准误。
+4. 结合已知 DGP 回答：OLS 系数更大还是更小？方向和大小说明什么？
+5. 再回答：如果真实研究中看不到 DGP，能不能只凭“IV 比 OLS 小”就断言 OLS 高估？
+
+> **完成标志：** 一张 OLS vs IV 表；一段说明偏误方向和 DGP 依据；一句说明真实研究中的判断边界。
+
+Agent 指令：
+
+> 我把 OLS 和 IV 的 RD 系数发给你。请只核对我的解释：OLS 与 IV 使用的变异来源有什么不同？在本 DGP 中 ability 同时影响什么？不要替我断言真实研究中哪个估计一定正确。
+
+## 任务2：第一阶段与弱工具
+
+1. 运行第一阶段回归：`RD` 对 `ResDensity`、`size`、`age`。
+2. 报告 `ResDensity` 的系数、标准误、t 值和 p 值。
+3. 报告被排除工具的偏 F 统计量和偏 R²。
+4. 用 `noise_iv` 作为假工具，重新运行第一阶段和 2SLS，记录系数、标准误和置信区间。
+5. 回答：为什么“F>10”只能作为粗略预警线，不能当作强工具证书？
+
+> **完成标志：** 一张第一阶段表；一行偏 F、偏 R²；一张弱工具 vs 强工具对照表；一句说明弱工具为什么会让估计和推断都不可靠。
+
+Agent 指令：
+
+> 我发给你第一阶段和弱工具的结果。请只检查：我报告的是被排除工具的偏 F，还是整条回归的总体 F？弱工具下标准误和置信区间发生了什么变化？不要用“F 大于 10”直接宣布工具有效。
+
+## 任务3：两个工具与过度识别
+
+1. 加入第二个工具 `University`，估计双工具 2SLS。
+2. 比较单工具与双工具的 `RD` 系数和标准误。
+3. 运行过度识别检验，记录统计量、自由度和 p 值。
+4. 回答：不拒绝时，能不能说“两个工具都被证明外生”？拒绝时，能不能说“一定是某个工具无效”？
+5. 说明：恰好识别时为什么不能做这个检验？
+
+> **完成标志：** 一张单工具 vs 双工具表；一行过度识别检验结果；一段说明它能证明什么、不能证明什么。
+
+Agent 指令：
+
+> 我发给你单工具、双工具和过度识别结果。请只核对：模型是否真的过度识别？检验的原假设是什么？拒绝和不拒绝各自能支持什么结论？不要替我宣布所有工具都外生。
+
+## 任务4：DWH 与综合判断
+
+1. 运行 Durbin-Wu-Hausman 内生性检验。
+2. 整理 OLS、单工具 IV、双工具 IV 的三模型汇总表。
+3. 回答：DWH 拒绝时，是否就可以直接采用 IV？DWH 不拒绝时，是否就可以直接改用 OLS？
+4. 用一段话说明：在本案例中，IV 结果的解释依赖哪些识别条件？哪些是统计检验能回答的，哪些必须回到 DGP 或制度逻辑？
+
+> **完成标志：** 一张三模型汇总表；一段不超过 300 字的综合判断；一条“检验不能替代识别论证”的具体说明。
+
+## 最终交付与自查
+
+保留识别清单、模型表、运行代码、输出和 `ai_log.md`。用四句话交代：
+
+1. 比较对象是什么？
+2. 工具为什么能推动 `RD`？
+3. 排除限制依赖什么？
+4. 结果能解释到谁、不能解释到什么？
+
+自查四处常见错误：
+
+- 把“F>10”当成工具有效的证明；
+- 把过度识别检验“不拒绝”写成“两个工具都外生”；
+- 把 DWH“不拒绝”写成“`RD` 已经外生”；
+- 把 IV 系数更接近 1.2 直接推广为“真实研究中 IV 一定比 OLS 好”。
+
+[完成后查看代码和结果分析](https://zhang-chenglei.github.io/Econometrics-course/course/lesson7_code.html)

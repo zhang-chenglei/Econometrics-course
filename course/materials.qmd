@@ -60,6 +60,15 @@ pagetitle: "代码与数据｜下载与复现"
 - [下载全部代码与数据（ZIP）](https://github.com/zhang-chenglei/Econometrics-course-materials/archive/refs/heads/main.zip)，解压后进入 `lectures/lecture06_temperature_growth/`
 - [下载本讲课件](../materials/slides/lecture06-panel-data-models-extensions.pdf)
 
+### 第7讲：研发投入与企业绩效
+
+使用教材第8章 §8.5 的完全生成截面企业数据，练习 OLS 与 IV、第一阶段、弱工具、过度识别和 DWH 检验。数据、Stata 与 Python 代码、参考结果都在独立案例包中。
+
+- [第7讲讲义](ch05.qmd) · [案例实操](lesson7_lab.qmd) · [代码与结果分析](lesson7_code.qmd)
+- [浏览独立案例包与运行说明](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/lectures/lecture07_instrumental_variables)
+- [下载全部代码与数据（ZIP）](https://github.com/zhang-chenglei/Econometrics-course-materials/archive/refs/heads/main.zip)，解压后进入 `lectures/lecture07_instrumental_variables/`
+- [下载本讲课件](../materials/slides/lecture07-instrumental-variables-part1.pdf)
+
 ### 半合成教学样本
 
 这套数据用于第11—15章贯穿案例的完整实证项目训练。企业编号已经匿名化，结果变量按照公开的数据生成过程构造，并植入已知效应。它适合检验代码、学习DID、制作表图和练习论文写作，但不能用于评价现实政策效果。

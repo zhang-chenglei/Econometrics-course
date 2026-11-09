@@ -107,8 +107,13 @@ website:
                 text: "案例实操"
               - href: course/lesson6_code.qmd
                 text: "代码和结果分析"
-          - href: course/ch05.qmd
-            text: "第7讲｜工具变量（一）"
+          - section: "第7讲｜工具变量（一）"
+            href: course/ch05.qmd
+            contents:
+              - href: course/lesson7_lab.qmd
+                text: "案例实操"
+              - href: course/lesson7_code.qmd
+                text: "代码和结果分析"
           - href: course/part2_guide.qmd
             text: "第8讲｜工具变量（二）"
           - href: course/ch06.qmd

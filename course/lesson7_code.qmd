@@ -1,0 +1,205 @@
+---
+pagetitle: "第7讲 代码和结果分析"
+---
+
+# 第7讲 代码和结果分析
+
+> 本页与[案例实操](https://zhang-chenglei.github.io/Econometrics-course/course/lesson7_lab.html)逐项对应。全部参考数值来自固定教学样本的实际运行；Stata 与 Python 读取同一份 CSV，点估计一致，标准误和 p 值可能因软件的小样本修正或分布选择略有差异。先完成自己的分析，再对照本页。
+
+## 文件与运行顺序
+
+[下载课程代码与数据 ZIP](https://github.com/zhang-chenglei/Econometrics-course-materials/archive/refs/heads/main.zip)，进入 `lectures/lecture07_instrumental_variables/`；[在线查看本讲代码目录](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/lectures/lecture07_instrumental_variables)。
+
+| 文件 | 用途 |
+|---|---|
+| `data/firm_iv_case.csv` | 500 家企业的固定教学样本，Stata 与 Python 共用 |
+| `scripts/generate_data.py` | 生成固定样本的 DGP；`ability` 不写入 CSV |
+| `scripts/analysis_python.py` | Python 分析：OLS、2SLS、第一阶段、弱工具、过度识别、DWH |
+| `scripts/analysis_stata.do` | Stata 分析：同上 |
+| `reference/` | 参考结果与 `key_numbers.json` |
+| `output/` | 同学自己运行产生的结果 |
+| `run_case.py` | 运行入口与参考结果对照 |
+
+```sh
+python3 -m pip install -r scripts/requirements.txt
+python3 run_case.py --mode teaching
+```
+
+有 Stata 时，运行入口会自动查找常见安装位置；也可以显式指定：
+
+```sh
+python3 run_case.py --mode teaching --stata "/Applications/StataNow/StataMP.app/Contents/MacOS/stata-mp"
+```
+
+## 数据与 DGP
+
+数据是 500 家虚构企业的单一截面。核心生成过程为：
+
+$$
+\begin{aligned}
+RD_i &= 2.0 + 0.7\,ResDensity_i + 0.1\,University_i
+      + 0.3\,size_i - 0.02\,age_i + 0.6\,ability_i + u_i,\\
+ROE_i &= 5.0 + 1.2\,RD_i + 0.5\,size_i - 0.01\,age_i
+       + 0.8\,ability_i + v_i.
+\end{aligned}
+$$
+
+- `ability` 同时进入两个方程，因此 `RD` 与结构误差相关；
+- `ResDensity` 与 `University` 在 DGP 中被设为外生工具；
+- `RD → ROE` 的真实结构系数是 **1.2**；
+- `noise_iv` 是与 `RD` 无关的随机变量，只用于任务2的弱工具对照；
+- `ability` 只在生成时使用，不在学生数据中。
+
+| 变量 | 含义 |
+|---|---|
+| `ROE` | 净资产收益率（%） |
+| `RD` | 研发投入（百万元） |
+| `ResDensity` | 科研资源密度（Z1） |
+| `University` | 高校数量（Z2） |
+| `size` | 企业规模（对数） |
+| `age` | 企业年龄 |
+| `noise_iv` | 纯噪声工具，仅用于弱工具演示 |
+
+## 任务1：OLS 与 IV
+
+Stata：
+
+```stata
+reg ROE RD size age, robust
+ivregress 2sls ROE (RD = ResDensity) size age, robust
+```
+
+Python：
+
+```python
+from linearmodels.iv import IV2SLS
+import statsmodels.api as sm
+
+ols = sm.OLS(df["ROE"], sm.add_constant(df[["RD", "size", "age"]])).fit(cov_type="HC1")
+iv = IV2SLS(
+    df["ROE"], sm.add_constant(df[["size", "age"]]),
+    df["RD"], df[["ResDensity"]]
+).fit(cov_type="robust")
+```
+
+参考结果：
+
+| 变量 | OLS 系数 | OLS SE | IV 系数 | IV SE |
+|---|---:|---:|---:|---:|
+| `RD` | 1.4224 | 0.0578 | 1.1490 | 0.1104 |
+| `size` | 0.3748 | 0.0740 | 0.4597 | 0.0809 |
+| `age` | −0.0105 | 0.0062 | −0.0145 | 0.0064 |
+
+在本 DGP 中，`ability` 与 `RD` 正相关、也与 `ROE` 正相关，所以 OLS 的 `RD` 系数被向上推高。IV 利用 `ResDensity` 推动的 `RD` 变化，估计值更接近设定的 1.2。**这是知道 DGP 时的判断；真实研究中看不到 `ability`，不能只凭系数大小断言 OLS 高估或工具有效。**
+
+## 任务2：第一阶段与弱工具
+
+Stata：
+
+```stata
+reg RD ResDensity size age, robust
+test ResDensity
+ivregress 2sls ROE (RD = noise_iv) size age, robust
+estat firststage
+```
+
+Python：`analysis_python.py` 中第一阶段用 `statsmodels`，偏 F 取被排除工具稳健 t 值的平方；双工具与过度识别用 `linearmodels`。
+
+第一阶段参考结果：
+
+| 变量 | 系数 | SE | t | p |
+|---|---:|---:|---:|---:|
+| `const` | 2.0119 | 0.2503 | 8.039 | 0.000 |
+| `ResDensity` | 0.6938 | 0.0483 | 14.351 | 0.000 |
+| `size` | 0.3004 | 0.0479 | 6.267 | 0.000 |
+| `age` | −0.0178 | 0.0045 | −3.911 | 0.000 |
+
+- 偏 F：**205.94**
+- 偏 R²：**0.2572**
+- 完整第一阶段 R²：**0.3272**
+
+弱工具对照：
+
+| 工具 | `RD` 系数 | SE | 95% 置信区间 | 第一阶段 F |
+|---|---:|---:|---|---:|
+| `noise_iv` | −0.576 | 3.914 | [−8.247, 7.094] | 0.339 |
+| `ResDensity` | 1.149 | 0.110 | [0.933, 1.365] | 205.942 |
+
+弱工具把置信区间撑得很宽，点估计也不再稳定。**“F>10”只是特定简单设定下的粗略预警线，不是强工具证书。** 本数据是一个固定样本；真实研究还要根据异方差、聚类、工具数量和多内生变量情形选择相应的弱识别诊断。
+
+## 任务3：双工具与过度识别
+
+Stata：
+
+```stata
+ivregress 2sls ROE (RD = ResDensity University) size age, robust
+estat overid
+```
+
+Python：
+
+```python
+iv2 = IV2SLS(
+    df["ROE"], sm.add_constant(df[["size", "age"]]),
+    df["RD"], df[["ResDensity", "University"]]
+).fit(cov_type="robust")
+print(iv2.wooldridge_overid)
+```
+
+单工具与双工具：
+
+| 变量 | 单 IV 系数 | 单 IV SE | 双 IV 系数 | 双 IV SE |
+|---|---:|---:|---:|---:|
+| `RD` | 1.1490 | 0.1104 | 1.1468 | 0.1104 |
+| `size` | 0.4597 | 0.0809 | 0.4604 | 0.0810 |
+| `age` | −0.0145 | 0.0064 | −0.0145 | 0.0064 |
+
+过度识别检验（稳健得分检验）：
+
+| 统计量 | 自由度 | p 值 |
+|---:|---:|---:|
+| 0.1844 | 1 | 0.6677 |
+
+本 DGP 把两个工具都设为外生，所以这次样本没有显示明显冲突。**不拒绝不能证明两个工具都外生；拒绝也不能指出具体哪个工具坏了。** 拒绝还可能来自模型设定错误，或不同工具推动了不同人群、识别了不同局部参数。恰好识别时没有多余矩条件，根本不能做这个检验。
+
+## 任务4：DWH 与综合判断
+
+Stata：
+
+```stata
+ivregress 2sls ROE (RD = ResDensity) size age, robust
+estat endogenous
+```
+
+Python：把第一阶段残差加入 `ROE` 对 `RD`、`size`、`age` 的 OLS，检验残差项系数。
+
+DWH 参考结果：
+
+| 统计量 | 自由度 | p 值 |
+|---:|---:|---:|
+| F = 8.6805 | 1 | 约 0.003 |
+
+> Stata 的 `estat endogenous` 报告 F 检验，p≈0.0034；Python 用 χ²(1) 近似，p≈0.0032。结论一致：本样本反对 `RD` 外生。
+
+三模型汇总：
+
+| 变量 | OLS 系数 | OLS SE | 单 IV 系数 | 单 IV SE | 双 IV 系数 | 双 IV SE |
+|---|---:|---:|---:|---:|---:|---:|
+| `RD` | 1.4224 | 0.0578 | 1.1490 | 0.1104 | 1.1468 | 0.1104 |
+| `size` | 0.3748 | 0.0740 | 0.4597 | 0.0809 | 0.4604 | 0.0810 |
+| `age` | −0.0105 | 0.0062 | −0.0145 | 0.0064 | −0.0145 | 0.0064 |
+
+DWH 拒绝 `RD` 外生，支持把 `RD` 当作内生变量处理；它**不能**反过来证明 `ResDensity` 有效。如果 DWH 不拒绝，也不能直接宣布 `RD` 外生——可能是检验功效不足，也可能是工具太弱。最终是否使用 IV，要比较两套识别假设的可信度，而不是机械服从一次检验。
+
+## 怎样写结果解释
+
+一段可接受的解释应说清：
+
+- 本案例是**合成数据**，`RD` 的真实效应设定为 1.2；
+- OLS 的 `RD` 系数约 1.42，IV 约 1.15，差异与 `ability` 造成的向上偏误方向一致；
+- 单工具第一阶段偏 F 约 205.94，偏 R² 约 0.2572；
+- 双工具过度识别检验不拒绝，但不能据此证明两个工具都外生；
+- DWH 拒绝 `RD` 外生，但在真实研究中，IV 是否可信仍取决于相关性机制和排除限制的制度论证；
+- 本模拟结果不能解释为真实企业研发回报，也不能直接外推到其他企业或政策。
+
+[返回本讲讲义](https://zhang-chenglei.github.io/Econometrics-course/course/ch05.html)｜[返回案例实操](https://zhang-chenglei.github.io/Econometrics-course/course/lesson7_lab.html)

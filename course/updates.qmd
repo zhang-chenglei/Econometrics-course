@@ -56,7 +56,7 @@ pagetitle: "课件与更新｜持续发布"
 
 - [第5讲｜面板数据（一）](ch03.qmd)：[案例实操](lesson5_lab.qmd) · [代码与结果](lesson5_code.qmd) · [下载PDF课件](../materials/slides/lecture05-panel-data-models.pdf)
 - [第6讲｜面板数据（二）](ch04.qmd)：[案例实操](lesson6_lab.qmd) · [代码与结果](lesson6_code.qmd) · [下载PDF课件](../materials/slides/lecture06-panel-data-models-extensions.pdf)
-- [第7讲｜工具变量（一）](ch05.qmd)：[下载PDF课件](../materials/slides/lecture07-instrumental-variables-part1.pdf)
+- [第7讲｜工具变量（一）](ch05.qmd)：[案例实操](lesson7_lab.qmd) · [代码与结果](lesson7_code.qmd) · [下载PDF课件](../materials/slides/lecture07-instrumental-variables-part1.pdf)
 - [第8讲｜工具变量（二）](part2_guide.qmd)：[下载PDF课件](../materials/slides/lecture08-instrumental-variables-part2.pdf)
 - [第9讲｜双重差分与断点回归](ch06.qmd)：[下载PDF课件](../materials/slides/lecture09-did-rd.pdf)
 - [第10讲｜前沿模型与非经典计量](ch07.qmd)：[下载PDF课件](../materials/slides/lecture10-machine-learning.pdf)
