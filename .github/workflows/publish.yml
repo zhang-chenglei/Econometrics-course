@@ -40,3 +40,7 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # GitHub Pages 侧偶发 syncing_files 超过默认 10 分钟（2026-11-10 连续
+          # 多次超时）；放宽到 20 分钟，避免正常但较慢的同步被误判为失败。
+          timeout: 1200000
