@@ -119,7 +119,7 @@ website:
           - href: course/ch06.qmd
             text: "第9讲｜双重差分与断点回归"
           - href: course/ch07.qmd
-            text: "第10讲｜前沿模型与非经典计量"
+            text: "第10讲｜机器学习在计量经济学中的应用"
       - section: "30｜第三部分：实证项目"
         href: course/part3.qmd
         contents:

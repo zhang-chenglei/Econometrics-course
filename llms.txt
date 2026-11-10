@@ -31,7 +31,7 @@
 - [第7讲｜工具变量（一）](https://zhang-chenglei.github.io/Econometrics-course/course/ch05.html)
 - [第8讲｜工具变量（二）](https://zhang-chenglei.github.io/Econometrics-course/course/part2_guide.html)
 - [第9讲｜双重差分与断点回归](https://zhang-chenglei.github.io/Econometrics-course/course/ch06.html)
-- [第10讲｜前沿模型与非经典计量](https://zhang-chenglei.github.io/Econometrics-course/course/ch07.html)
+- [第10讲｜机器学习在计量经济学中的应用](https://zhang-chenglei.github.io/Econometrics-course/course/ch07.html)
 - [30｜第三部分：实证项目](https://zhang-chenglei.github.io/Econometrics-course/course/part3.html)
 - [第11讲｜选题与研究设计](https://zhang-chenglei.github.io/Econometrics-course/course/ch08.html)
 - [第12讲｜数据与变量](https://zhang-chenglei.github.io/Econometrics-course/course/ch09.html)
