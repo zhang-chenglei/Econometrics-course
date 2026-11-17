@@ -1,6 +1,6 @@
 # 计量经济学：理论与实践
 
-> 面向具备一定统计学和多元回归分析基础的高年级本科生与研究生：15讲学习路径、完整教材、代码、数据与AI协作指南。
+> 面向具备一定统计学和多元回归分析基础的高年级本科生与研究生：16讲学习路径、完整教材、代码、数据与AI协作指南。
 
 ## 课程
 
@@ -32,12 +32,13 @@
 - [第8讲｜工具变量（二）](https://zhang-chenglei.github.io/Econometrics-course/course/part2_guide.html)
 - [第9讲｜双重差分与断点回归](https://zhang-chenglei.github.io/Econometrics-course/course/ch06.html)
 - [第10讲｜机器学习在计量经济学中的应用](https://zhang-chenglei.github.io/Econometrics-course/course/ch07.html)
+- [第11讲｜大语言模型与经济学研究](https://zhang-chenglei.github.io/Econometrics-course/course/ch07a.html)
 - [30｜第三部分：实证项目](https://zhang-chenglei.github.io/Econometrics-course/course/part3.html)
-- [第11讲｜选题与研究设计](https://zhang-chenglei.github.io/Econometrics-course/course/ch08.html)
-- [第12讲｜数据与变量](https://zhang-chenglei.github.io/Econometrics-course/course/ch09.html)
-- [第13讲｜模型与基准结果](https://zhang-chenglei.github.io/Econometrics-course/course/ch10.html)
-- [第14讲｜结果深化与写作修改](https://zhang-chenglei.github.io/Econometrics-course/course/part3_guide.html)
-- [第15讲｜成果呈现与项目汇报](https://zhang-chenglei.github.io/Econometrics-course/course/ch11.html)
+- [第12讲｜选题与研究设计](https://zhang-chenglei.github.io/Econometrics-course/course/ch08.html)
+- [第13讲｜数据与变量](https://zhang-chenglei.github.io/Econometrics-course/course/ch09.html)
+- [第14讲｜模型与基准结果](https://zhang-chenglei.github.io/Econometrics-course/course/ch10.html)
+- [第15讲｜结果深化与写作修改](https://zhang-chenglei.github.io/Econometrics-course/course/part3_guide.html)
+- [第16讲｜成果呈现与项目汇报](https://zhang-chenglei.github.io/Econometrics-course/course/ch11.html)
 - [40｜自主学习专题](https://zhang-chenglei.github.io/Econometrics-course/course/ch12.html)
 - [自学专题｜离散选择模型](https://zhang-chenglei.github.io/Econometrics-course/course/ch13.html)
 - [50｜教材全文](https://zhang-chenglei.github.io/Econometrics-course/course/textbook.html)

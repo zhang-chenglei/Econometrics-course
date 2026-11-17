@@ -13,11 +13,12 @@ pagetitle: "50.5 教材章节与课程讲次对照"
 - 第5—6讲：[第7章](../textbook/ch07.qmd)；
 - 第7—8讲：[第8章](../textbook/ch08.qmd)；
 - 第9讲：[第9章](../textbook/ch09.qmd)中的双重差分与断点回归；
-- 第10讲：[第10章](../textbook/ch10.qmd)；
-- 第11讲：[第11章](../textbook/ch11.qmd)与[第12章](../textbook/ch12.qmd)；
-- 第12讲：[第13章](../textbook/ch13.qmd)；
-- 第13—14讲：[第14章](../textbook/ch14.qmd)；
-- 第15讲：[第15章](../textbook/ch15.qmd)。
+- 第10讲：[第10章](../textbook/ch10.qmd)中的机器学习部分；
+- 第11讲：[第10章](../textbook/ch10.qmd)中的大数据与大模型部分；
+- 第12讲：[第11章](../textbook/ch11.qmd)与[第12章](../textbook/ch12.qmd)；
+- 第13讲：[第13章](../textbook/ch13.qmd)；
+- 第14—15讲：[第14章](../textbook/ch14.qmd)；
+- 第16讲：[第15章](../textbook/ch15.qmd)。
 
 ## 自主学习
 

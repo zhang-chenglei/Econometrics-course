@@ -123,6 +123,16 @@ EXTRA_RESOURCE_PAGES: list[tuple[str, str]] = [
     ("course/materials.qmd", "代码与数据｜下载与复现"),
 ]
 
+# Repository-only pages that hang under one course page in the sidebar, such as
+# a lesson's case lab and code walkthrough. The Feishu manifest has no
+# counterpart for them, so without this registry every sync drops them.
+COURSE_REPO_ONLY_CHILDREN: dict[str, list[tuple[str, str]]] = {
+    "ch05": [
+        ("course/lesson7_lab.qmd", "案例实操"),
+        ("course/lesson7_code.qmd", "代码和结果分析"),
+    ],
+}
+
 # Repository-only pages that deserve their own top-level sidebar section
 # instead of being mixed into the current course resources.
 EXTRA_TOP_LEVEL_PAGES: list[tuple[str, str, str]] = [
@@ -237,13 +247,13 @@ def publicize_course_body(page_id: str, text: str) -> str:
         text = replace_once(
             text,
             "> 本课程面向应用经济学研究生。飞书按实际授课进程组织，正式教材按知识体系组织，两者通过“教材章节与课程讲次对照”相互连接。",
-            "> 本网站面向具备一定统计学和多元回归分析基础的高年级本科生与研究生。15讲学习路径按学习过程组织，正式教材按知识体系组织，两者通过“教材章节与课程讲次对照”相互连接。",
+            "> 本网站面向具备一定统计学和多元回归分析基础的高年级本科生与研究生。16讲学习路径按学习过程组织，正式教材按知识体系组织，两者通过“教材章节与课程讲次对照”相互连接。",
             page_id,
         )
         text = replace_once(
             text,
-            "本课程面向已经学习过初级计量经济学的应用经济学研究生。我们不会从一元回归开始逐章重讲，而是用两讲恢复回归基础，再以“内生性与因果推断”为分水岭，进入面板数据、工具变量、准实验方法和前沿模型，最后由每位学生完成一项个人实证项目。",
-            "本网站面向具备一定统计学和多元回归分析基础的高年级本科生与研究生。学习路径用两讲恢复回归基础，再以“内生性与因果推断”为分水岭，进入面板数据、工具变量、准实验方法和前沿模型，最后引导学习者完成一项实证项目。",
+            "本课程面向已经学习过初级计量经济学的应用经济学研究生。我们不会从一元回归开始逐章重讲，而是用两讲恢复回归基础，再以“内生性与因果推断”为分水岭，进入面板数据、工具变量、准实验方法、机器学习和大语言模型，最后由每位学生完成一项个人实证项目。",
+            "本网站面向具备一定统计学和多元回归分析基础的高年级本科生与研究生。学习路径用两讲恢复回归基础，再以“内生性与因果推断”为分水岭，进入面板数据、工具变量、准实验方法、机器学习和大语言模型，最后引导学习者完成一项实证项目。",
             page_id,
         )
         text = replace_once(
@@ -627,7 +637,8 @@ def sidebar_yaml(manifest: dict[str, Any]) -> list[str]:
         for node in nodes:
             kids = children.get(node["id"], [])
             nested_extra = textbook_entries() if node["id"] == "textbook" else []
-            if not kids and not nested_extra:
+            repo_children = COURSE_REPO_ONLY_CHILDREN.get(node["id"], [])
+            if not kids and not nested_extra and not repo_children:
                 lines.append(f"{pad}- href: {href_for(node['id'])}")
                 lines.append(f"{pad}  text: {quote(display_title(node))}")
                 continue
@@ -639,6 +650,9 @@ def sidebar_yaml(manifest: dict[str, Any]) -> list[str]:
             # a nested `教材正文` section pushed every chapter to level 3, where the
             # default collapse-level of 2 hides the whole textbook behind a click.
             for title, target in nested_extra:
+                lines.append(f"{pad}    - href: {target}")
+                lines.append(f"{pad}      text: {quote(title)}")
+            for target, title in repo_children:
                 lines.append(f"{pad}    - href: {target}")
                 lines.append(f"{pad}      text: {quote(title)}")
             emit(kids, indent + 4)
@@ -705,7 +719,7 @@ def write_llms_txt(repo: Path, manifest: dict[str, Any], course_dir: Path) -> No
     lines = [
         f"# {PUBLIC_SITE_TITLE}",
         "",
-        "> 面向具备一定统计学和多元回归分析基础的高年级本科生与研究生：15讲学习路径、完整教材、代码、数据与AI协作指南。",
+        "> 面向具备一定统计学和多元回归分析基础的高年级本科生与研究生：16讲学习路径、完整教材、代码、数据与AI协作指南。",
         "",
         "## 课程",
         "",
@@ -823,6 +837,9 @@ def main() -> None:
         written.add(target)
     written.update(href for href, _title in EXTRA_RESOURCE_PAGES)
     written.update(href for _section, href, _title in EXTRA_TOP_LEVEL_PAGES)
+    written.update(
+        href for children in COURSE_REPO_ONLY_CHILDREN.values() for href, _title in children
+    )
 
     # 2. Write the images (downscaled + re-encoded, see write_image).
     image_dir = repo / "assets/images"

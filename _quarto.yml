@@ -27,7 +27,7 @@ website:
       - href: course/syllabus.qmd
         text: "课程大纲"
       - href: course/guide.qmd
-        text: "15讲课程"
+        text: "16讲课程"
       - href: course/updates.qmd
         text: "课件与更新"
       - href: course/textbook.qmd
@@ -120,19 +120,21 @@ website:
             text: "第9讲｜双重差分与断点回归"
           - href: course/ch07.qmd
             text: "第10讲｜机器学习在计量经济学中的应用"
+          - href: course/ch07a.qmd
+            text: "第11讲｜大语言模型与经济学研究"
       - section: "30｜第三部分：实证项目"
         href: course/part3.qmd
         contents:
           - href: course/ch08.qmd
-            text: "第11讲｜选题与研究设计"
+            text: "第12讲｜选题与研究设计"
           - href: course/ch09.qmd
-            text: "第12讲｜数据与变量"
+            text: "第13讲｜数据与变量"
           - href: course/ch10.qmd
-            text: "第13讲｜模型与基准结果"
+            text: "第14讲｜模型与基准结果"
           - href: course/part3_guide.qmd
-            text: "第14讲｜结果深化与写作修改"
+            text: "第15讲｜结果深化与写作修改"
           - href: course/ch11.qmd
-            text: "第15讲｜成果呈现与项目汇报"
+            text: "第16讲｜成果呈现与项目汇报"
       - section: "40｜自主学习专题"
         href: course/ch12.qmd
         contents:

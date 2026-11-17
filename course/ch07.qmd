@@ -38,7 +38,7 @@ pagetitle: "第10讲：机器学习在计量经济学中的应用"
 
 ## 课件与代码
 
-- [下载本讲 PDF 课件](../materials/slides/lecture10-machine-learning.pdf)
+- [下载本讲 PDF 课件](https://zhang-chenglei.github.io/Econometrics-course/materials/slides/lecture10-machine-learning.pdf)
 - [浏览课堂演示代码与学生操作指南](https://github.com/zhang-chenglei/Econometrics-course-materials/tree/main/lectures/lecture10_ml_causal_forest)
 - [下载代码仓库 ZIP](https://github.com/zhang-chenglei/Econometrics-course-materials/archive/refs/heads/main.zip)，解压后进入 `lectures/lecture10_ml_causal_forest/`
 
