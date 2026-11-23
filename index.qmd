@@ -46,10 +46,10 @@ body-classes: course-home
 
 > 面向个人实证项目的本地工作台：把研究问题、文献证据、数据、代码和论文草稿放进同一个文件夹，配合 AI Agent 完成一项规范的实证研究。下载解压即可使用，只看网页不需要安装软件。
 
-[**下载实证研究工作台（ZIP，约 55 MB）**](materials/research-workbench/intermediate-econometrics-research-workbench.zip){.update-action}
+[**下载实证研究工作台（ZIP，约 59 MB）**](materials/research-workbench/intermediate-econometrics-research-workbench.zip){.update-action}
 [查看使用说明](course/research_workbench.qmd){.update-action}
 
-包内包含工作台首页、研究协作规则、五个研究阶段模板、教师讲义、中英文顶刊题录数据库，以及 31 份讲义参考文献与范文 PDF（含 7 份公开发布的工作论文）。
+包内包含工作台首页、研究协作规则、五个研究阶段模板、教师讲义、中英文顶刊题录数据库，以及 32 份讲义参考文献与范文 PDF（含 7 份公开发布的工作论文）。
 
 ## 推荐资料与链接
 
