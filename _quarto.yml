@@ -218,6 +218,8 @@ website:
             text: "课件与更新｜持续发布"
           - href: course/materials.qmd
             text: "代码与数据｜下载与复现"
+          - href: course/research_workbench.qmd
+            text: "实证研究工作台｜下载与使用"
       # <<< AUTO-GENERATED <<<
   page-footer:
     left: "计量经济学：理论与实践｜开放课程与复现资源"

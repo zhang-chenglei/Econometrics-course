@@ -121,6 +121,7 @@ TEXTBOOK_PUBLIC_TITLES = {
 EXTRA_RESOURCE_PAGES: list[tuple[str, str]] = [
     ("course/updates.qmd", "课件与更新｜持续发布"),
     ("course/materials.qmd", "代码与数据｜下载与复现"),
+    ("course/research_workbench.qmd", "实证研究工作台｜下载与使用"),
 ]
 
 # Repository-only pages that hang under one course page in the sidebar, such as
@@ -155,6 +156,15 @@ PUBLIC_PAGE_TITLES = {
 }
 
 PUBLIC_HOME_RESOURCES = r"""
+
+## 实证研究工作台
+
+> 面向个人实证项目的本地工作台：把研究问题、文献证据、数据、代码和论文草稿放进同一个文件夹，配合 AI Agent 完成一项规范的实证研究。下载解压即可使用，只看网页不需要安装软件。
+
+[**下载实证研究工作台（ZIP，约 20 MB）**](materials/research-workbench/intermediate-econometrics-research-workbench.zip){.update-action}
+[查看使用说明](course/research_workbench.qmd){.update-action}
+
+包内包含工作台首页、研究协作规则、五个研究阶段模板、教师讲义 PDF、中英文顶刊题录数据库和 7 份公开发布的工作论文。
 
 ## 推荐资料与链接
 
