@@ -8,7 +8,7 @@ pagetitle: "实证研究工作台｜下载与使用"
 
 ## 下载
 
-[**下载实证研究工作台（ZIP，约 59 MB）**](../materials/research-workbench/intermediate-econometrics-research-workbench.zip){.update-action}
+[**下载实证研究工作台（ZIP，约 62 MB）**](../materials/research-workbench/intermediate-econometrics-research-workbench.zip){.update-action}
 
 解压后双击文件夹中的 `index.html`，即可在浏览器查看当前研究问题、进度、下一步、文献矩阵与公共资源。整套资料可以整体复制，也可以中途更换 AI Agent 接着做。
 
